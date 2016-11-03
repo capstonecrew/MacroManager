@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		092D64A91DCAB1B2009457FC /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D64A81DCAB1B2009457FC /* DetailsViewController.swift */; };
+		092D64AB1DCAC3B8009457FC /* GoalSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D64AA1DCAC3B8009457FC /* GoalSliderViewController.swift */; };
 		6A24E3631DBED3BF00F95408 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A24E3621DBED3BF00F95408 /* AppDelegate.swift */; };
 		6A24E3651DBED3BF00F95408 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A24E3641DBED3BF00F95408 /* ViewController.swift */; };
 		6A24E3681DBED3BF00F95408 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A24E3661DBED3BF00F95408 /* Main.storyboard */; };
@@ -40,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		092D64A81DCAB1B2009457FC /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		092D64AA1DCAC3B8009457FC /* GoalSliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalSliderViewController.swift; path = ../GoalSliderViewController.swift; sourceTree = "<group>"; };
 		6A24E35F1DBED3BF00F95408 /* MacroManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacroManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A24E3621DBED3BF00F95408 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6A24E3641DBED3BF00F95408 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,8 +114,10 @@
 			isa = PBXGroup;
 			children = (
 				6A24E3621DBED3BF00F95408 /* AppDelegate.swift */,
+				092D64AA1DCAC3B8009457FC /* GoalSliderViewController.swift */,
 				6A24E3641DBED3BF00F95408 /* ViewController.swift */,
 				6A24E3661DBED3BF00F95408 /* Main.storyboard */,
+				092D64A81DCAB1B2009457FC /* DetailsViewController.swift */,
 				6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */,
 				6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */,
 				6AC12E151DC80F7C007C2D45 /* Fonts */,
@@ -303,7 +309,9 @@
 				6A24E3651DBED3BF00F95408 /* ViewController.swift in Sources */,
 				6A24E3631DBED3BF00F95408 /* AppDelegate.swift in Sources */,
 				6A24E36B1DBED3BF00F95408 /* MacroManager.xcdatamodeld in Sources */,
+				092D64AB1DCAC3B8009457FC /* GoalSliderViewController.swift in Sources */,
 				6AC12E171DC8F17C007C2D45 /* RegistrationViewController.swift in Sources */,
+				092D64A91DCAB1B2009457FC /* DetailsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
