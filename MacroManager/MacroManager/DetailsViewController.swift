@@ -2,8 +2,8 @@
 //  DetailsViewController.swift
 //  MacroManager
 //
-//  Created by spencer on 11/2/16.
-//  Copyright © 2016 Aaron Edwards. All rights reserved.
+//  Created by Capstone Crew on 10/31/16.
+//  Copyright © 2016 Capstone Crew. All rights reserved.
 //
 
 import UIKit
