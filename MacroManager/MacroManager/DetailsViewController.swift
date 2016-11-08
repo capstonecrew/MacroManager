@@ -8,18 +8,22 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController, UITextFieldDelegate {
+class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
 
-    @IBOutlet weak var feetPickerView: UIPickerView!
-    @IBOutlet weak var inchesPickerView: UIPickerView!
+
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var weightField: UITextField!
+    @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var heightField: UITextField!
     var feetPickerData: [String] = [String]()
     var inchesPickerData: [String] = [String]()
+    var heightPickerView = UIPickerView()
+    var frontString = ""
+    var backString = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        heightPickerView.dataSource = self
+        heightPickerView.delegate = self
         feetPickerData = ["1", "2", "3", "4", "5", "6", "7"]
          inchesPickerData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
@@ -56,20 +60,22 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
         heightField.tag = 2
         heightField.delegate = self
         heightField.returnKeyType = .continue
-        heightField.isSecureTextEntry = true
         heightField.keyboardType = .default
         heightField.autocapitalizationType = .none
         heightField.tintColor = UIColor.white
-        
+        heightField.inputView = heightPickerView
         //GESTURE RECOGNIZER TO HIDE KEYBOARD - SCB
         let tap = UITapGestureRecognizer(target: self, action: #selector(RegistrationViewController.hideKeyboard))
         view.addGestureRecognizer(tap)
         
         //CONFIGURE LOGIN BUTTON - SCB
-      //  nextButton.backgroundColor = UIColor.white
-      //  nextButton.layer.cornerRadius = 5
+        nextButton.backgroundColor = UIColor.white
+        nextButton.layer.cornerRadius = 5
     }
-    
+    func hideKeyboard()
+    {
+        view.endEditing(true)
+    }
     
     
     
@@ -94,7 +100,41 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
     
+    // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+       if (component == 0)
+       {
+        return feetPickerData.count
+        }
+       else{
+        return inchesPickerData.count
+        }
+    }
+    
+    // The data to return for the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if (component == 0)
+        {
+            return feetPickerData[row]
+        }
+        else{
+            return inchesPickerData[row]
+        }
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if (component == 0)
+        {
+            frontString = feetPickerData[row]
+             heightField.text = frontString + "' " + backString + "\""
+        }
+        else{
+            backString = inchesPickerData[row]
+             heightField.text = frontString + "' " + backString + "\""        }
+    }
     /*
     // MARK: - Navigation
 
