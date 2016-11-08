@@ -2,8 +2,8 @@
 //  RegistrationViewController.swift
 //  MacroManager
 //
-//  Created by Aaron James Edwards on 11/1/16.
-//  Copyright © 2016 Aaron Edwards. All rights reserved.
+//  Created by Capstone Crew on 10/31/16.
+//  Copyright © 2016 Capstone Crew. All rights reserved.
 //
 
 import UIKit
