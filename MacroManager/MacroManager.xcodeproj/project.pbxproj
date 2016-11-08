@@ -233,7 +233,7 @@
 				TargetAttributes = {
 					6A24E35E1DBED3BF00F95408 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 3G7SYS5BZP;
+						DevelopmentTeam = 88MN537MDW;
 						ProvisioningStyle = Automatic;
 					};
 					6A24E3751DBED3BF00F95408 = {
@@ -463,12 +463,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3G7SYS5BZP;
+				DEVELOPMENT_TEAM = 88MN537MDW;
 				INFOPLIST_FILE = MacroManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gregg.MacroManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.MacroManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -476,12 +477,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 3G7SYS5BZP;
+				DEVELOPMENT_TEAM = 88MN537MDW;
 				INFOPLIST_FILE = MacroManager/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.gregg.MacroManager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.MacroManager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

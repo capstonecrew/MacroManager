@@ -113,6 +113,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    @IBAction func unwindFromRegistration(segue:UIStoryboardSegue) {
+        
+    }
 
     /*
     // MARK: - Navigation

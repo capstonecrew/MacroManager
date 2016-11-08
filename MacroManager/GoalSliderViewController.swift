@@ -12,6 +12,8 @@ class GoalSliderViewController: UIViewController {
 
     @IBOutlet weak var goalSlider: UISlider!
     @IBOutlet weak var goalLabel: UILabel!
+    @IBOutlet weak var signUpButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -20,6 +22,9 @@ class GoalSliderViewController: UIViewController {
         
         goalSlider.tintColor = UIColor.lightGray
         goalSlider.thumbTintColor = UIColor(red:0.17, green:0.57, blue:0.56, alpha:1.0)
+        
+        signUpButton.backgroundColor = UIColor.white
+        signUpButton.layer.cornerRadius = 5
     
         // Do any additional setup after loading the view.
     }
@@ -33,11 +38,11 @@ class GoalSliderViewController: UIViewController {
             
         }else if (goalSlider.value >= 30 && goalSlider.value < 60){
             
-            goalLabel.text = "Maintain weight"
+            goalLabel.text = "MAINTAIN WEIGHT"
         
         }else{
         
-            goalLabel.text = "Gain weight"
+            goalLabel.text = "GAIN WEIGHT"
         }
     }
     
