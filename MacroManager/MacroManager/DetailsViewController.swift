@@ -68,7 +68,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         let tap = UITapGestureRecognizer(target: self, action: #selector(RegistrationViewController.hideKeyboard))
         view.addGestureRecognizer(tap)
         
-        //CONFIGURE LOGIN BUTTON - SCB
+        //CONFIGURE NEXT BUTTON - SCB
         nextButton.backgroundColor = UIColor.white
         nextButton.layer.cornerRadius = 5
     }
@@ -135,6 +135,12 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
             backString = inchesPickerData[row]
              heightField.text = frontString + "' " + backString + "\""        }
     }
+    
+    
+    @IBAction func unwindFromGoalSlider(segue:UIStoryboardSegue) {
+        
+    }
+    
     /*
     // MARK: - Navigation
 
