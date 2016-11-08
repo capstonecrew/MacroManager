@@ -20,6 +20,10 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
     var heightPickerView = UIPickerView()
     var frontString = ""
     var backString = ""
+    var fromName = String() // set by regView
+    var fromEmail = String() // set by regView
+    var fromPassword = String() // set by regView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         heightPickerView.dataSource = self
@@ -134,6 +138,20 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         else{
             backString = inchesPickerData[row]
              heightField.text = frontString + "' " + backString + "\""        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailsToGoals" {
+            print("sending 6 fields to goalSlideView")
+            if let nextView: GoalSliderViewController = segue.destination as? GoalSliderViewController {
+                nextView.fromName = fromName
+                nextView.fromEmail = fromEmail
+                nextView.fromPassword = fromPassword
+                nextView.fromAge = Int(ageField.text!)!
+                nextView.fromWeight = Int(weightField.text!)!
+                nextView.fromHeight = heightField.text!
+            }
+        }
     }
     
     

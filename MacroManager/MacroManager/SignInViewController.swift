@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SignInViewController: UIViewController, UITextFieldDelegate{
 
@@ -106,6 +107,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         
             print("LOGGED IN \(email) with password \(password).")
         }
+        
+    }
+    @IBAction func checkAcct(_ sender: Any) {
         
     }
     

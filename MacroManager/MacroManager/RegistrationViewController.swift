@@ -78,7 +78,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate{
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
+        print("lol")
         let nextTag = textField.tag + 1;
         let nextResponder = textField.superview?.viewWithTag(nextTag) as UIResponder!
         
@@ -94,6 +94,17 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate{
         return false
     }
 
+    /* send data to registrationViewController to later be added to CD */
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "regToDetail" {
+            print("sending 3 fields to regView")
+            if let nextView: DetailsViewController = segue.destination as? DetailsViewController {
+                nextView.fromName = nameField.text!
+                nextView.fromEmail = emailField.text!
+                nextView.fromPassword = passwordField.text!
+            }
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
