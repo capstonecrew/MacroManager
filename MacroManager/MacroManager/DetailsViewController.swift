@@ -8,18 +8,19 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController, UITextFieldDelegate {
+class DetailsViewController: UIViewController, UITextFieldDelegate , UIPickerViewDelegate, UIPickerViewDataSource{
 
-    @IBOutlet weak var feetPickerView: UIPickerView!
-    @IBOutlet weak var inchesPickerView: UIPickerView!
+ 
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var heightField: UITextField!
     var feetPickerData: [String] = [String]()
     var inchesPickerData: [String] = [String]()
+    var heightPickerView = UIPickerView()
     override func viewDidLoad() {
         super.viewDidLoad()
-       
+        heightPickerView.delegate = self
+        heightPickerView.dataSource = self
         feetPickerData = ["1", "2", "3", "4", "5", "6", "7"]
          inchesPickerData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
@@ -60,6 +61,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
         heightField.keyboardType = .default
         heightField.autocapitalizationType = .none
         heightField.tintColor = UIColor.white
+        heightField.inputView = heightPickerView
         
         //GESTURE RECOGNIZER TO HIDE KEYBOARD - SCB
         let tap = UITapGestureRecognizer(target: self, action: #selector(RegistrationViewController.hideKeyboard))
@@ -70,7 +72,11 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
       //  nextButton.layer.cornerRadius = 5
     }
     
-    
+    func hideKeyboard()
+    {
+        view.endEditing(true)
+        
+    }
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -94,7 +100,45 @@ class DetailsViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 2
+    }
+    func  pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if(component == 0)
+        {
+            return feetPickerData.count
+        }
+        else{
+            return inchesPickerData.count
+        }
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if(component == 0)
+        {
+            return feetPickerData[row]
+        }
+        else{
+            return inchesPickerData[row]
+        }
+    }
+    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // This method is triggered whenever the user makes a change to the picker selection.
+        // The parameter named row and component represents what was selected.
+        
+        if(component == 0)
+        {
+            
+           self.heightField.text = feetPickerData[row]
+           
+        }
+        else
+        {
+            self.heightField.text = inchesPickerData[row]
+        }
+        
+        
+        
+    }
     /*
     // MARK: - Navigation
 

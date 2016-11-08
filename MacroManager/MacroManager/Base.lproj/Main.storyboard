@@ -312,22 +312,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UOi-Fs-ZBV">
-                                <rect key="frame" x="31" y="377" width="118" height="61"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cdo-VO-mUt">
-                                <rect key="frame" x="226" y="377" width="118" height="61"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="ageField" destination="wXL-wY-yS3" id="Grz-Vj-oq6"/>
-                        <outlet property="feetPickerView" destination="UOi-Fs-ZBV" id="kvJ-RD-u1t"/>
                         <outlet property="heightField" destination="317-dS-mZG" id="pgV-S6-E2m"/>
-                        <outlet property="inchesPickerView" destination="Cdo-VO-mUt" id="1LU-WI-Rav"/>
                         <outlet property="weightField" destination="VV6-QO-gZl" id="P8X-v8-jNQ"/>
                     </connections>
                 </viewController>
