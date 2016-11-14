@@ -54,51 +54,26 @@ class GoalSliderViewController: UIViewController {
         }
     }
     
-    @IBAction func saveToCoreData(_ sender: Any) {
-        print("saving to core data")
-        let context = getContext()
-        
-        //retrieve the entity that we just created
-        let entity =  NSEntityDescription.entity(forEntityName: "UserEnt", in: context)
-        
-        let transc = NSManagedObject(entity: entity!, insertInto: context)
-        //set the entity values
-        transc.setValue(fromName, forKey: "name")
-        transc.setValue(fromAge, forKey: "age")
-        transc.setValue(fromEmail, forKey: "email")
-        transc.setValue(fromPassword, forKey: "password")
-        transc.setValue(fromWeight, forKey: "weight")
-        transc.setValue(fromHeight, forKey: "height")
-        transc.setValue(Int(goalSlider.value), forKey: "goal")
-        //save the object
-        do {
-            try context.save()
-            print("saved!")
-        } catch let error as NSError  {
-            print("Could not save \(error), \(error.userInfo)")
-        } catch {
-            
-        }
-    }
     
     func getContext () -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
     
-    /*override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goalsToData" {
             print("sending 7 fields to dataViewController")
-            if let nextView: GoalSliderViewController = segue.destination as? GoalSliderViewController {
+            if let nextView: dataTestViewController = segue.destination as? dataTestViewController {
                 nextView.fromName = fromName
                 nextView.fromEmail = fromEmail
                 nextView.fromPassword = fromPassword
-                nextView.fromAge = Int(ageField.text!)!
-                nextView.fromWeight = Int(weightField.text!)!
-                nextView.fromHeight = heightField.text!
+                nextView.fromAge = fromAge
+                nextView.fromWeight = fromWeight
+                nextView.fromHeight = fromHeight
+                nextView.fromGoals = Int(goalSlider.value)
             }
         }
-    }*/
+    }
     
     
     

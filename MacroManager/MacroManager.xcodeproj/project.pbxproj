@@ -116,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				6A24E3621DBED3BF00F95408 /* AppDelegate.swift */,
+				7901E9391DD249F600089564 /* dataTestViewController.swift */,
 				092D64AA1DCAC3B8009457FC /* GoalSliderViewController.swift */,
 				6A24E3641DBED3BF00F95408 /* ViewController.swift */,
 				6A24E3661DBED3BF00F95408 /* Main.storyboard */,
@@ -128,7 +129,6 @@
 				6AC12E101DC800C2007C2D45 /* ImageAssets */,
 				6A24E3711DBED3BF00F95408 /* Info.plist */,
 				6A24E3691DBED3BF00F95408 /* MacroManager.xcdatamodeld */,
-				7901E9391DD249F600089564 /* dataTestViewController.swift */,
 			);
 			path = MacroManager;
 			sourceTree = "<group>";
