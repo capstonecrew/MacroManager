@@ -1,0 +1,3 @@
+[submodule "MacroManager/Alamofire"]
+	path = MacroManager/Alamofire
+	url = https://github.com/Alamofire/Alamofire.git
