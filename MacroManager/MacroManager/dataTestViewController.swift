@@ -19,16 +19,54 @@ class dataTestViewController: UIViewController {
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var goalLabel: UILabel!
     
+    var fromName = String() // set by regView
+    var fromEmail = String() // set by regView
+    var fromPassword = String() // set by regView
+    var fromAge = Int() // set by details
+    var fromWeight = Int() // set by details
+    var fromHeight = String() // set by details
+    var fromGoals = Int() // from goalSlider
+    
     var index: Int = 0
-    var max: Int = 0
+    var max: Int = 1
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        saveToCD()
+        sleep(1)
         getTranscriptions(ind: index) // fetch CD
 
         // Do any additional setup after loading the view.
     }
+    
+    func saveToCD() {
+        print("saving to core data")
+        let context = getContext()
+        
+        //retrieve the entity that we just created
+        let entity =  NSEntityDescription.entity(forEntityName: "UserEnt", in: context)
+        
+        let transc = NSManagedObject(entity: entity!, insertInto: context)
+        //set the entity values
+        transc.setValue(fromName, forKey: "name")
+        transc.setValue(fromAge, forKey: "age")
+        transc.setValue(fromEmail, forKey: "email")
+        transc.setValue(fromPassword, forKey: "password")
+        transc.setValue(fromWeight, forKey: "weight")
+        transc.setValue(fromHeight, forKey: "height")
+        transc.setValue(fromGoals, forKey: "goal")
+        //save the object
+        do {
+            try context.save()
+            print("saved!")
+        } catch let error as NSError  {
+            print("Could not save \(error), \(error.userInfo)")
+        } catch {
+            
+        }
+    }
+    
     
     func getTranscriptions(ind: Int) {
         //create a fetch request, telling it about the entity
@@ -37,6 +75,7 @@ class dataTestViewController: UIViewController {
         do {
             //go get the results
             let searchResults = try getContext().fetch(fetchRequest)
+            print("max is \(searchResults.count)")
             max = searchResults.count
             
             nameLabel.text = searchResults[ind].value(forKey: "name") as! String?
@@ -53,12 +92,14 @@ class dataTestViewController: UIViewController {
         
     }
     
-    func getContext () -> NSManagedObjectContext {
+    func getContext() -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
     
     @IBAction func nextButton(_ sender: Any) {
+        print("index is \(index) and max is \(max)")
+        print("next")
         if index < max - 1 {
             index = index + 1
             getTranscriptions(ind: index)
@@ -66,6 +107,8 @@ class dataTestViewController: UIViewController {
     }
 
     @IBAction func prevButton(_ sender: Any) {
+        print("index is \(index) and max is \(max)")
+        print("prev")
         if index > 0 {
             index = index - 1
             getTranscriptions(ind: index)

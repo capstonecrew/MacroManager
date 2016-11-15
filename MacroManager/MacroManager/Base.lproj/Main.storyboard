@@ -392,7 +392,6 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="J8C-xa-bh3" eventType="touchUpInside" id="q4U-za-rbJ"/>
-                                    <action selector="saveToCoreData:" destination="3Rw-fP-9Wg" eventType="touchUpInside" id="lfc-bg-xbL"/>
                                     <segue destination="gFm-Q2-RtX" kind="show" identifier="goalsToData" id="mfb-kC-TVe"/>
                                 </connections>
                             </button>
