@@ -341,10 +341,10 @@
             </objects>
             <point key="canvasLocation" x="1533.5999999999999" y="-120.08995502248877"/>
         </scene>
-        <!--View Controller-->
+        <!--Dashoboard View Controller-->
         <scene sceneID="dX1-Yq-rn8">
             <objects>
-                <viewController id="AZC-Ad-bJM" sceneMemberID="viewController">
+                <viewController id="AZC-Ad-bJM" customClass="DashoboardViewController" customModule="MacroManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="G0t-u3-7Js"/>
                         <viewControllerLayoutGuide type="bottom" id="Y7v-DG-cq1"/>
@@ -360,10 +360,10 @@
             </objects>
             <point key="canvasLocation" x="705" y="633"/>
         </scene>
-        <!--View Controller-->
+        <!--Search View Controller-->
         <scene sceneID="cbs-Ri-EnO">
             <objects>
-                <viewController id="hxf-Pq-MeY" sceneMemberID="viewController">
+                <viewController id="hxf-Pq-MeY" customClass="SearchViewController" customModule="MacroManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Nc9-Mu-nBE"/>
                         <viewControllerLayoutGuide type="bottom" id="UKs-Ma-Mdn"/>
@@ -379,10 +379,10 @@
             </objects>
             <point key="canvasLocation" x="705" y="1344"/>
         </scene>
-        <!--View Controller-->
+        <!--Acheivements View Controller-->
         <scene sceneID="MD2-nE-GNE">
             <objects>
-                <viewController id="hbO-9Q-L2W" sceneMemberID="viewController">
+                <viewController id="hbO-9Q-L2W" customClass="AcheivementsViewController" customModule="MacroManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="naI-Zm-DW5"/>
                         <viewControllerLayoutGuide type="bottom" id="Diz-fB-M5C"/>
@@ -398,10 +398,10 @@
             </objects>
             <point key="canvasLocation" x="705" y="2040"/>
         </scene>
-        <!--View Controller-->
+        <!--Profile View Controller-->
         <scene sceneID="lcQ-SB-0uE">
             <objects>
-                <viewController id="0VQ-Ef-TEM" sceneMemberID="viewController">
+                <viewController id="0VQ-Ef-TEM" customClass="ProfileViewController" customModule="MacroManager" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P27-FO-jXz"/>
                         <viewControllerLayoutGuide type="bottom" id="uki-0e-QX5"/>
@@ -415,7 +415,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h4t-h6-mtD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1644" y="2721.5892053973016"/>
+            <point key="canvasLocation" x="705" y="2722"/>
         </scene>
         <!--Goal Slider View Controller-->
         <scene sceneID="qHQ-rx-ael">
@@ -590,6 +590,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="1cP-nY-dCA" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="mX3-al-FHh">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
@@ -609,7 +610,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="sFm-b9-lmW" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="dashboard_icon.png" id="Oey-YC-q5F">
-                        <inset key="imageInsets" minX="0.0" minY="7" maxX="0.0" maxY="-7"/>
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="6V0-NL-oc9">
@@ -625,11 +626,11 @@
             </objects>
             <point key="canvasLocation" x="-90" y="633"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="hEa-8g-W6M">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="UEK-2W-npG" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="search_icon.png" id="6Lv-ac-Hgq">
+                    <tabBarItem key="tabBarItem" title="" image="search_icon.png" id="6Lv-ac-Hgq">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -646,11 +647,11 @@
             </objects>
             <point key="canvasLocation" x="-90" y="1344"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="9jl-eK-WFd">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="btW-eO-699" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="trophy_icon.png" id="Fpx-dk-Ti7">
+                    <tabBarItem key="tabBarItem" title="" image="trophy_icon.png" id="Fpx-dk-Ti7">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
@@ -667,11 +668,11 @@
             </objects>
             <point key="canvasLocation" x="-90" y="2040"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="OGC-s5-Pky">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZvB-Lo-KYO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" image="profile_icon.png" id="sqK-Cz-NWl">
+                    <tabBarItem key="tabBarItem" title="" image="profile_icon.png" id="sqK-Cz-NWl">
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>

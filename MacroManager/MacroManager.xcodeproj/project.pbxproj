@@ -32,6 +32,10 @@
 		6A4608D41DDD793C003D77B5 /* trophy_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4608D11DDD793C003D77B5 /* trophy_icon.png */; };
 		6A4608D51DDD793C003D77B5 /* trophy_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4608D21DDD793C003D77B5 /* trophy_icon@2x.png */; };
 		6A4608D61DDD793C003D77B5 /* trophy_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4608D31DDD793C003D77B5 /* trophy_icon@3x.png */; };
+		6A4608E11DDD7DA3003D77B5 /* DashoboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4608E01DDD7DA3003D77B5 /* DashoboardViewController.swift */; };
+		6A4608EA1DDD7DB2003D77B5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4608E91DDD7DB2003D77B5 /* SearchViewController.swift */; };
+		6A4608EC1DDD7DC2003D77B5 /* AcheivementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4608EB1DDD7DC2003D77B5 /* AcheivementsViewController.swift */; };
+		6A4608EE1DDD7DD1003D77B5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4608ED1DDD7DD1003D77B5 /* ProfileViewController.swift */; };
 		6AC12E0D1DC7FCC5007C2D45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */; };
 		6AC12E0F1DC800B0007C2D45 /* Unknown.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6AC12E0E1DC800B0007C2D45 /* Unknown.jpeg */; };
 		6AC12E121DC80DE4007C2D45 /* MacroManager.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC12E111DC80DE4007C2D45 /* MacroManager.png */; };
@@ -158,6 +162,10 @@
 		6A4608D11DDD793C003D77B5 /* trophy_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy_icon.png; sourceTree = "<group>"; };
 		6A4608D21DDD793C003D77B5 /* trophy_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trophy_icon@2x.png"; sourceTree = "<group>"; };
 		6A4608D31DDD793C003D77B5 /* trophy_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trophy_icon@3x.png"; sourceTree = "<group>"; };
+		6A4608E01DDD7DA3003D77B5 /* DashoboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashoboardViewController.swift; sourceTree = "<group>"; };
+		6A4608E91DDD7DB2003D77B5 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		6A4608EB1DDD7DC2003D77B5 /* AcheivementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcheivementsViewController.swift; sourceTree = "<group>"; };
+		6A4608ED1DDD7DD1003D77B5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6AC12E0E1DC800B0007C2D45 /* Unknown.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Unknown.jpeg; sourceTree = "<group>"; };
 		6AC12E111DC80DE4007C2D45 /* MacroManager.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MacroManager.png; sourceTree = "<group>"; };
@@ -209,6 +217,10 @@
 		6A24E3561DBED3BF00F95408 = {
 			isa = PBXGroup;
 			children = (
+				6A4608E01DDD7DA3003D77B5 /* DashoboardViewController.swift */,
+				6A4608E91DDD7DB2003D77B5 /* SearchViewController.swift */,
+				6A4608EB1DDD7DC2003D77B5 /* AcheivementsViewController.swift */,
+				6A4608ED1DDD7DD1003D77B5 /* ProfileViewController.swift */,
 				197962881DDA709000AE1C92 /* Alamofire.xcodeproj */,
 				6A24E3611DBED3BF00F95408 /* MacroManager */,
 				6A24E3791DBED3BF00F95408 /* MacroManagerTests */,
@@ -508,13 +520,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A4608EC1DDD7DC2003D77B5 /* AcheivementsViewController.swift in Sources */,
 				197962A91DDA71C700AE1C92 /* NixRouter.swift in Sources */,
+				6A4608EA1DDD7DB2003D77B5 /* SearchViewController.swift in Sources */,
 				7901E93A1DD249F600089564 /* dataTestViewController.swift in Sources */,
 				6AC12E0D1DC7FCC5007C2D45 /* SignInViewController.swift in Sources */,
+				6A4608E11DDD7DA3003D77B5 /* DashoboardViewController.swift in Sources */,
 				6A24E3651DBED3BF00F95408 /* ViewController.swift in Sources */,
 				6A24E3631DBED3BF00F95408 /* AppDelegate.swift in Sources */,
 				6A24E36B1DBED3BF00F95408 /* MacroManager.xcdatamodeld in Sources */,
 				092D64AB1DCAC3B8009457FC /* GoalSliderViewController.swift in Sources */,
+				6A4608EE1DDD7DD1003D77B5 /* ProfileViewController.swift in Sources */,
 				6AC12E171DC8F17C007C2D45 /* RegistrationViewController.swift in Sources */,
 				092D64A91DCAB1B2009457FC /* DetailsViewController.swift in Sources */,
 			);
