@@ -106,6 +106,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         }else{
         
             print("LOGGED IN \(email) with password \(password).")
+            performSegue(withIdentifier: "toDashboardView", sender: self)
         }
         
     }
@@ -120,6 +121,12 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func unwindFromRegistration(segue:UIStoryboardSegue) {
         
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toDashboardView"{
+            
+        }
     }
 
     /*
