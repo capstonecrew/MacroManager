@@ -15,6 +15,7 @@ class DashboardViewController: UITableViewController {
 
         navigationController?.navigationBar.barTintColor = UIColor.red
         tableView.register(UINib(nibName: "WelcomeUserCell", bundle: nil), forCellReuseIdentifier: "welcomeUserCell")
+        tableView.register(UINib(nibName: "DailyGoalProgressCell", bundle: nil), forCellReuseIdentifier: "dailyGoalProgressCell")
         
         self.navigationItem.title = "macro manager"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
@@ -45,6 +46,13 @@ class DashboardViewController: UITableViewController {
         if(indexPath.row == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "welcomeUserCell") as! WelcomeUserCell
             return cell
+        }else if(indexPath.row == 1){
+            let cell = tableView.dequeueReusableCell(withIdentifier: "dailyGoalProgressCell") as! DailyGoalProgressCell
+            return cell
+        }else if(indexPath.row == 2){
+            let cell = UITableViewCell()
+            cell.detailTextLabel?.text = "History"
+            return cell
         }
         
         
@@ -58,6 +66,9 @@ class DashboardViewController: UITableViewController {
         if(indexPath.row == 0){
         
             return 70.0
+        }else if(indexPath.row == 1){
+            
+            return 234.0
         }
         
         return 39.0

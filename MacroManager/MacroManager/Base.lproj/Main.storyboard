@@ -599,7 +599,11 @@
                             <outlet property="delegate" destination="v7S-yM-35s" id="Jcy-SR-AH3"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ja1-Tk-dfW"/>
+                    <navigationItem key="navigationItem" id="ja1-Tk-dfW">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Fek-vA-rHW">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ho9-VX-lFJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
