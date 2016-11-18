@@ -554,6 +554,8 @@
 				6A24E3631DBED3BF00F95408 /* AppDelegate.swift in Sources */,
 				6A24E36B1DBED3BF00F95408 /* MacroManager.xcdatamodeld in Sources */,
 				197FBF811DDF4ACD0095D8BF /* SwiftyJSON.swift in Sources */,
+				6A3D057D1DDEC754008CDDF7 /* DailyGoalProgressCell.swift in Sources */,
+				6A3D05741DDEBC8E008CDDF7 /* DashboardViewController.swift in Sources */,
 				092D64AB1DCAC3B8009457FC /* GoalSliderViewController.swift in Sources */,
 				6A3D05771DDEBED7008CDDF7 /* WelcomeUserCell.swift in Sources */,
 				6A4608EE1DDD7DD1003D77B5 /* ProfileViewController.swift in Sources */,
