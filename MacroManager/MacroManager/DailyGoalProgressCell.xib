@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="dailyGoalProgressCell" rowHeight="234" id="KGk-i7-Jjw" customClass="DailyGoalProgressCell" customModule="MacroManager" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <frame key="frameInset" width="320" height="233"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Goal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-Bc-tSg">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="125" id="SiY-rB-l9O"/>
+                            <constraint firstAttribute="height" constant="28" id="h3e-di-STc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="23"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4v-eN-0dG">
+                        <color key="backgroundColor" red="0.85164141414141414" green="0.85164141414141414" blue="0.85164141414141414" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="xyC-fh-uuk"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Proteins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1Y-YA-TaQ">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="88" id="I30-cP-lvX"/>
+                            <constraint firstAttribute="height" constant="21" id="yIZ-jw-qBq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-xt-AEz">
+                        <color key="backgroundColor" red="0.85164141410000005" green="0.85164141410000005" blue="0.85164141410000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="Hhy-Q2-nl6"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbohydrates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMd-dL-MUY">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="E2T-OO-2gj"/>
+                            <constraint firstAttribute="width" constant="114" id="J5I-fk-mW5"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iI8-Ai-V1c">
+                        <color key="backgroundColor" red="0.85164141410000005" green="0.85164141410000005" blue="0.85164141410000005" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="thb-Gu-vOj"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uP5-hQ-aIa">
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="M6A-E8-BOD"/>
+                            <constraint firstAttribute="width" constant="88" id="NQW-iq-s76"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QI-9n-Hvl">
+                        <constraints>
+                            <constraint firstAttribute="width" constant="64" id="WjX-ig-zdr"/>
+                            <constraint firstAttribute="height" constant="30" id="zdh-BP-WMK"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <state key="normal" title="Details"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7fe-xt-AEz" firstAttribute="top" secondItem="W1Y-YA-TaQ" secondAttribute="bottom" constant="8" id="1j0-29-ie2"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="iI8-Ai-V1c" secondAttribute="trailing" constant="7" id="59u-qt-0cd"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="c4v-eN-0dG" secondAttribute="trailing" constant="7" id="5W5-Qb-7VP"/>
+                    <constraint firstItem="iI8-Ai-V1c" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="7Nq-Wb-JdE"/>
+                    <constraint firstItem="uP5-hQ-aIa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="BSu-Gh-9dW"/>
+                    <constraint firstItem="W1Y-YA-TaQ" firstAttribute="top" secondItem="c4v-eN-0dG" secondAttribute="bottom" constant="5" id="C6k-O8-szv"/>
+                    <constraint firstItem="iI8-Ai-V1c" firstAttribute="top" secondItem="IMd-dL-MUY" secondAttribute="bottom" constant="8" id="C9T-Pq-pSs"/>
+                    <constraint firstItem="c4v-eN-0dG" firstAttribute="top" secondItem="ml2-Bc-tSg" secondAttribute="bottom" constant="19" id="DKx-ZN-wN7"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="1QI-9n-Hvl" secondAttribute="trailing" constant="7" id="FIG-00-qNX"/>
+                    <constraint firstItem="IMd-dL-MUY" firstAttribute="top" secondItem="7fe-xt-AEz" secondAttribute="bottom" constant="5" id="JGY-kx-4Tj"/>
+                    <constraint firstItem="W1Y-YA-TaQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Lai-hl-pPS"/>
+                    <constraint firstItem="ml2-Bc-tSg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="POL-DL-MXQ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7fe-xt-AEz" secondAttribute="trailing" constant="7" id="ZHo-bV-ZNy"/>
+                    <constraint firstItem="ml2-Bc-tSg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="ba3-5T-oVj"/>
+                    <constraint firstItem="uP5-hQ-aIa" firstAttribute="top" secondItem="iI8-Ai-V1c" secondAttribute="bottom" constant="5" id="cB7-HW-k9A"/>
+                    <constraint firstItem="IMd-dL-MUY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="dif-hD-Gih"/>
+                    <constraint firstItem="c4v-eN-0dG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="fiP-2f-bBN"/>
+                    <constraint firstItem="7fe-xt-AEz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="ie1-AF-sQj"/>
+                    <constraint firstItem="1QI-9n-Hvl" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="ntd-DV-RyF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="carbsProgressBack" destination="7fe-xt-AEz" id="vdJ-oL-3Wt"/>
+                <outlet property="fatsProgressBack" destination="iI8-Ai-V1c" id="Fce-mW-oNZ"/>
+                <outlet property="proteinProgressBack" destination="c4v-eN-0dG" id="kr9-zf-YZs"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="131"/>
+        </tableViewCell>
+    </objects>
+</document>
