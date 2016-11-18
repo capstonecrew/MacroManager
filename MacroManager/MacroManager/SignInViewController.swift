@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import Alamofire
 
 class SignInViewController: UIViewController, UITextFieldDelegate{
 
@@ -57,6 +58,13 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         loginButton.layer.cornerRadius = 5
         
         // Do any additional setup after loading the view.
+        
+        // API Query example
+        NixApiManager.search(query: "tacos", page: 0) { response in
+            for item in response.value! {
+                print(item.toString())
+            }
+        }
     }
     
     //HIDE KEYBOARD WHEN TOUCHING ANYWHERE ON SCREEN - AJE
