@@ -16,14 +16,18 @@ class DailyGoalProgressCell: UITableViewCell {
     @IBOutlet weak var fatsProgressBack: UIView!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        setupProgressBars()
+    }
+    
+    func setupProgressBars(){
+    
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
         
         proteinProgressBack.layer.cornerRadius = 10
         carbsProgressBack.layer.cornerRadius = 10
         fatsProgressBack.layer.cornerRadius = 10
-        
-        let screenSize: CGRect = UIScreen.main.bounds
-        let screenWidth = screenSize.width
         
         let progressBarMaxWidth = screenWidth - 30
         let proteinProgressWidth = 65/100 * progressBarMaxWidth
@@ -60,18 +64,18 @@ class DailyGoalProgressCell: UITableViewCell {
         anim2.toValue = UIColor.green.cgColor
         anim2.duration = 2
         carbsProgress.add(anim2, forKey: "anim")
-
+        
         let anim3 = CABasicAnimation(keyPath: "fillColor")
         anim3.fromValue = UIColor.clear.cgColor
         anim3.toValue = UIColor.orange.cgColor
         anim3.duration = 2
         fatsProgress.add(anim3, forKey: "anim")
-
+        
         
         proteinProgressBack.layer.addSublayer(proteinProgress)
         carbsProgressBack.layer.addSublayer(carbsProgress)
         fatsProgressBack.layer.addSublayer(fatsProgress)
-        
+    
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
