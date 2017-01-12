@@ -14,6 +14,7 @@
 		197962A21DDA710800AE1C92 /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 197962941DDA709000AE1C92 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		197962A91DDA71C700AE1C92 /* NixRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197962A81DDA71C700AE1C92 /* NixRouter.swift */; };
 		197FBF811DDF4ACD0095D8BF /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 197FBF801DDF4ACD0095D8BF /* SwiftyJSON.swift */; };
+		1985FD061E2736FC009A59D5 /* under_construction_gif.gif in Resources */ = {isa = PBXBuildFile; fileRef = 1985FD051E2736FC009A59D5 /* under_construction_gif.gif */; };
 		19B7250B1DDEC15B008B9E01 /* NixApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B7250A1DDEC15B008B9E01 /* NixApiManager.swift */; };
 		19B725141DDEC22A008B9E01 /* NixItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B725131DDEC22A008B9E01 /* NixItem.swift */; };
 		6A24E3631DBED3BF00F95408 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A24E3621DBED3BF00F95408 /* AppDelegate.swift */; };
@@ -146,6 +147,7 @@
 		197962881DDA709000AE1C92 /* Alamofire.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Alamofire.xcodeproj; path = Alamofire/Alamofire.xcodeproj; sourceTree = "<group>"; };
 		197962A81DDA71C700AE1C92 /* NixRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NixRouter.swift; sourceTree = "<group>"; };
 		197FBF801DDF4ACD0095D8BF /* SwiftyJSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftyJSON.swift; sourceTree = "<group>"; };
+		1985FD051E2736FC009A59D5 /* under_construction_gif.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = under_construction_gif.gif; sourceTree = "<group>"; };
 		19B7250A1DDEC15B008B9E01 /* NixApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NixApiManager.swift; sourceTree = "<group>"; };
 		19B725131DDEC22A008B9E01 /* NixItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NixItem.swift; sourceTree = "<group>"; };
 		6A24E35F1DBED3BF00F95408 /* MacroManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacroManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -305,6 +307,7 @@
 		6AC12E101DC800C2007C2D45 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				1985FD051E2736FC009A59D5 /* under_construction_gif.gif */,
 				6A3D05791DDEBFE1008CDDF7 /* welcome_header.jpg */,
 				6A4608C51DDD791B003D77B5 /* profile_icon.png */,
 				6A4608C61DDD791B003D77B5 /* profile_icon@2x.png */,
@@ -505,6 +508,7 @@
 				6A4608D61DDD793C003D77B5 /* trophy_icon@3x.png in Resources */,
 				6A4608D41DDD793C003D77B5 /* trophy_icon.png in Resources */,
 				6A3D05781DDEBED7008CDDF7 /* WelcomeUserCell.xib in Resources */,
+				1985FD061E2736FC009A59D5 /* under_construction_gif.gif in Resources */,
 				6A4608C41DDD7903003D77B5 /* dashboard_icon@3x.png in Resources */,
 				6A4608C21DDD7903003D77B5 /* dashboard_icon.png in Resources */,
 				6A4608CA1DDD791B003D77B5 /* profile_icon@3x.png in Resources */,
