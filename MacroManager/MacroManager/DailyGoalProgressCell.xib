@@ -1,8 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,10 +16,11 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="233"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="233"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Daily Goal" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-Bc-tSg">
+                        <rect key="frame" x="16" y="10" width="125" height="28"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="125" id="SiY-rB-l9O"/>
                             <constraint firstAttribute="height" constant="28" id="h3e-di-STc"/>
@@ -26,12 +30,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c4v-eN-0dG">
+                        <rect key="frame" x="16" y="57" width="289" height="21"/>
                         <color key="backgroundColor" red="0.85164141414141414" green="0.85164141414141414" blue="0.85164141414141414" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="xyC-fh-uuk"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Proteins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W1Y-YA-TaQ">
+                        <rect key="frame" x="16" y="83" width="88" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="88" id="I30-cP-lvX"/>
                             <constraint firstAttribute="height" constant="21" id="yIZ-jw-qBq"/>
@@ -41,12 +47,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7fe-xt-AEz">
+                        <rect key="frame" x="16" y="112" width="289" height="21"/>
                         <color key="backgroundColor" red="0.85164141410000005" green="0.85164141410000005" blue="0.85164141410000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Hhy-Q2-nl6"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Carbohydrates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IMd-dL-MUY">
+                        <rect key="frame" x="16" y="138" width="114" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="E2T-OO-2gj"/>
                             <constraint firstAttribute="width" constant="114" id="J5I-fk-mW5"/>
@@ -56,12 +64,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iI8-Ai-V1c">
+                        <rect key="frame" x="16" y="167" width="289" height="21"/>
                         <color key="backgroundColor" red="0.85164141410000005" green="0.85164141410000005" blue="0.85164141410000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="thb-Gu-vOj"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fats" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uP5-hQ-aIa">
+                        <rect key="frame" x="16" y="193" width="88" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="M6A-E8-BOD"/>
                             <constraint firstAttribute="width" constant="88" id="NQW-iq-s76"/>
@@ -71,6 +81,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1QI-9n-Hvl">
+                        <rect key="frame" x="241" y="10" width="64" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="64" id="WjX-ig-zdr"/>
                             <constraint firstAttribute="height" constant="30" id="zdh-BP-WMK"/>

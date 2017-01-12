@@ -19,6 +19,10 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Backround color
+        self.view.backgroundColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
+        
         //SETS STATUS BAR TO WHITE - AJE
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         

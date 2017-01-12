@@ -20,6 +20,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        //Backround color
+        self.view.backgroundColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
+        
         //SETS STATUS BAR TO WHITE - AJE
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
@@ -56,6 +60,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         //CONFIGURE LOGIN BUTTON - AJE
         loginButton.backgroundColor = UIColor.white
         loginButton.layer.cornerRadius = 5
+        
         
         // Do any additional setup after loading the view.
         
