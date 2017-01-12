@@ -409,15 +409,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtP-Hn-kL0">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="detailDisclosure" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZtP-Hn-kL0">
                                 <rect key="frame" x="341" y="84" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="FYV-bh-buf" kind="push" id="gAS-pJ-cPd"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZtP-Hn-kL0" secondAttribute="trailing" constant="-4" id="2Rx-SE-9DX"/>
+                            <constraint firstItem="ZtP-Hn-kL0" firstAttribute="top" secondItem="P27-FO-jXz" secondAttribute="bottom" constant="20" id="wu8-BY-ak5"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ISa-yr-9UX"/>
                 </viewController>
@@ -437,13 +440,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="X1d-ut-ja4">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X1d-ut-ja4">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="X1d-ut-ja4" firstAttribute="leading" secondItem="Vle-me-ig9" secondAttribute="leading" id="FbW-8e-gcV"/>
+                            <constraint firstItem="X1d-ut-ja4" firstAttribute="top" secondItem="Vle-me-ig9" secondAttribute="top" id="HLK-KA-RBX"/>
+                            <constraint firstAttribute="bottom" secondItem="X1d-ut-ja4" secondAttribute="bottom" id="Knv-yu-Qk6"/>
+                            <constraint firstAttribute="trailing" secondItem="X1d-ut-ja4" secondAttribute="trailing" id="WaZ-72-JqM"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="io2-0G-5wG"/>
                     <connections>
