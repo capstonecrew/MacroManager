@@ -8,6 +8,15 @@
 
 import UIKit
 
+class NixItemViewCell: UITableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var fatsLabel: UILabel!
+    @IBOutlet weak var proteinsLabel: UILabel!
+    @IBOutlet weak var carbsLabel: UILabel!
+}
+
+
 class SearchViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
     
     @IBOutlet var resultsTableView: UITableView!
@@ -47,10 +56,29 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "customcell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "customcell", for: indexPath) as! NixItemViewCell
         let item = self.foodSearchResults[indexPath.row]
         
-        cell.textLabel?.text = item.itemName
+        cell.nameLabel.text = item.itemName
+        cell.descriptionLabel.text = item.itemDescription
+        
+        if let fats = item.fats {
+            cell.fatsLabel.text = "Fats: \(fats)"
+        } else {
+            cell.fatsLabel.text = "Fats: N/A"
+        }
+        
+        if let proteins = item.proteins {
+            cell.proteinsLabel.text = "Protein: \(proteins)"
+        } else {
+            cell.proteinsLabel.text = "Protein: N/A"
+        }
+        
+        if let carbs = item.carbs {
+            cell.carbsLabel.text = "Carbs: \(carbs)"
+        } else {
+            cell.carbsLabel.text = "Carbs: N/A"
+        }
         
         return cell
     }
