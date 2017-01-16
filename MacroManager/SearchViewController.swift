@@ -27,8 +27,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         super.viewDidLoad()
 
         navigationController?.navigationBar.barTintColor = UIColor.red
-        
-        performSearch(searchText: "tacos")
     }
 
     override func didReceiveMemoryWarning() {
@@ -51,6 +49,16 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         }
     }
     
+    // Search bar methods
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+        
+        if let text = searchBar.text {
+            performSearch(searchText: text)
+        }
+    }
+    
+    // Table view methods
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.foodSearchResults.count
     }
