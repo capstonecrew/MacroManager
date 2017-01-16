@@ -33,7 +33,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         heightPickerView.dataSource = self
         heightPickerView.delegate = self
         feetPickerData = ["1", "2", "3", "4", "5", "6", "7"]
-         inchesPickerData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+         inchesPickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         //CONFIGURE TEXT BOXES - SCB
