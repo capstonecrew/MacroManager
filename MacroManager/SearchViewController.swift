@@ -27,6 +27,9 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         super.viewDidLoad()
 
         navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(RegistrationViewController.hideKeyboard))
+        view.addGestureRecognizer(tap)
     }
 
     override func didReceiveMemoryWarning() {
@@ -90,6 +93,12 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         
         return cell
     }
+    
+    func hideKeyboard(){
+        
+        view.endEditing(true)
+    }
+    
     /*
     // MARK: - Navigation
 
