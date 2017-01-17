@@ -17,6 +17,8 @@ class GoalSliderViewController: UIViewController {
     @IBOutlet weak var maintainWeight: UIButton!
     @IBOutlet weak var gainWeight: UIButton!
     
+    var previousBtn: UIButton!
+    
     var fromName = String() // set by regView
     var fromEmail = String() // set by regView
     var fromPassword = String() // set by regView
@@ -32,7 +34,23 @@ class GoalSliderViewController: UIViewController {
         
         
         signUpButton.backgroundColor = UIColor.white
-        signUpButton.layer.cornerRadius = 5
+        signUpButton.layer.cornerRadius = 20
+        
+        loseWeight.backgroundColor = .white
+        loseWeight.layer.cornerRadius = 20
+        loseWeight?.titleLabel?.textColor = .lightGray
+        
+        maintainWeight.backgroundColor = .white
+        maintainWeight.layer.cornerRadius = 20
+        maintainWeight?.titleLabel?.textColor = .lightGray
+        
+        gainWeight.backgroundColor = .white
+        gainWeight.layer.cornerRadius = 20
+        gainWeight?.titleLabel?.textColor = .lightGray
+        
+        loseWeight.addTarget(self, action: #selector(GoalSliderViewController.selected), for: .touchUpInside)
+        gainWeight.addTarget(self, action: #selector(GoalSliderViewController.selected), for: .touchUpInside)
+        maintainWeight.addTarget(self, action: #selector(GoalSliderViewController.selected), for: .touchUpInside)
     
         // Do any additional setup after loading the view.
     }
@@ -58,7 +76,20 @@ class GoalSliderViewController: UIViewController {
         }
     }
     
-    
+    func selected(sender: UIButton){
+        
+        if(previousBtn != nil){
+            previousBtn!.backgroundColor = .white
+            previousBtn!.tintColor = .lightGray
+        }
+        
+        let selectedBtn = sender as UIButton
+        selectedBtn.backgroundColor = .darkGray
+        selectedBtn.tintColor = .white
+        
+        previousBtn = selectedBtn
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

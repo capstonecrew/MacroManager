@@ -78,7 +78,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         
         //CONFIGURE NEXT BUTTON - SCB
         nextButton.backgroundColor = UIColor.white
-        nextButton.layer.cornerRadius = 5
+        nextButton.layer.cornerRadius = 20
     }
     func hideKeyboard()
     {

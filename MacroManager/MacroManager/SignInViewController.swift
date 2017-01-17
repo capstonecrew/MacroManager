@@ -21,6 +21,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         super.viewDidLoad()
         
         
+        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
+        self.navigationController?.navigationBar.tintColor = .white
+        self.navigationController?.navigationBar.isTranslucent = false
+        
         //Backround color
         self.view.backgroundColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
         
@@ -59,8 +63,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         
         //CONFIGURE LOGIN BUTTON - AJE
         loginButton.backgroundColor = UIColor.white
-        loginButton.layer.cornerRadius = 5
-        
+        loginButton.layer.cornerRadius = 20
         
         // Do any additional setup after loading the view.
         
@@ -70,6 +73,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
                 print(item.toString())
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
     }
     
     //HIDE KEYBOARD WHEN TOUCHING ANYWHERE ON SCREEN - AJE
@@ -100,11 +107,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
     @IBAction func login(_ sender: AnyObject) {
         
         loginSpecifiedUser(email: emailField.text!, password: passwordField.text!)
-    }
-    
-    @IBAction func createAccount(_ sender: AnyObject) {
-        
-        print("CREATE ACCOUNT")
     }
     
     func loginSpecifiedUser(email: String, password: String){

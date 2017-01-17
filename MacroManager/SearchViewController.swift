@@ -26,7 +26,7 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.barTintColor = UIColor.red
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
     }
 
     override func didReceiveMemoryWarning() {
