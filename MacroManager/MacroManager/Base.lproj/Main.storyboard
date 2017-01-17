@@ -424,11 +424,11 @@
         <scene sceneID="cbs-Ri-EnO">
             <objects>
                 <viewController id="hxf-Pq-MeY" customClass="SearchViewController" customModule="MacroManager" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="71" sectionHeaderHeight="28" sectionFooterHeight="28" id="rCA-J2-1xt">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="28" sectionFooterHeight="28" id="rCA-J2-1xt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" id="59L-d4-a1W">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for meals, food, ect..." id="59L-d4-a1W">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -437,49 +437,73 @@
                             </connections>
                         </searchBar>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customcell" rowHeight="71" id="h20-2h-cjm" customClass="NixItemViewCell" customModule="MacroManager" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="72" width="375" height="71"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customcell" rowHeight="90" id="h20-2h-cjm" customClass="NixItemViewCell" customModule="MacroManager" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="72" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h20-2h-cjm" id="92p-ab-hJd">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="70.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYk-vg-rwX">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nameLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VYk-vg-rwX">
+                                            <rect key="frame" x="17" y="8" width="341" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="L9f-jI-DyZ"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="descriptionLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9th-4o-QuV">
-                                            <rect key="frame" x="0.0" y="25" width="375" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="descriptionLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9th-4o-QuV">
+                                            <rect key="frame" x="17" y="36" width="341" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="zWz-G5-Y8S"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="fatsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW9-0d-jnl">
-                                            <rect key="frame" x="0.0" y="49" width="126" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="fatsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW9-0d-jnl">
+                                            <rect key="frame" x="17" y="63" width="112" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="SGS-rn-Zd9"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="proteinsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pl3-K5-1Fy">
-                                            <rect key="frame" x="126" y="49" width="126" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="proteinsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pl3-K5-1Fy">
+                                            <rect key="frame" x="147" y="63" width="120" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="SHQ-Ge-Kf9"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="carbsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOK-mr-PJZ">
-                                            <rect key="frame" x="252" y="50" width="126" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="carbsLabel" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOK-mr-PJZ">
+                                            <rect key="frame" x="279" y="63" width="126" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="fia-Nn-1jU"/>
+                                            </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="FW9-0d-jnl" firstAttribute="leading" secondItem="92p-ab-hJd" secondAttribute="leadingMargin" constant="9" id="AiY-IO-sVB"/>
+                                        <constraint firstItem="pl3-K5-1Fy" firstAttribute="leading" secondItem="FW9-0d-jnl" secondAttribute="trailing" constant="18" id="An1-dT-JSc"/>
+                                        <constraint firstItem="9th-4o-QuV" firstAttribute="leading" secondItem="92p-ab-hJd" secondAttribute="leadingMargin" constant="9" id="FeR-tc-1r4"/>
+                                        <constraint firstItem="9th-4o-QuV" firstAttribute="top" secondItem="VYk-vg-rwX" secondAttribute="bottom" constant="7" id="G5Z-DZ-EGH"/>
+                                        <constraint firstItem="VYk-vg-rwX" firstAttribute="leading" secondItem="92p-ab-hJd" secondAttribute="leadingMargin" constant="9" id="MVi-69-Xda"/>
+                                        <constraint firstItem="pl3-K5-1Fy" firstAttribute="top" secondItem="9th-4o-QuV" secondAttribute="bottom" constant="6" id="SjN-qV-yJT"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="VYk-vg-rwX" secondAttribute="trailing" constant="9" id="Uah-Pz-N3T"/>
+                                        <constraint firstItem="eOK-mr-PJZ" firstAttribute="leading" secondItem="pl3-K5-1Fy" secondAttribute="trailing" constant="12" id="frs-Nh-FuI"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="9th-4o-QuV" secondAttribute="trailing" constant="9" id="hLs-1z-VbL"/>
+                                        <constraint firstAttribute="topMargin" secondItem="VYk-vg-rwX" secondAttribute="top" id="iJq-9L-EwZ"/>
+                                        <constraint firstItem="eOK-mr-PJZ" firstAttribute="top" secondItem="9th-4o-QuV" secondAttribute="bottom" constant="6" id="j4k-6L-Bdm"/>
+                                        <constraint firstItem="FW9-0d-jnl" firstAttribute="top" secondItem="9th-4o-QuV" secondAttribute="bottom" constant="6" id="rpq-lc-SXm"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="carbsLabel" destination="eOK-mr-PJZ" id="2LY-eR-TbD"/>
@@ -860,7 +884,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r3O-2v-Fht">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="r3O-2v-Fht">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -881,7 +905,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4aH-wx-Rte">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4aH-wx-Rte">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -902,7 +926,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FBF-b4-FSg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FBF-b4-FSg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
