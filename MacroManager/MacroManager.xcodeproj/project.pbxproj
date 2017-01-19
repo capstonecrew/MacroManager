@@ -65,6 +65,7 @@
 		6AC12E141DC80F79007C2D45 /* coolvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AC12E131DC80F79007C2D45 /* coolvetica.ttf */; };
 		6AC12E171DC8F17C007C2D45 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */; };
 		7901E93A1DD249F600089564 /* dataTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901E9391DD249F600089564 /* dataTestViewController.swift */; };
+		797AB72C1E311D290075F8D3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797AB72B1E311D280075F8D3 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -218,6 +219,7 @@
 		6AC12E131DC80F79007C2D45 /* coolvetica.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = coolvetica.ttf; sourceTree = "<group>"; };
 		6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		7901E9391DD249F600089564 /* dataTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataTestViewController.swift; sourceTree = "<group>"; };
+		797AB72B1E311D280075F8D3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -315,6 +317,7 @@
 				6AC12E101DC800C2007C2D45 /* ImageAssets */,
 				6A24E3711DBED3BF00F95408 /* Info.plist */,
 				6A24E3691DBED3BF00F95408 /* MacroManager.xcdatamodeld */,
+				797AB72B1E311D280075F8D3 /* User.swift */,
 			);
 			path = MacroManager;
 			sourceTree = "<group>";
@@ -614,6 +617,7 @@
 				6AC12E0D1DC7FCC5007C2D45 /* SignInViewController.swift in Sources */,
 				6A24E3631DBED3BF00F95408 /* AppDelegate.swift in Sources */,
 				6A3943D91E28340E00E13F2B /* FoodCollectionCell.swift in Sources */,
+				797AB72C1E311D290075F8D3 /* User.swift in Sources */,
 				6A3943D51E282F2400E13F2B /* SuggestedFoodsCell.swift in Sources */,
 				6A24E36B1DBED3BF00F95408 /* MacroManager.xcdatamodeld in Sources */,
 				197FBF811DDF4ACD0095D8BF /* SwiftyJSON.swift in Sources */,
