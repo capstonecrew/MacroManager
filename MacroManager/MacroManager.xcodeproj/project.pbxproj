@@ -284,6 +284,7 @@
 		6A24E3611DBED3BF00F95408 /* MacroManager */ = {
 			isa = PBXGroup;
 			children = (
+				6A24E3661DBED3BF00F95408 /* Main.storyboard */,
 				6A3D05731DDEBC8E008CDDF7 /* DashboardViewController.swift */,
 				6A3943D71E28340E00E13F2B /* FoodCollectionCell.swift */,
 				6A3943D81E28340E00E13F2B /* FoodCollectionCell.xib */,
@@ -307,7 +308,6 @@
 				6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */,
 				19B7250A1DDEC15B008B9E01 /* NixApiManager.swift */,
 				197FBF801DDF4ACD0095D8BF /* SwiftyJSON.swift */,
-				6A24E3661DBED3BF00F95408 /* Main.storyboard */,
 				19B725131DDEC22A008B9E01 /* NixItem.swift */,
 				6AC12E151DC80F7C007C2D45 /* Fonts */,
 				6A24E36C1DBED3BF00F95408 /* Assets.xcassets */,
