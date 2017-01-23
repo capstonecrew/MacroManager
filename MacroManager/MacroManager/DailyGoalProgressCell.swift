@@ -42,32 +42,32 @@ class DailyGoalProgressCell: UITableViewCell {
         let fatsPath = UIBezierPath(roundedRect: fatsRect, cornerRadius: 10)
         
         let proteinProgress = CAShapeLayer()
-        proteinProgress.fillColor = UIColor.blue.cgColor
+        proteinProgress.fillColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
         proteinProgress.path = proteinPath.cgPath
         
         let carbsProgress = CAShapeLayer()
-        carbsProgress.fillColor = UIColor.green.cgColor
+        carbsProgress.fillColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
         carbsProgress.path = carbsPath.cgPath
         
         let fatsProgress = CAShapeLayer()
-        fatsProgress.fillColor = UIColor.orange.cgColor
+        fatsProgress.fillColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
         fatsProgress.path = fatsPath.cgPath
         
         let anim = CABasicAnimation(keyPath: "fillColor")
         anim.fromValue = UIColor.clear.cgColor
-        anim.toValue = UIColor.blue.cgColor
+        anim.toValue = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
         anim.duration = 2
         proteinProgress.add(anim, forKey: "anim")
         
         let anim2 = CABasicAnimation(keyPath: "fillColor")
         anim2.fromValue = UIColor.clear.cgColor
-        anim2.toValue = UIColor.green.cgColor
+        anim2.toValue = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
         anim2.duration = 2
         carbsProgress.add(anim2, forKey: "anim")
         
         let anim3 = CABasicAnimation(keyPath: "fillColor")
         anim3.fromValue = UIColor.clear.cgColor
-        anim3.toValue = UIColor.orange.cgColor
+        anim3.toValue = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
         anim3.duration = 2
         fatsProgress.add(anim3, forKey: "anim")
         

@@ -11,9 +11,13 @@ import CoreData
 
 class GoalSliderViewController: UIViewController {
 
-    @IBOutlet weak var goalSlider: UISlider!
-    @IBOutlet weak var goalLabel: UILabel!
+   
     @IBOutlet weak var signUpButton: UIButton!
+    @IBOutlet weak var loseWeight: UIButton!
+    @IBOutlet weak var maintainWeight: UIButton!
+    @IBOutlet weak var gainWeight: UIButton!
+    
+    var previousBtn: UIButton!
     
     var fromName = String() // set by regView
     var fromEmail = String() // set by regView
@@ -25,35 +29,32 @@ class GoalSliderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        goalSlider.minimumValue = 0
-        goalSlider.maximumValue = 90
+        //Backround color
+        self.view.backgroundColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
         
-        goalSlider.tintColor = UIColor.lightGray
-        goalSlider.thumbTintColor = UIColor(red:0.17, green:0.57, blue:0.56, alpha:1.0)
         
         signUpButton.backgroundColor = UIColor.white
-        signUpButton.layer.cornerRadius = 5
+        signUpButton.layer.cornerRadius = 20
+        
+        loseWeight.backgroundColor = .white
+        loseWeight.layer.cornerRadius = 20
+        loseWeight?.titleLabel?.textColor = .lightGray
+        
+        maintainWeight.backgroundColor = .white
+        maintainWeight.layer.cornerRadius = 20
+        maintainWeight?.titleLabel?.textColor = .lightGray
+        
+        gainWeight.backgroundColor = .white
+        gainWeight.layer.cornerRadius = 20
+        gainWeight?.titleLabel?.textColor = .lightGray
+        
+        loseWeight.addTarget(self, action: #selector(GoalSliderViewController.selected), for: .touchUpInside)
+        gainWeight.addTarget(self, action: #selector(GoalSliderViewController.selected), for: .touchUpInside)
+        maintainWeight.addTarget(self, action: #selector(GoalSliderViewController.selected), for: .touchUpInside)
     
         // Do any additional setup after loading the view.
     }
 
-    @IBAction func sliderValueChanged(_ sender: Any) {
-        
-        
-        if(goalSlider.value >= 0 && goalSlider.value < 30){
-            
-            goalLabel.text = "LOSE WEIGHT"
-            
-        }else if (goalSlider.value >= 30 && goalSlider.value < 60){
-            
-            goalLabel.text = "MAINTAIN WEIGHT"
-        
-        }else{
-        
-            goalLabel.text = "GAIN WEIGHT"
-        }
-    }
-    
     
     func getContext () -> NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -70,12 +71,25 @@ class GoalSliderViewController: UIViewController {
                 nextView.fromAge = fromAge
                 nextView.fromWeight = fromWeight
                 nextView.fromHeight = fromHeight
-                nextView.fromGoals = Int(goalSlider.value)
+              
             }
         }
     }
     
-    
+    func selected(sender: UIButton){
+        
+        if(previousBtn != nil){
+            previousBtn!.backgroundColor = .white
+            previousBtn!.tintColor = .lightGray
+        }
+        
+        let selectedBtn = sender as UIButton
+        selectedBtn.backgroundColor = .darkGray
+        selectedBtn.tintColor = .white
+        
+        previousBtn = selectedBtn
+        
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

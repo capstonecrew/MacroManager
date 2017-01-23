@@ -26,10 +26,14 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        //Background color
+        self.view.backgroundColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
+        
         heightPickerView.dataSource = self
         heightPickerView.delegate = self
         feetPickerData = ["1", "2", "3", "4", "5", "6", "7"]
-         inchesPickerData = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+         inchesPickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         //CONFIGURE TEXT BOXES - SCB
@@ -74,7 +78,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         
         //CONFIGURE NEXT BUTTON - SCB
         nextButton.backgroundColor = UIColor.white
-        nextButton.layer.cornerRadius = 5
+        nextButton.layer.cornerRadius = 20
     }
     func hideKeyboard()
     {
@@ -140,19 +144,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
              heightField.text = frontString + "' " + backString + "\""        }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detailsToGoals" {
-            print("sending 6 fields to goalSlideView")
-            if let nextView: GoalSliderViewController = segue.destination as? GoalSliderViewController {
-                nextView.fromName = fromName
-                nextView.fromEmail = fromEmail
-                nextView.fromPassword = fromPassword
-                nextView.fromAge = Int(ageField.text!)!
-                nextView.fromWeight = Int(weightField.text!)!
-                nextView.fromHeight = heightField.text!
-            }
-        }
-    }
+    
     
     
     @IBAction func unwindFromGoalSlider(segue:UIStoryboardSegue) {
