@@ -18,4 +18,10 @@ class User {
     var weight: Int!
     
     var mealLog = [NixItem]() // meal history
+    
+    
+    func addMealToLog(mealEaten: NixItem) {
+        mealLog.append(mealEaten)
+    }
+    
 }

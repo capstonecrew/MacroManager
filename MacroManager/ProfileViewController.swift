@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userLevelLabel: UILabel!
@@ -22,10 +22,22 @@ class ProfileViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         self.navigationItem.title = "Profile"
         
+        userNameField.delegate = self
         userNameField.text = currentUser.name!
+        userBirthField.delegate = self
         userBirthField.text = "\(currentUser.age!) years old"
+        userWeightField.delegate = self
         userWeightField.text = "\(currentUser.weight!) pounds"
         
+        // hide keyboard upon tap
+        let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.hideKeyboard))
+        view.addGestureRecognizer(tap)
+        
+    }
+    
+    func hideKeyboard(){
+        
+        view.endEditing(true)
     }
 
     @IBAction func changeGoalButton(_ sender: Any) {
@@ -33,7 +45,6 @@ class ProfileViewController: UIViewController {
     }
     
     
-    // GUARD TO MAKE SURE TEXTFIELDS ARE NOT EMPTY
     
     @IBAction func doneEditingName(_ sender: Any) {
         guard let x = userNameField.text, x != ""  else {
@@ -42,14 +53,21 @@ class ProfileViewController: UIViewController {
         }
         currentUser.name = userNameField.text!
         userNameField.text = currentUser.name!
-
     }
     
     @IBAction func doneEditingAge(_ sender: Any) {
+        guard let x = userBirthField.text, x != "" else {
+            userBirthField.text = "\(currentUser.age!) years old"
+            return
+        }
         currentUser.age = Int(userBirthField.text!)
         userBirthField.text = "\(currentUser.age!) years old"
     }
     @IBAction func doneEditingWeight(_ sender: Any) {
+        guard let x = userWeightField.text, x != "" else {
+            userWeightField.text = "\(currentUser.weight!) pounds"
+            return
+        }
         currentUser.weight = Int(userWeightField.text!)
         userWeightField.text = "\(currentUser.weight!) pounds"
     }
