@@ -15,7 +15,7 @@ enum NixRouter : URLRequestConvertible {
     static let baseURL = "https://api.nutritionix.com/v1_1"
     static let appID = "cb97eaa1"
     static let appKey = "8b25255f947b1e4e766723450a580578"
-    static let perPage = 10
+    static let perPage = 20
     
     var method: HTTPMethod {
         switch self {
