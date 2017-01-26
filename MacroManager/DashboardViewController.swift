@@ -12,16 +12,6 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // TEMP DUMMY USER INFO
-        currentUser.name = "Aaron Edwards"
-        currentUser.age = 24
-        currentUser.email = "aaronedwards@gmail.com"
-        currentUser.password = "passwordLOL"
-        currentUser.goal = 1
-        currentUser.height = "5' 10\""
-        currentUser.weight = 150
-        
 
         navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
         tableView.register(UINib(nibName: "WelcomeUserCell", bundle: nil), forCellReuseIdentifier: "welcomeUserCell")
