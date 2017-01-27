@@ -7,9 +7,13 @@
 //
 
 import UIKit
+import Charts
 
 class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate {
 
+    var nutrients = ["Proteins", "Carbohydrates", "Fats"]
+    var unitsSold = [1.0, 2.0, 3.0]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,6 +31,26 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func setChart(barChart: BarChartView, dataPoints: [String], values: [Double]) {
+        
+        barChart.noDataText = "You need to provide data for the chart."
+        
+        var dataEntries: [BarChartDataEntry] = []
+        
+        for i in 0..<dataPoints.count {
+            let dataEntry = BarChartDataEntry(x: Double(i), y: values[i])
+            dataEntries.append(dataEntry)
+        }
+        
+        let chartDataSet = BarChartDataSet(values: dataEntries, label: "Units Sold")
+        chartDataSet.colors = ChartColorTemplates.vordiplom()
+        let chartData = BarChartData(dataSet: chartDataSet)
+        //chartData.value
+        barChart.data = chartData
+        
+    }
+    
 
     // MARK: - Table view data source
 
@@ -58,6 +82,8 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             
         }else if(indexPath.row == 1){
             let cell = tableView.dequeueReusableCell(withIdentifier: "dailyGoalProgressCell") as! DailyGoalProgressCell
+            setChart(barChart: cell.progressChart, dataPoints: nutrients, values: unitsSold)
+
             return cell
         }else if(indexPath.row == 2){
             let cell = UITableViewCell()
