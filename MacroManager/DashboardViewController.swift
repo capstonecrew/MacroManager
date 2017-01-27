@@ -21,6 +21,9 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         self.navigationItem.title = "macro manager"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         
+        self.present(MealView2Controller(), animated: true, completion: nil)
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

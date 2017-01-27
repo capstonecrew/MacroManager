@@ -98,7 +98,6 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         
         view.endEditing(true)
     }
-    
     /*
     // MARK: - Navigation
 
