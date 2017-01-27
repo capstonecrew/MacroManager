@@ -74,8 +74,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMeal" {
             let selectedIndex: IndexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
-            if let nextView: MealViewController = segue.destination as? MealViewController {
-                // SEND NIX ITEM HERE!!!!!!!!!!!!!!!!!!
+            if let nextView: MealView2Controller = segue.destination as? MealView2Controller {
+                nextView.recievedNix = foodSearchResults[selectedIndex.row]
                 print(selectedIndex.row)
             }
         }
