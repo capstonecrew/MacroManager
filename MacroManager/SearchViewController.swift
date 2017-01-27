@@ -20,7 +20,10 @@ class NixItemViewCell: UITableViewCell {
 class SearchViewController: UITableViewController, UISearchBarDelegate, UISearchDisplayDelegate {
     
     @IBOutlet var resultsTableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
+    var currentSearch = ""
+    var lastLoadedPage = 0
     var foodSearchResults:Array<NixItem> = []
     
     override func viewDidLoad() {
@@ -37,10 +40,8 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         // Dispose of any resources that can be recreated.
     }
     
-    func performSearch (searchText: String) {
-        foodSearchResults.removeAll()
-        
-        NixApiManager.search(query: searchText, page: 0) { response in
+    func performSearch (searchText: String, page: Int) {
+        NixApiManager.search(query: searchText, page: page) { response in
             for item in response.value! {
                 print(item.toString())
                 //Fill table view
@@ -57,11 +58,39 @@ class SearchViewController: UITableViewController, UISearchBarDelegate, UISearch
         self.view.endEditing(true)
         
         if let text = searchBar.text {
-            performSearch(searchText: text)
+            currentSearch = text
+            lastLoadedPage = 0
+            foodSearchResults.removeAll()
+            performSearch(searchText: currentSearch, page: lastLoadedPage)
+            
+            // Scroll to top
+            if let indexPath = resultsTableView.indexPathForRow(at: CGPoint(x: 0, y: 0)) {
+                resultsTableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
+            }
         }
     }
     
+    //TODO: someone fix this to keep search bar
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // get the table and search bar bounds
+        let tableBounds = self.resultsTableView.bounds.origin
+        let searchBarFrameSize = self.searchBar.frame.size
+        
+        // make sure the search bar stays at the table's original x and y as the content moves
+        self.searchBar.frame = CGRect(origin: tableBounds, size: searchBarFrameSize)
+    }
+    
     // Table view methods
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let lastElement = foodSearchResults.count - 1
+        
+        if indexPath.row == lastElement - 5 {
+            // Add another page of search results
+            lastLoadedPage += 1
+            performSearch(searchText: currentSearch, page: lastLoadedPage)
+        }
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.foodSearchResults.count
     }

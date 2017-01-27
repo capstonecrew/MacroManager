@@ -25,18 +25,20 @@ class NixApiManager {
                 }
                 
                 // Validate JSON response
-                //TODO error handling here
                 let json = response.result.value as? [String: Any]
-                let hits = json!["hits"] as! NSArray
-                
-                //Extract array of hits from JSON
-                for item in hits {
-                    if let newNixItem: NixItem = NixItem(json: item as! [String : Any]) {
-                        items.append(newNixItem)
+                if let hits = json!["hits"] as? NSArray {
+                    //Extract array of hits from JSON
+                    for item in hits {
+                        if let newNixItem: NixItem = NixItem(json: item as! [String : Any]) {
+                            items.append(newNixItem)
+                        }
                     }
+                    
+                    completionHandler(.success(items))
+                } else {
+                    print("error getting data from json response. json: \(json)")
+                    return
                 }
-                
-                completionHandler(.success(items))
         }
     }
 }
