@@ -14,6 +14,7 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var fatLabel: UILabel!
     @IBOutlet weak var proteinLabel: UILabel!
     @IBOutlet weak var carbsLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     
     override func awakeFromNib() {
