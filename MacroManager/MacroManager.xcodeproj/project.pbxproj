@@ -56,7 +56,6 @@
 		6A4608D41DDD793C003D77B5 /* trophy_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4608D11DDD793C003D77B5 /* trophy_icon.png */; };
 		6A4608D51DDD793C003D77B5 /* trophy_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4608D21DDD793C003D77B5 /* trophy_icon@2x.png */; };
 		6A4608D61DDD793C003D77B5 /* trophy_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6A4608D31DDD793C003D77B5 /* trophy_icon@3x.png */; };
-		6A4608EA1DDD7DB2003D77B5 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4608E91DDD7DB2003D77B5 /* SearchViewController.swift */; };
 		6A4608EC1DDD7DC2003D77B5 /* AcheivementsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4608EB1DDD7DC2003D77B5 /* AcheivementsViewController.swift */; };
 		6A4608EE1DDD7DD1003D77B5 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4608ED1DDD7DD1003D77B5 /* ProfileViewController.swift */; };
 		6AC12E0D1DC7FCC5007C2D45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */; };
@@ -65,6 +64,8 @@
 		6AC12E141DC80F79007C2D45 /* coolvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AC12E131DC80F79007C2D45 /* coolvetica.ttf */; };
 		6AC12E171DC8F17C007C2D45 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */; };
 		7901E93A1DD249F600089564 /* dataTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901E9391DD249F600089564 /* dataTestViewController.swift */; };
+		7925B98D1E3A6F9D00AD343A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7925B98C1E3A6F9D00AD343A /* SearchViewController.swift */; };
+		7925B98F1E3A701200AD343A /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7925B98E1E3A701200AD343A /* SearchTableViewCell.swift */; };
 		797AB72C1E311D290075F8D3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797AB72B1E311D280075F8D3 /* User.swift */; };
 		79CC6ADD1E314AF70050BCD8 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CC6ADC1E314AF70050BCD8 /* MealViewController.swift */; };
 /* End PBXBuildFile section */
@@ -211,7 +212,6 @@
 		6A4608D11DDD793C003D77B5 /* trophy_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy_icon.png; sourceTree = "<group>"; };
 		6A4608D21DDD793C003D77B5 /* trophy_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trophy_icon@2x.png"; sourceTree = "<group>"; };
 		6A4608D31DDD793C003D77B5 /* trophy_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "trophy_icon@3x.png"; sourceTree = "<group>"; };
-		6A4608E91DDD7DB2003D77B5 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SearchViewController.swift; path = ../SearchViewController.swift; sourceTree = "<group>"; };
 		6A4608EB1DDD7DC2003D77B5 /* AcheivementsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AcheivementsViewController.swift; path = ../AcheivementsViewController.swift; sourceTree = "<group>"; };
 		6A4608ED1DDD7DD1003D77B5 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = ../ProfileViewController.swift; sourceTree = "<group>"; };
 		6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +220,8 @@
 		6AC12E131DC80F79007C2D45 /* coolvetica.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = coolvetica.ttf; sourceTree = "<group>"; };
 		6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		7901E9391DD249F600089564 /* dataTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataTestViewController.swift; sourceTree = "<group>"; };
+		7925B98C1E3A6F9D00AD343A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		7925B98E1E3A701200AD343A /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		797AB72B1E311D280075F8D3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		79CC6ADC1E314AF70050BCD8 /* MealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -298,7 +300,6 @@
 				6A3D057C1DDEC754008CDDF7 /* DailyGoalProgressCell.xib */,
 				6A3D05751DDEBED7008CDDF7 /* WelcomeUserCell.swift */,
 				6A3D05761DDEBED7008CDDF7 /* WelcomeUserCell.xib */,
-				6A4608E91DDD7DB2003D77B5 /* SearchViewController.swift */,
 				6A4608EB1DDD7DC2003D77B5 /* AcheivementsViewController.swift */,
 				6A4608ED1DDD7DD1003D77B5 /* ProfileViewController.swift */,
 				197962A81DDA71C700AE1C92 /* NixRouter.swift */,
@@ -321,6 +322,8 @@
 				6A24E3691DBED3BF00F95408 /* MacroManager.xcdatamodeld */,
 				797AB72B1E311D280075F8D3 /* User.swift */,
 				79CC6ADC1E314AF70050BCD8 /* MealViewController.swift */,
+				7925B98C1E3A6F9D00AD343A /* SearchViewController.swift */,
+				7925B98E1E3A701200AD343A /* SearchTableViewCell.swift */,
 			);
 			path = MacroManager;
 			sourceTree = "<group>";
@@ -614,7 +617,6 @@
 				19B725141DDEC22A008B9E01 /* NixItem.swift in Sources */,
 				79CC6ADD1E314AF70050BCD8 /* MealViewController.swift in Sources */,
 				197962A91DDA71C700AE1C92 /* NixRouter.swift in Sources */,
-				6A4608EA1DDD7DB2003D77B5 /* SearchViewController.swift in Sources */,
 				7901E93A1DD249F600089564 /* dataTestViewController.swift in Sources */,
 				19B7250B1DDEC15B008B9E01 /* NixApiManager.swift in Sources */,
 				095AC4481E272933004A4A2C /* wikiViewController.swift in Sources */,
@@ -624,6 +626,7 @@
 				797AB72C1E311D290075F8D3 /* User.swift in Sources */,
 				6A3943D51E282F2400E13F2B /* SuggestedFoodsCell.swift in Sources */,
 				6A24E36B1DBED3BF00F95408 /* MacroManager.xcdatamodeld in Sources */,
+				7925B98D1E3A6F9D00AD343A /* SearchViewController.swift in Sources */,
 				197FBF811DDF4ACD0095D8BF /* SwiftyJSON.swift in Sources */,
 				6A3D057D1DDEC754008CDDF7 /* DailyGoalProgressCell.swift in Sources */,
 				6A3D05741DDEBC8E008CDDF7 /* DashboardViewController.swift in Sources */,
@@ -631,6 +634,7 @@
 				6A3D05771DDEBED7008CDDF7 /* WelcomeUserCell.swift in Sources */,
 				6A3943C51E281B7300E13F2B /* InitialViewController.swift in Sources */,
 				6A4608EE1DDD7DD1003D77B5 /* ProfileViewController.swift in Sources */,
+				7925B98F1E3A701200AD343A /* SearchTableViewCell.swift in Sources */,
 				6AC12E171DC8F17C007C2D45 /* RegistrationViewController.swift in Sources */,
 				092D64A91DCAB1B2009457FC /* DetailsViewController.swift in Sources */,
 			);
