@@ -110,7 +110,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="initialView.png" translatesAutoresizingMaskIntoConstraints="NO" id="c9r-M2-MJ7">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="initialView.png" translatesAutoresizingMaskIntoConstraints="NO" id="c9r-M2-MJ7">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Zz-eg-caQ">
@@ -197,6 +197,7 @@
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
+                        <outlet property="backgroundImage" destination="c9r-M2-MJ7" id="jl0-Yv-PWp"/>
                         <outlet property="emailField" destination="7Zz-eg-caQ" id="mk6-rK-0cN"/>
                         <outlet property="loginButton" destination="Pxg-FX-NCt" id="ntC-UG-uYD"/>
                         <outlet property="passwordField" destination="tj5-OZ-Wl2" id="Fd5-40-DFx"/>
