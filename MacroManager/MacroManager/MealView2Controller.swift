@@ -33,6 +33,7 @@ class MealView2Controller: UITableViewController {
         
         
         
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,18 +62,22 @@ class MealView2Controller: UITableViewController {
     
    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mealHeaderCell") as! MealHeaderCell
+        cell.parentVC = self; // add reference to this vc in the tableviewcell
     
     
-    if let nix = recievedNix{
+        if let nix = recievedNix {
         cell.foodNameLabel.text = nix.itemName
         cell.proteinsAmount.text = "\(nix.carbs!) g"
         cell.fatsAmount.text = "\(nix.fats!)"
         cell.sugarsAmount.text = "\(nix.carbs!)"
         
-    }else{
+        }else{
         
     }
     
+    func addMealFunc() {
+        
+    }
 
     
     

@@ -14,6 +14,7 @@ class MealHeaderCell: UITableViewCell {
     @IBOutlet weak var proteinsAmount: UILabel!
     @IBOutlet weak var sugarsAmount: UILabel!
     @IBOutlet weak var fatsAmount: UILabel!
+    weak var parentVC: MealView2Controller!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +27,11 @@ class MealHeaderCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    @IBAction func addMealAct(_ sender: Any) {
+        
+        // ADD MEAL AND RETURN TO PREV VIEW CONTROLLER
+        
     }
     
 }
