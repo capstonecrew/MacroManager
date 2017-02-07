@@ -69,12 +69,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         
         // Do any additional setup after loading the view.
         
-        // API Query example
-        NixApiManager.search(query: "tacos", page: 0) { response in
-            for item in response.value! {
-                print(item.toString())
-            }
-        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -18,8 +18,18 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchBar.delegate = self
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        self.navigationItem.title = "Search"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
+        
+        
         
     }
+    
+    @IBAction func doneSearching(_ sender: Any) {
+        self.view.endEditing(true)
+    }
+    
     
     func performSearch (searchText: String) {
         foodSearchResults.removeAll()

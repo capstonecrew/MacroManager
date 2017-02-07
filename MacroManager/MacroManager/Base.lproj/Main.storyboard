@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fZl-pN-XUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fZl-pN-XUr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -420,7 +420,7 @@
             </objects>
             <point key="canvasLocation" x="1533.5999999999999" y="-120.08995502248877"/>
         </scene>
-        <!--Search View Controller-->
+        <!--Search-->
         <scene sceneID="E3L-Ae-6Zx">
             <objects>
                 <viewController id="Z8s-23-NGo" customClass="SearchViewController" customModule="MacroManager" customModuleProvider="target" sceneMemberID="viewController">
@@ -516,7 +516,13 @@
                             <constraint firstItem="r2b-xl-ehB" firstAttribute="top" secondItem="98W-Zb-KcP" secondAttribute="bottom" id="wMy-RA-xYo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="bx6-ag-Yqd"/>
+                    <navigationItem key="navigationItem" title="Search" id="bx6-ag-Yqd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="G2m-Oi-lQr">
+                            <connections>
+                                <action selector="doneSearching:" destination="Z8s-23-NGo" id="cPv-bx-AEc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="u9s-Wg-s2x" id="NJp-4E-67b"/>
                         <outlet property="tableView" destination="r2b-xl-ehB" id="Fzq-RH-w0x"/>
