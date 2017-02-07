@@ -471,7 +471,7 @@
 				TargetAttributes = {
 					6A24E35E1DBED3BF00F95408 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 88MN537MDW;
+						DevelopmentTeam = 3G7SYS5BZP;
 						ProvisioningStyle = Automatic;
 					};
 					6A24E3751DBED3BF00F95408 = {
@@ -817,11 +817,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 88MN537MDW;
+				DEVELOPMENT_TEAM = 3G7SYS5BZP;
 				INFOPLIST_FILE = MacroManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.macromanager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.macromanagerr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -834,11 +834,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 88MN537MDW;
+				DEVELOPMENT_TEAM = 3G7SYS5BZP;
 				INFOPLIST_FILE = MacroManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.macromanager;
+				PRODUCT_BUNDLE_IDENTIFIER = com.macromanagerr;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -22,6 +22,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
+    
         
         self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
         self.navigationController?.navigationBar.tintColor = .white

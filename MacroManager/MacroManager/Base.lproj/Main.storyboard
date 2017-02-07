@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fZl-pN-XUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fZl-pN-XUr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,6 +30,10 @@
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="initialView.png" translatesAutoresizingMaskIntoConstraints="NO" id="rMM-PJ-qJP">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="rMM-PJ-qJP" secondAttribute="height" multiplier="375:667" id="hea-s1-uUs"/>
+                                    <constraint firstAttribute="height" constant="667" id="iiH-DP-I3h"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncB-PU-vh8">
                                 <rect key="frame" x="16" y="524" width="343" height="47"/>
@@ -105,6 +110,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="initialView.png" translatesAutoresizingMaskIntoConstraints="NO" id="c9r-M2-MJ7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Zz-eg-caQ">
                                 <rect key="frame" x="31" y="329" width="313" height="51"/>
                                 <constraints>
@@ -174,11 +182,15 @@
                             <constraint firstItem="VYi-5d-lb4" firstAttribute="centerX" secondItem="gD0-4G-E5b" secondAttribute="centerX" id="8aj-7N-yhW"/>
                             <constraint firstItem="7Zz-eg-caQ" firstAttribute="leading" secondItem="gD0-4G-E5b" secondAttribute="leadingMargin" constant="15" id="Efu-z3-NH5"/>
                             <constraint firstItem="jrm-vd-Axn" firstAttribute="top" secondItem="Pxg-FX-NCt" secondAttribute="bottom" constant="20" id="Obu-uR-2aG"/>
+                            <constraint firstItem="c9r-M2-MJ7" firstAttribute="leading" secondItem="gD0-4G-E5b" secondAttribute="leadingMargin" constant="-16" id="Okb-uw-h5B"/>
                             <constraint firstAttribute="trailingMargin" secondItem="7Zz-eg-caQ" secondAttribute="trailing" constant="15" id="YXg-U1-OUb"/>
                             <constraint firstItem="iKM-yR-kaA" firstAttribute="centerX" secondItem="gD0-4G-E5b" secondAttribute="centerX" id="d2H-IM-p6M"/>
                             <constraint firstItem="iKM-yR-kaA" firstAttribute="top" secondItem="7Zz-eg-caQ" secondAttribute="bottom" constant="8" id="fNg-1o-gPA"/>
                             <constraint firstItem="fe4-R0-970" firstAttribute="centerX" secondItem="gD0-4G-E5b" secondAttribute="centerX" id="h57-4o-Qxo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="tj5-OZ-Wl2" secondAttribute="trailing" constant="15" id="h5V-MY-ATv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="c9r-M2-MJ7" secondAttribute="trailing" constant="-16" id="kOg-8S-MSG"/>
+                            <constraint firstItem="c9r-M2-MJ7" firstAttribute="top" secondItem="Rwx-Sm-SFF" secondAttribute="bottom" constant="-64" id="kZP-Ty-hdK"/>
+                            <constraint firstItem="jrm-vd-Axn" firstAttribute="top" secondItem="c9r-M2-MJ7" secondAttribute="bottom" id="mxA-CJ-JYl"/>
                             <constraint firstItem="tj5-OZ-Wl2" firstAttribute="leading" secondItem="gD0-4G-E5b" secondAttribute="leadingMargin" constant="15" id="qzf-lu-quD"/>
                             <constraint firstItem="7Zz-eg-caQ" firstAttribute="top" secondItem="fe4-R0-970" secondAttribute="bottom" constant="36" id="vqL-6h-vmY"/>
                         </constraints>
