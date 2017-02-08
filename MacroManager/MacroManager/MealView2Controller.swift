@@ -33,6 +33,7 @@ class MealView2Controller: UITableViewController {
         if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
             self.navigationItem.backBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
         }
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         
         
         

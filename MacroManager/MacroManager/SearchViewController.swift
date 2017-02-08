@@ -27,9 +27,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
             doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
         }
-        
-        
-        
     }
     
     
