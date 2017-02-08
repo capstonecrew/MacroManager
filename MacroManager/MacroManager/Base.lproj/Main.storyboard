@@ -518,12 +518,14 @@
                     </view>
                     <navigationItem key="navigationItem" title="Search" id="bx6-ag-Yqd">
                         <barButtonItem key="leftBarButtonItem" systemItem="done" id="G2m-Oi-lQr">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="doneSearching:" destination="Z8s-23-NGo" id="cPv-bx-AEc"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="G2m-Oi-lQr" id="0Y0-5O-pw6"/>
                         <outlet property="searchBar" destination="u9s-Wg-s2x" id="NJp-4E-67b"/>
                         <outlet property="tableView" destination="r2b-xl-ehB" id="Fzq-RH-w0x"/>
                     </connections>

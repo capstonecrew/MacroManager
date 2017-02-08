@@ -12,12 +12,19 @@ class MealHeaderCell: UITableViewCell {
 
     @IBOutlet weak var foodNameLabel: UILabel!
     @IBOutlet weak var proteinsAmount: UILabel!
-    @IBOutlet weak var sugarsAmount: UILabel!
+    @IBOutlet weak var carbsAmount: UILabel!
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var fatsAmount: UILabel!
     weak var parentVC: MealView2Controller!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        addButton.frame = CGRect(x: 100, y: 100, width: 200, height: 40)
+        addButton.backgroundColor = UIColor.clear
+        addButton.layer.borderWidth = 2.0
+        addButton.layer.borderColor = UIColor.white.cgColor
+        addButton.layer.cornerRadius = 5.0
+        
         
         
         // Initialization code
@@ -31,7 +38,7 @@ class MealHeaderCell: UITableViewCell {
     @IBAction func addMealAct(_ sender: Any) {
         
         // ADD MEAL AND RETURN TO PREV VIEW CONTROLLER
-        
+        print("adding meal")
     }
     
 }
