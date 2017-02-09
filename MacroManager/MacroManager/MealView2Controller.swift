@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MealView2Controller: UITableViewController {
+class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     
     
@@ -100,6 +100,7 @@ class MealView2Controller: UITableViewController {
         else {
             print("COULD NOT FETCH NIX ITEM")
         }
+        cell.delegate = self
     
         return cell
     
@@ -113,6 +114,11 @@ class MealView2Controller: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44.0
     }
+    
+    func dismiss(sender: MealHeaderCell) {
+        self.dismiss(animated: true, completion: nil)
+    }
+
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
