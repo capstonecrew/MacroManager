@@ -41,7 +41,10 @@ class User {
     
     func addMealToLog(mealEaten: NixItem) {
         mealLog.append(mealEaten)
-        //test comment
+        proteinCount = proteinCount - Int(mealEaten.proteins!)
+        carbCount = carbCount - Int(mealEaten.carbs!)
+        fatCount = fatCount - Int(mealEaten.fats!)
+        print("prot: \(proteinCount), carb: \(carbCount), fat: \(fatCount)")
     }
     
 }
