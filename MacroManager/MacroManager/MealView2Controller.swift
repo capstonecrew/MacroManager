@@ -30,6 +30,11 @@ class MealView2Controller: UITableViewController {
         tableView.register(UINib(nibName: "MealDetailsCell", bundle: nil), forCellReuseIdentifier: "mealDetailsCell")
         self.navigationItem.title = "food detail"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
+        if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
+            self.navigationItem.backBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
+        }
+        self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
+        
         
         
         
@@ -59,26 +64,47 @@ class MealView2Controller: UITableViewController {
     }
     
     
-   override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mealHeaderCell") as! MealHeaderCell
+        cell.parentVC = self; // add reference to this vc in the tableviewcell
     
     
-    if let nix = recievedNix{
-        cell.foodNameLabel.text = nix.itemName
-        cell.proteinsAmount.text = "\(nix.carbs!) g"
-        cell.fatsAmount.text = "\(nix.fats!)"
-        cell.sugarsAmount.text = "\(nix.carbs!)"
+        if let nix = recievedNix {
+            cell.foodNameLabel.text = nix.itemName
+            
+            if  let prot = nix.proteins {
+                cell.proteinsAmount.text = "\(prot) g"
+            }
+            else {
+                cell.proteinsAmount.text = "N/A"
+                nix.proteins = 0
+            }
+            
+            if let carb = nix.carbs {
+                cell.carbsAmount.text = "\(carb) g"
+            }
+            else {
+                cell.carbsAmount.text = "N/A"
+                nix.carbs = 0
+            }
+            
+            if let fat = nix.fats {
+                cell.fatsAmount.text = "\(fat) g"
+            }
+            else {
+                cell.fatsAmount.text = "N/A"
+                nix.fats = 0
+            }
         
-    }else{
-        
-    }
-    
-
-    
+        } 
+        else {
+            print("COULD NOT FETCH NIX ITEM")
+        }
     
         return cell
     
     }
+    
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 244.0

@@ -12,24 +12,77 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
+    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     var foodSearchResults:Array<NixItem> = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        doneButton.isEnabled = false
         searchBar.delegate = self
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        self.navigationItem.title = "Search"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         
+        if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
+            doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
+        }
     }
+    
+    
+    
+    @IBAction func doneSearching(_ sender: Any) {
+        self.view.endEditing(true)
+        doneButton.isEnabled = false
+    }
+    
     
     func performSearch (searchText: String) {
         foodSearchResults.removeAll()
         
         NixApiManager.search(query: searchText, page: 0) { response in
             for item in response.value! {
-                print(item.toString())
+                
+                // ONLY ADD NIX ITEM IF ALL THREE MACROS HAVE A VALUE
+                guard item.proteins != nil else {
+                    return
+                }
+                
+                guard item.carbs != nil else {
+                    return
+                }
+                
+                guard item.fats != nil else {
+                    return
+                }
+                
+                /*
+                // if item name is too short
+                if searchText.characters.count >= 2 && item.itemName.characters.count <= 2 {
+                    print("too short")
+                    return
+                }
+                
+                // if item has no nutritional facts
+                if item.proteins! < 1.0 || item.carbs! < 1.0 {
+                    print ("not good")
+                    return
+                }
+                else {
+                
+                    //Fill table view
+                    self.foodSearchResults.append(item)
+                }
+                */
+                
                 //Fill table view
                 self.foodSearchResults.append(item)
+
+                
             }
+            
+            // SORT ALPHABETICALLY
+            self.foodSearchResults.sort { $0.itemName < $1.itemName }
             
             // Refresh table view after new data
             self.tableView.reloadData()
@@ -42,7 +95,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "meal", for: indexPath) as! SearchTableViewCell
-        cell.mealNameLabel.text = "test"
         
         let item = self.foodSearchResults[indexPath.row]
         
@@ -83,18 +135,20 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let text = searchBar.text {
+            doneButton.isEnabled = true
             performSearch(searchText: text)
         }    
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text {
+            self.view.endEditing(true)
+            doneButton.isEnabled = false
             performSearch(searchText: text)
         }
     }
     
-    
-    
+
     
     
     
