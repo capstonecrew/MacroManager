@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol mealHeaderCellDelegate {
+    func dismiss(sender: MealHeaderCell)
+}
+
 class MealHeaderCell: UITableViewCell {
 
     @IBOutlet weak var foodNameLabel: UILabel!
@@ -15,7 +19,8 @@ class MealHeaderCell: UITableViewCell {
     @IBOutlet weak var carbsAmount: UILabel!
     @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var fatsAmount: UILabel!
-    weak var parentVC: MealView2Controller!
+    weak var parentVC: MealView2Controller! // BAD CODE
+    var delegate: mealHeaderCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +44,10 @@ class MealHeaderCell: UITableViewCell {
         
         // ADD MEAL AND RETURN TO PREV VIEW CONTROLLER
         print("adding meal")
+        
+        
+        currentUser.addMealToLog(mealEaten: parentVC.recievedNix!)
+        delegate?.dismiss(sender: self) // POP DOWN
     }
     
 }

@@ -37,14 +37,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     
-    func performSearch (searchText: String) {
+    func performSearch(searchText: String) {
         foodSearchResults.removeAll()
         
         NixApiManager.search(query: searchText, page: 0) { response in
             for item in response.value! {
                 
                 // ONLY ADD NIX ITEM IF ALL THREE MACROS HAVE A VALUE
-                guard item.proteins != nil else {
+                /*guard item.proteins != nil else {
                     return
                 }
                 
@@ -54,7 +54,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 
                 guard item.fats != nil else {
                     return
-                }
+                }*/
                 
                 /*
                 // if item name is too short
@@ -147,11 +147,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             performSearch(searchText: text)
         }
     }
-    
-
-    
-    
-    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
