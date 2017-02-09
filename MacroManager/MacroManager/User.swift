@@ -41,6 +41,7 @@ class User {
     
     func addMealToLog(mealEaten: NixItem) {
         mealLog.append(mealEaten)
+        //test comment
     }
     
 }
