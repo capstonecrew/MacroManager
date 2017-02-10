@@ -955,10 +955,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="ja1-Tk-dfW">
+                        <barButtonItem key="backBarButtonItem" title=" " id="JwL-is-0oG"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="compose" id="Fek-vA-rHW">
                             <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="d9y-rl-1wq" kind="show" identifier="showMeal" id="gBr-jg-gQu"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ho9-VX-lFJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -972,7 +976,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Yde-ZR-ccX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yde-ZR-ccX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -993,7 +997,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="r3O-2v-Fht">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r3O-2v-Fht">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1014,7 +1018,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4aH-wx-Rte">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4aH-wx-Rte">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1038,6 +1042,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FBF-b4-FSg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.99489795920000001" green="0.98979591840000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1053,7 +1058,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fZl-pN-XUr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j4h-73-XkN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j4h-73-XkN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1076,4 +1081,7 @@
         <image name="trophy_icon.png" width="28" height="31"/>
         <image name="under_construction_gif.gif" width="305" height="232"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="gBr-jg-gQu"/>
+    </inferredMetricsTieBreakers>
 </document>
