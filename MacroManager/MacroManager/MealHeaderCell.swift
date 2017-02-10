@@ -10,6 +10,8 @@ import UIKit
 
 protocol mealHeaderCellDelegate {
     func dismiss(sender: MealHeaderCell)
+    func addFavorite(sender:MealHeaderCell)
+    
 }
 
 class MealHeaderCell: UITableViewCell {
@@ -35,6 +37,14 @@ class MealHeaderCell: UITableViewCell {
         // Initialization code
     }
 
+    @IBAction func favoriteButtonClick(_ sender: Any) {
+        
+     self.delegate?.addFavorite(sender: self)
+        
+        
+        
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
