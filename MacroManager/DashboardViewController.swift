@@ -23,6 +23,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         self.navigationItem.title = "macro manager"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -119,6 +120,9 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
                 
             }else if(indexPath.row == 1){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "dailyGoalProgressCell") as! DailyGoalProgressCell
+                cell.proteinLabel.text = "Protein: \(currentUser.proteinToday!) g of \(currentUser.proteinCount!) g"
+                cell.carbLabel.text = "Carbs: \(currentUser.carbToday!) g of \(currentUser.carbCount!) g"
+                cell.fatLabel.text = "Fats: \(currentUser.fatToday!) g of \(currentUser.fatCount!) g"
                 return cell
             }
 
@@ -195,17 +199,19 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     }
     
     func animateBarGraph(){
-        
+        print("animating bar graph")
         let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! DailyGoalProgressCell
         let bounds = cell.proteinProgress.bounds
         
         let screenSize: CGRect = UIScreen.main.bounds
         let screenWidth = screenSize.width
-        
+        print("curUser protToday: \(currentUser.proteinToday) protCount: \(currentUser.proteinCount)")
         let progressBarMaxWidth = screenWidth - 30
-        let proteinProgressWidth = 65/100 * progressBarMaxWidth
-        let carbsProgressWidth = 30/100 * progressBarMaxWidth
-        let fatsProgressWidth = 85/100 * progressBarMaxWidth
+        //let proteinProgressWidth = 65/100 * progressBarMaxWidth
+        let proteinProgressWidth = CGFloat(currentUser.proteinToday! / currentUser.proteinCount!) * progressBarMaxWidth
+        print(CGFloat(currentUser.proteinToday!))
+        let carbsProgressWidth = CGFloat(currentUser.carbToday! / currentUser.carbCount!) * progressBarMaxWidth
+        let fatsProgressWidth = CGFloat(currentUser.fatToday / currentUser.fatCount) * progressBarMaxWidth
     
         UIView.setAnimationsEnabled(true)
         

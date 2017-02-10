@@ -11,6 +11,9 @@ import UIKit
 class DailyGoalProgressCell: UITableViewCell {
 
     
+    @IBOutlet weak var proteinLabel: UILabel!
+    @IBOutlet weak var carbLabel: UILabel!
+    @IBOutlet weak var fatLabel: UILabel!
     @IBOutlet weak var proteinProgressBack: UIView!
     @IBOutlet weak var carbsProgressBack: UIView!
     @IBOutlet weak var fatsProgressBack: UIView!
