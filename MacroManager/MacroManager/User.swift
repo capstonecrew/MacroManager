@@ -22,6 +22,7 @@ class User {
     var fatCount: Int!
     
     var mealLog = [NixItem]() // meal history
+    var favoriteLog = [NixItem]() // favorite meal list
     
     init() {
         // TEMP DUMMY USER INFO
@@ -37,7 +38,11 @@ class User {
         fatCount = 78
         
     }
-    
+    func addMealToFavorite(mealEaten: NixItem)
+    {
+        favoriteLog.append(mealEaten)
+        
+    }
     
     func addMealToLog(mealEaten: NixItem) {
         mealLog.append(mealEaten)

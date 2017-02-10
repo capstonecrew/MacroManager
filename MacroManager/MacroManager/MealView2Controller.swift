@@ -118,7 +118,17 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     func dismiss(sender: MealHeaderCell) {
         self.dismiss(animated: true, completion: nil)
     }
-
+    
+    func addFavorite(sender: MealHeaderCell)
+    {
+        
+        let alertController = UIAlertController(title: "", message:"Favorite food added!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title:"Dismiss", style:UIAlertActionStyle.default, handler:nil))
+        
+        self.present(alertController,animated:true,completion:nil)
+        currentUser.addMealToFavorite(mealEaten: recievedNix!)
+        
+    }
 
     /*
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
