@@ -1,18 +1,16 @@
 //
-//  MealDetailsCell.swift
+//  HeaderCell.swift
 //  MacroManager
 //
-//  Created by Aaron Edwards on 1/27/17.
+//  Created by Aaron Edwards on 2/9/17.
 //  Copyright © 2017 Aaron Edwards. All rights reserved.
 //
 
 import UIKit
 
-class MealDetailsCell: UITableViewCell {
+class HeaderCell: UITableViewCell {
 
-    @IBOutlet weak var mainLbl: UILabel!
-    @IBOutlet weak var accessoryLbl: UILabel!
-    
+    @IBOutlet weak var headerLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,5 +21,5 @@ class MealDetailsCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
+    
 }

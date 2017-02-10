@@ -17,10 +17,16 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         tableView.register(UINib(nibName: "WelcomeUserCell", bundle: nil), forCellReuseIdentifier: "welcomeUserCell")
         tableView.register(UINib(nibName: "DailyGoalProgressCell", bundle: nil), forCellReuseIdentifier: "dailyGoalProgressCell")
         tableView.register(UINib(nibName: "SuggestedFoodsCell", bundle: nil), forCellReuseIdentifier: "suggestedFoodsCell")
+        tableView.register(UINib(nibName: "HeaderCell", bundle: nil), forCellReuseIdentifier: "headerCell")
+        tableView.register(UINib(nibName: "MealDetailsCell", bundle: nil), forCellReuseIdentifier: "mealDetailsCell")
 
         self.navigationItem.title = "macro manager"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,57 +38,128 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 5
+        
+        var numRows = 0
+        
+        switch section {
+        case 0:
+            numRows = 2
+        case 1:
+            numRows = currentUser.mealLog.count
+        default:
+            break
+        }
+        
+        return numRows
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! HeaderCell
+        
+        switch section {
+        case 0:
+            cell.headerLbl.text = "Overview"
+        case 1:
+            cell.headerLbl.text = "History"
+        default:
+            break
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        var height: CGFloat = 44.0
+        
+        switch section {
+        case 0:
+            height = 0.0
+        case 1:
+            height = 44.0
+        default:
+            break
+        }
+        
+        return height
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell()
         
-        if(indexPath.row == 0){
-        
-            let cell = tableView.dequeueReusableCell(withIdentifier: "suggestedFoodsCell") as! SuggestedFoodsCell
+        switch indexPath.section {
+        case 0:
+            if(indexPath.row == 0){
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "suggestedFoodsCell") as! SuggestedFoodsCell
+                
+                cell.foodsCollectionView.delegate = self
+                cell.foodsCollectionView.dataSource = self
+                cell.foodsCollectionView.register(UINib(nibName: "FoodCollectionCell", bundle: nil), forCellWithReuseIdentifier: "foodCollectionCell")
+                
+                cell.foodsCollectionView.collectionViewLayout.accessibilityScroll(.right)
+                
+                return cell
+                
+            }else if(indexPath.row == 1){
+                let cell = tableView.dequeueReusableCell(withIdentifier: "dailyGoalProgressCell") as! DailyGoalProgressCell
+                return cell
+            }
+
+        case 1:
             
-            cell.foodsCollectionView.delegate = self
-            cell.foodsCollectionView.dataSource = self
-            cell.foodsCollectionView.register(UINib(nibName: "FoodCollectionCell", bundle: nil), forCellWithReuseIdentifier: "foodCollectionCell")
-        
-            cell.foodsCollectionView.collectionViewLayout.accessibilityScroll(.right)
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mealDetailsCell") as! MealDetailsCell
+            cell.accessoryLbl.isHidden = true
+            cell.mainLbl.text = currentUser.mealLog[indexPath.row].itemName
             return cell
             
-        }else if(indexPath.row == 1){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "dailyGoalProgressCell") as! DailyGoalProgressCell
-            return cell
-        }else if(indexPath.row == 2){
-            let cell = UITableViewCell()
-            cell.detailTextLabel?.text = "History"
-            return cell
+        default:
+            break
         }
-    
+        
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        animateBarGraph()
+        
+        switch indexPath.section {
+        case 0:
+            animateBarGraph()
+        case 1:
+            self.performSegue(withIdentifier: "showMeal", sender: indexPath)
+        default:
+            break
+        }
         
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if(indexPath.row == 0){
-            
-            return 130.0
-            
-        }else if(indexPath.row == 1){
-            
-            return 234.0
-        }
         
+        switch indexPath.section {
+        case 0:
+            if(indexPath.row == 0){
+                
+                return 130.0
+                
+            }else if(indexPath.row == 1){
+                
+                return 210.0
+            }
+        case 1:
+            
+            return 44.0
+            
+        default:
+            break
+        }
+
         return 39.0
     }
 
@@ -120,16 +197,30 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         let fatsProgressWidth = 85/100 * progressBarMaxWidth
     
         UIView.setAnimationsEnabled(true)
-        UIView.animate(withDuration: 5.0, delay: 0.0, options: .curveEaseInOut, animations: {
-            
-            cell.layoutSubviews()
-            cell.proteinProgress.bounds.size = CGSize(width: cell.proteinProgress.bounds.size.width + proteinProgressWidth, height: cell.proteinProgress.bounds.size.height)
-            cell.carbsProgress.bounds.size = CGSize(width: cell.carbsProgress.bounds.size.width + carbsProgressWidth, height: cell.carbsProgress.bounds.size.height)
-            cell.fatsProgress.bounds.size = CGSize(width: cell.fatsProgress.bounds.size.width + fatsProgressWidth, height: cell.fatsProgress.bounds.size.height)
-        }, completion: {(complete) in
         
-            print(complete)
-        })
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 5.0, delay: 0.0, options: .curveEaseInOut, animations: {
+                
+                cell.layoutSubviews()
+                cell.proteinProgress.bounds.size = CGSize(width: cell.proteinProgress.bounds.size.width + proteinProgressWidth, height: cell.proteinProgress.bounds.size.height)
+                cell.carbsProgress.bounds.size = CGSize(width: cell.carbsProgress.bounds.size.width + carbsProgressWidth, height: cell.carbsProgress.bounds.size.height)
+                cell.fatsProgress.bounds.size = CGSize(width: cell.fatsProgress.bounds.size.width + fatsProgressWidth, height: cell.fatsProgress.bounds.size.height)
+            }, completion: {(complete) in
+                
+                print(complete)
+            })
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMeal" {
+            let selectedIndex: IndexPath = sender as! IndexPath
+            if let nextView: MealView2Controller = segue.destination as? MealView2Controller {
+                nextView.recievedNix = currentUser.mealLog[selectedIndex.row]
+                print(selectedIndex.row)
+            }
+        }
     }
     
     

@@ -28,13 +28,13 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
         tableView.register(UINib(nibName: "MealHeaderCell", bundle: nil), forCellReuseIdentifier: "mealHeaderCell")
         tableView.register(UINib(nibName: "MealDetailsCell", bundle: nil), forCellReuseIdentifier: "mealDetailsCell")
-        self.navigationItem.title = "food detail"
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
+        self.navigationItem.title = "Food Detail"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
             self.navigationItem.backBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
         }
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
-        
+        self.navigationController?.navigationBar.tintColor = .white
         
         
         
