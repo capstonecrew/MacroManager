@@ -21,6 +21,10 @@ class User {
     var carbCount: Int!
     var fatCount: Int!
     
+    var proteinToday: Int!
+    var carbToday: Int!
+    var fatToday: Int!
+    
     var mealLog = [NixItem]() // meal history
     var favoriteLog = [NixItem]() // favorite meal list
     
@@ -36,6 +40,9 @@ class User {
         proteinCount = 211
         carbCount = 316
         fatCount = 78
+        proteinToday = 0
+        carbToday = 0
+        fatToday = 0
         
     }
     
@@ -75,10 +82,10 @@ class User {
     
     func addMealToLog(mealEaten: NixItem) {
         mealLog.append(mealEaten)
-        proteinCount = proteinCount - Int(mealEaten.proteins!)
-        carbCount = carbCount - Int(mealEaten.carbs!)
-        fatCount = fatCount - Int(mealEaten.fats!)
-        print("prot: \(proteinCount), carb: \(carbCount), fat: \(fatCount)")
+        proteinToday = Int(mealEaten.proteins!)
+        carbToday = Int(mealEaten.carbs!)
+        fatToday = Int(mealEaten.fats!)
+        print("prot: \(proteinToday), carb: \(carbToday), fat: \(fatToday)")
     }
     
 }
