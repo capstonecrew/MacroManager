@@ -38,10 +38,39 @@ class User {
         fatCount = 78
         
     }
+    
     func addMealToFavorite(mealEaten: NixItem)
     {
         favoriteLog.append(mealEaten)
         
+    }
+    
+    func removeMealFromFavorite(mealEaten: NixItem)
+    {
+        for index in 0...favoriteLog.count{
+            if favoriteLog[index].itemId == mealEaten.itemId{
+                favoriteLog.remove(at: index)
+                break
+            }
+        }
+    }
+    
+    func checkFavorite(itemId: String) -> Bool{
+        
+        var result = false
+        
+        if(favoriteLog.count == 0){
+            result = false
+        }else{
+            
+            for index in 0...favoriteLog.count - 1{
+                if favoriteLog[index].itemId == itemId{
+                    result = true
+                }
+            }
+        }
+        
+        return result
     }
     
     func addMealToLog(mealEaten: NixItem) {
