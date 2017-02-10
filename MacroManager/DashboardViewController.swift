@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate {
+class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate, SuggestedFoodsCellDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,10 +17,19 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         tableView.register(UINib(nibName: "WelcomeUserCell", bundle: nil), forCellReuseIdentifier: "welcomeUserCell")
         tableView.register(UINib(nibName: "DailyGoalProgressCell", bundle: nil), forCellReuseIdentifier: "dailyGoalProgressCell")
         tableView.register(UINib(nibName: "SuggestedFoodsCell", bundle: nil), forCellReuseIdentifier: "suggestedFoodsCell")
+        tableView.register(UINib(nibName: "HeaderCell", bundle: nil), forCellReuseIdentifier: "headerCell")
+        tableView.register(UINib(nibName: "MealDetailsCell", bundle: nil), forCellReuseIdentifier: "mealDetailsCell")
 
         self.navigationItem.title = "macro manager"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SuggestedFoodsCell
+        cell.foodsCollectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,58 +41,142 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 2
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 5
+        
+        var numRows = 0
+        
+        switch section {
+        case 0:
+            numRows = 2
+        case 1:
+            numRows = currentUser.mealLog.count
+        default:
+            break
+        }
+        
+        return numRows
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell") as! HeaderCell
+        
+        switch section {
+        case 0:
+            cell.headerLbl.text = "Overview"
+        case 1:
+            cell.headerLbl.text = "History"
+        default:
+            break
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        var height: CGFloat = 44.0
+        
+        switch section {
+        case 0:
+            height = 0.0
+        case 1:
+            height = 44.0
+        default:
+            break
+        }
+        
+        return height
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = UITableViewCell()
         
-        if(indexPath.row == 0){
-        
-            let cell = tableView.dequeueReusableCell(withIdentifier: "suggestedFoodsCell") as! SuggestedFoodsCell
+        switch indexPath.section {
+        case 0:
+            if(indexPath.row == 0){
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "suggestedFoodsCell") as! SuggestedFoodsCell
+                
+                cell.foodsCollectionView.delegate = self
+                cell.foodsCollectionView.dataSource = self
+                cell.foodsCollectionView.register(UINib(nibName: "FoodCollectionCell", bundle: nil), forCellWithReuseIdentifier: "foodCollectionCell")
+                
+                if(currentUser.favoriteLog.count != 0){
+                    cell.addFavoriteBtn.isHidden = true
+                }else{
+                    cell.addFavoriteBtn.isHidden = false
+                }
+                
+                cell.foodsCollectionView.collectionViewLayout.accessibilityScroll(.right)
+                cell.delegate = self
+                
+                return cell
+                
+            }else if(indexPath.row == 1){
+                let cell = tableView.dequeueReusableCell(withIdentifier: "dailyGoalProgressCell") as! DailyGoalProgressCell
+                return cell
+            }
+
+        case 1:
             
-            cell.foodsCollectionView.delegate = self
-            cell.foodsCollectionView.dataSource = self
-            cell.foodsCollectionView.register(UINib(nibName: "FoodCollectionCell", bundle: nil), forCellWithReuseIdentifier: "foodCollectionCell")
-        
-            cell.foodsCollectionView.collectionViewLayout.accessibilityScroll(.right)
-            
+            let cell = tableView.dequeueReusableCell(withIdentifier: "mealDetailsCell") as! MealDetailsCell
+            cell.accessoryLbl.isHidden = true
+            cell.mainLbl.text = currentUser.mealLog[indexPath.row].itemName
             return cell
             
-        }else if(indexPath.row == 1){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "dailyGoalProgressCell") as! DailyGoalProgressCell
-            return cell
-        }else if(indexPath.row == 2){
-            let cell = UITableViewCell()
-            cell.detailTextLabel?.text = "History"
-            return cell
+        default:
+            break
         }
-    
+        
+        
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if(indexPath.row == 0){
-            
-            return 130.0
-            
-        }else if(indexPath.row == 1){
-            
-            return 234.0
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.section {
+        case 0:
+            animateBarGraph()
+        case 1:
+            self.performSegue(withIdentifier: "showMeal", sender: indexPath)
+        default:
+            break
         }
         
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        switch indexPath.section {
+        case 0:
+            if(indexPath.row == 0){
+                
+                return 130.0
+                
+            }else if(indexPath.row == 1){
+                
+                return 210.0
+            }
+        case 1:
+            
+            return 44.0
+            
+        default:
+            break
+        }
+
         return 39.0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodCollectionCell", for: indexPath) as!FoodCollectionCell
         cell.tag = indexPath.row
+        cell.foodLbl.text = currentUser.favoriteLog[indexPath.row].itemName
         cell.delegate = self
         
         return cell
@@ -94,15 +187,76 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return currentUser.favoriteLog.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
+    func animateBarGraph(){
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! DailyGoalProgressCell
+        let bounds = cell.proteinProgress.bounds
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        
+        let progressBarMaxWidth = screenWidth - 30
+        let proteinProgressWidth = 65/100 * progressBarMaxWidth
+        let carbsProgressWidth = 30/100 * progressBarMaxWidth
+        let fatsProgressWidth = 85/100 * progressBarMaxWidth
+    
+        UIView.setAnimationsEnabled(true)
+        
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 5.0, delay: 0.0, options: .curveEaseInOut, animations: {
+                
+                cell.layoutSubviews()
+                cell.proteinProgress.bounds.size = CGSize(width: cell.proteinProgress.bounds.size.width + proteinProgressWidth, height: cell.proteinProgress.bounds.size.height)
+                cell.carbsProgress.bounds.size = CGSize(width: cell.carbsProgress.bounds.size.width + carbsProgressWidth, height: cell.carbsProgress.bounds.size.height)
+                cell.fatsProgress.bounds.size = CGSize(width: cell.fatsProgress.bounds.size.width + fatsProgressWidth, height: cell.fatsProgress.bounds.size.height)
+            }, completion: {(complete) in
+                
+                print(complete)
+            })
+        }
+        
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMeal" {
+            let selectedIndex: IndexPath = sender as! IndexPath
+            if let vc = segue.destination as? UINavigationController{
+                if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
+                    nextView.recievedNix = currentUser.mealLog[selectedIndex.row]
+                    nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.mealLog[selectedIndex.row].itemId)
+                    print(selectedIndex.row)
+                }
+            }
+            
+        }else if segue.identifier == "showFavoriteMeal" {
+            let selectedIndex: IndexPath = sender as! IndexPath
+            if let vc = segue.destination as? UINavigationController{
+                if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
+                    nextView.recievedNix = currentUser.favoriteLog[selectedIndex.row]
+                    nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.favoriteLog[selectedIndex.row].itemId)
+                    print(selectedIndex.row)
+                }
+            }
+            
+        }
+    }
+    
+    func toSearch() {
+        self.tabBarController?.selectedIndex = 1
+    }
+    
     func tapped(sender: FoodCollectionCell) {
         print("Cell at row \(sender.tag)")
+        
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        performSegue(withIdentifier: "showFavoriteMeal", sender: indexPath)
     }
     
 }

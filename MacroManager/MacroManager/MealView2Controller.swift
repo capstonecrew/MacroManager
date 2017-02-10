@@ -14,6 +14,7 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     // uncomment this to recieve item from segue
     var recievedNix: NixItem?
+    var isFavorite: Bool?
     
     
     
@@ -28,13 +29,13 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
         tableView.register(UINib(nibName: "MealHeaderCell", bundle: nil), forCellReuseIdentifier: "mealHeaderCell")
         tableView.register(UINib(nibName: "MealDetailsCell", bundle: nil), forCellReuseIdentifier: "mealDetailsCell")
-        self.navigationItem.title = "food detail"
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
+        self.navigationItem.title = "Food Detail"
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
             self.navigationItem.backBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
         }
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
-        
+        self.navigationController?.navigationBar.tintColor = .white
         
         
         
@@ -101,6 +102,13 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
             print("COULD NOT FETCH NIX ITEM")
         }
         cell.delegate = self
+        cell.isFavorite = self.isFavorite!
+        
+        if(self.isFavorite!){
+            cell.favoriteBtn.setImage(UIImage(named:"favoriteFilled"), for: .normal)
+        }else{
+            cell.favoriteBtn.setImage(UIImage(named:"favorite"), for: .normal)
+        }
     
         return cell
     
@@ -115,64 +123,41 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         return 44.0
     }
     
-    func dismiss(sender: MealHeaderCell) {
+    func addFavorite(sender: MealHeaderCell)
+    {
+        
+        let alertController = UIAlertController(title: "", message:"Favorite food added!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil))
+        
+        self.present(alertController,animated:true,completion:nil)
+        currentUser.addMealToFavorite(mealEaten: recievedNix!)
+        self.isFavorite = true
+        
+    }
+    
+    func removeFavorite(sender: MealHeaderCell)
+    {
+        
+        let alertController = UIAlertController(title: "", message:"Favorite food removed!", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil))
+        
+        self.present(alertController,animated:true,completion:nil)
+        currentUser.removeMealFromFavorite(mealEaten: recievedNix!)
+        self.isFavorite = false
+        
+    }
+    
+    
+    @IBAction func doneBtnPressed(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
-
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    @IBAction func addBtnPressed(_ sender: Any) {
+        self.addMealToHistory()
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func addMealToHistory() {
+        currentUser.addMealToLog(mealEaten: (self.recievedNix)!)
+        self.dismiss(animated: true, completion: nil)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
