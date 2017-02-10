@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate {
+class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate, SuggestedFoodsCellDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +27,9 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     
     override func viewDidAppear(_ animated: Bool) {
         tableView.reloadData()
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SuggestedFoodsCell
+        cell.foodsCollectionView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,7 +106,14 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
                 cell.foodsCollectionView.dataSource = self
                 cell.foodsCollectionView.register(UINib(nibName: "FoodCollectionCell", bundle: nil), forCellWithReuseIdentifier: "foodCollectionCell")
                 
+                if(currentUser.favoriteLog.count != 0){
+                    cell.addFavoriteBtn.isHidden = true
+                }else{
+                    cell.addFavoriteBtn.isHidden = false
+                }
+                
                 cell.foodsCollectionView.collectionViewLayout.accessibilityScroll(.right)
+                cell.delegate = self
                 
                 return cell
                 
@@ -166,6 +176,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodCollectionCell", for: indexPath) as!FoodCollectionCell
         cell.tag = indexPath.row
+        cell.foodLbl.text = currentUser.favoriteLog[indexPath.row].itemName
         cell.delegate = self
         
         return cell
@@ -176,7 +187,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return currentUser.favoriteLog.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -216,16 +227,36 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMeal" {
             let selectedIndex: IndexPath = sender as! IndexPath
-            if let nextView: MealView2Controller = segue.destination as? MealView2Controller {
-                nextView.recievedNix = currentUser.mealLog[selectedIndex.row]
-                print(selectedIndex.row)
+            if let vc = segue.destination as? UINavigationController{
+                if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
+                    nextView.recievedNix = currentUser.mealLog[selectedIndex.row]
+                    nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.mealLog[selectedIndex.row].itemId)
+                    print(selectedIndex.row)
+                }
             }
+            
+        }else if segue.identifier == "showFavoriteMeal" {
+            let selectedIndex: IndexPath = sender as! IndexPath
+            if let vc = segue.destination as? UINavigationController{
+                if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
+                    nextView.recievedNix = currentUser.favoriteLog[selectedIndex.row]
+                    nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.favoriteLog[selectedIndex.row].itemId)
+                    print(selectedIndex.row)
+                }
+            }
+            
         }
     }
     
+    func toSearch() {
+        self.tabBarController?.selectedIndex = 1
+    }
     
     func tapped(sender: FoodCollectionCell) {
         print("Cell at row \(sender.tag)")
+        
+        let indexPath = IndexPath(row: sender.tag, section: 0)
+        performSegue(withIdentifier: "showFavoriteMeal", sender: indexPath)
     }
     
 }

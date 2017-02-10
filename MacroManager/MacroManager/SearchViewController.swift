@@ -126,9 +126,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showMeal" {
             let selectedIndex: IndexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
-            if let nextView: MealView2Controller = segue.destination as? MealView2Controller {
-                nextView.recievedNix = foodSearchResults[selectedIndex.row]
-                print(selectedIndex.row)
+            if let vc = segue.destination as? UINavigationController{
+                if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
+                    nextView.recievedNix = foodSearchResults[selectedIndex.row]
+                    nextView.isFavorite = currentUser.checkFavorite(itemId: foodSearchResults[selectedIndex.row].itemId)
+                    print(nextView.isFavorite)
+                    print(selectedIndex.row)
+                }
             }
         }
     }
