@@ -68,6 +68,11 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        animateBarGraph()
+        
+    }
+    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if(indexPath.row == 0){
             
@@ -100,6 +105,33 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
+    func animateBarGraph(){
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! DailyGoalProgressCell
+        let bounds = cell.proteinProgress.bounds
+        
+        let screenSize: CGRect = UIScreen.main.bounds
+        let screenWidth = screenSize.width
+        
+        let progressBarMaxWidth = screenWidth - 30
+        let proteinProgressWidth = 65/100 * progressBarMaxWidth
+        let carbsProgressWidth = 30/100 * progressBarMaxWidth
+        let fatsProgressWidth = 85/100 * progressBarMaxWidth
+    
+        UIView.setAnimationsEnabled(true)
+        UIView.animate(withDuration: 5.0, delay: 0.0, options: .curveEaseInOut, animations: {
+            
+            cell.layoutSubviews()
+            cell.proteinProgress.bounds.size = CGSize(width: cell.proteinProgress.bounds.size.width + proteinProgressWidth, height: cell.proteinProgress.bounds.size.height)
+            cell.carbsProgress.bounds.size = CGSize(width: cell.carbsProgress.bounds.size.width + carbsProgressWidth, height: cell.carbsProgress.bounds.size.height)
+            cell.fatsProgress.bounds.size = CGSize(width: cell.fatsProgress.bounds.size.width + fatsProgressWidth, height: cell.fatsProgress.bounds.size.height)
+        }, completion: {(complete) in
+        
+            print(complete)
+        })
+    }
+    
     
     func tapped(sender: FoodCollectionCell) {
         print("Cell at row \(sender.tag)")
