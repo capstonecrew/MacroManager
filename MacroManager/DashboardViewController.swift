@@ -215,18 +215,17 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     
         UIView.setAnimationsEnabled(true)
         
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 5.0, delay: 0.0, options: .curveEaseInOut, animations: {
+                    UIView.animate(withDuration: 5.0, delay: 0.0, options: .curveEaseInOut, animations: {
                 
                 cell.layoutSubviews()
-                cell.proteinProgress.bounds.size = CGSize(width: cell.proteinProgress.bounds.size.width + proteinProgressWidth, height: cell.proteinProgress.bounds.size.height)
-                cell.carbsProgress.bounds.size = CGSize(width: cell.carbsProgress.bounds.size.width + carbsProgressWidth, height: cell.carbsProgress.bounds.size.height)
-                cell.fatsProgress.bounds.size = CGSize(width: cell.fatsProgress.bounds.size.width + fatsProgressWidth, height: cell.fatsProgress.bounds.size.height)
+                cell.proteinProgress.bounds.size = CGSize(width: cell.proteinProgress.bounds.size.width + CGFloat(currentUser.proteinToday), height: cell.proteinProgress.bounds.size.height)
+                cell.carbsProgress.bounds.size = CGSize(width: cell.carbsProgress.bounds.size.width + 70, height: cell.carbsProgress.bounds.size.height)
+                cell.fatsProgress.bounds.size = CGSize(width: cell.fatsProgress.bounds.size.width + 40, height: cell.fatsProgress.bounds.size.height)
             }, completion: {(complete) in
                 
                 print(complete)
             })
-        }
+        
         
     }
     

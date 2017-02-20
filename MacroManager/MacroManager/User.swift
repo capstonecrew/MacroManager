@@ -82,9 +82,9 @@ class User {
     
     func addMealToLog(mealEaten: NixItem) {
         mealLog.append(mealEaten)
-        proteinToday = Int(mealEaten.proteins!)
-        carbToday = Int(mealEaten.carbs!)
-        fatToday = Int(mealEaten.fats!)
+        proteinToday = proteinToday + Int(mealEaten.proteins!)
+        carbToday = carbToday + Int(mealEaten.carbs!)
+        fatToday = fatToday + Int(mealEaten.fats!)
         print("prot: \(proteinToday), carb: \(carbToday), fat: \(fatToday)")
     }
     
