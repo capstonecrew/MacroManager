@@ -42,9 +42,15 @@ class DailyGoalProgressCell: UITableViewCell {
         let carbsProgressWidth = 30/100 * progressBarMaxWidth
         let fatsProgressWidth = 85/100 * progressBarMaxWidth
         
-        let proteinRect = CGRect(x: 0, y: 0, width: 0, height: 21)
-        let carbsRect = CGRect(x: 0, y: 0, width: 0, height: 21)
-        let fatsRect = CGRect(x: 0, y: 0, width: 0, height: 21)
+        /*let proteinProgressWidth = CGFloat(currentUser.proteinToday / currentUser.proteinCount) * progressBarMaxWidth
+        let carbsProgressWidth = 30/100 * progressBarMaxWidth
+        let fatsProgressWidth = 85/100 * progressBarMaxWidth*/
+        
+
+        
+        let proteinRect = CGRect(x: 0, y: 0, width: proteinProgressWidth, height: 21)
+        let carbsRect = CGRect(x: 0, y: 0, width: carbsProgressWidth, height: 21)
+        let fatsRect = CGRect(x: 0, y: 0, width: fatsProgressWidth, height: 21)
         
         proteinProgress = CALayer()
         proteinProgress.backgroundColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
