@@ -27,9 +27,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
             doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
         }
+        
+        //tableView.estimatedRowHeight = 110.0
+        //tableView.rowHeight = UITableViewAutomaticDimension
     }
-    
-    
     
     @IBAction func doneSearching(_ sender: Any) {
         self.view.endEditing(true)
@@ -99,7 +100,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         let item = self.foodSearchResults[indexPath.row]
         
         cell.mealNameLabel.text = item.itemName
-        cell.descriptionLabel.text = item.itemDescription
+        
+        if item.itemDescription != " "{
+            cell.descriptionLabel.text = item.itemDescription
+        }else{
+            cell.descriptionLabel.text = "No Description"
+        }
         
         if let fats = item.fats {
             cell.fatLabel.text = "Fats: \(fats)"
