@@ -87,6 +87,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             
             // Refresh table view after new data
             self.tableView.reloadData()
+        
         }
     }
     
