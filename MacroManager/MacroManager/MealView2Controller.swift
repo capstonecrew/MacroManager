@@ -22,7 +22,6 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     //var recievedNix = NixItem(itemName: "Hamburger", itemId: "001010", itemDescription: "", fats: 400.0, proteins: 200.0, carbs: 100.0)
     
     
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
