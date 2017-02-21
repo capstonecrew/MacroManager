@@ -7,7 +7,11 @@
     "67620B5EFA902936DF04070AF595B76AB0333747" : 9223372036854775807,
     "9C75A95AE81A09CDF0313F1601EACCA20A71AACF" : 9223372036854775807
   },
+<<<<<<< Updated upstream
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "6E15961F-4108-4C1B-865F-4483FBA862CD",
+=======
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "11A9985B-0FB8-4380-B35B-FF0D90413B30",
+>>>>>>> Stashed changes
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "67620B5EFA902936DF04070AF595B76AB0333747" : "MacroManager\/MacroManager\/Alamofire\/",
     "9C75A95AE81A09CDF0313F1601EACCA20A71AACF" : "MacroManager\/"

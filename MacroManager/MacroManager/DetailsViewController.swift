@@ -15,6 +15,8 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
     @IBOutlet weak var weightField: UITextField!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var heightField: UITextField!
+    @IBOutlet weak var genderField: UITextField!
+    
     var feetPickerData: [String] = [String]()
     var inchesPickerData: [String] = [String]()
     var heightPickerView = UIPickerView()
@@ -72,6 +74,19 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         heightField.autocapitalizationType = .none
         heightField.tintColor = UIColor.white
         heightField.inputView = heightPickerView
+        
+        genderField.attributedPlaceholder = NSAttributedString(string:"GENDER",
+                                                            attributes:[NSForegroundColorAttributeName: UIColor.white])
+        genderField.borderStyle = .none
+        genderField.textColor = UIColor.white
+        genderField.tag = 0
+        genderField.delegate = self
+        genderField.returnKeyType = .next
+        genderField.keyboardType = .numberPad
+        genderField.autocapitalizationType = .words
+        genderField.autocorrectionType = .no
+        genderField.tintColor = UIColor.white
+        
         //GESTURE RECOGNIZER TO HIDE KEYBOARD - SCB
         let tap = UITapGestureRecognizer(target: self, action: #selector(RegistrationViewController.hideKeyboard))
         view.addGestureRecognizer(tap)
