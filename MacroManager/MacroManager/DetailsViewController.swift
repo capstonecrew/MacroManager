@@ -10,6 +10,7 @@ import UIKit
 
 class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
 
+    @IBOutlet weak var genderField: UITextField!
 
     @IBOutlet weak var ageField: UITextField!
     @IBOutlet weak var weightField: UITextField!
@@ -60,6 +61,19 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         weightField.autocapitalizationType = .none
         weightField.autocorrectionType = .no
         weightField.tintColor = UIColor.white
+        
+        genderField.attributedPlaceholder = NSAttributedString(string:"GENDER",
+                                                               attributes:[NSForegroundColorAttributeName: UIColor.white])
+        genderField.borderStyle = .none
+        genderField.textColor = UIColor.white
+        genderField.tag = 1
+        genderField.delegate = self
+        genderField.returnKeyType = .next
+        genderField.keyboardType = .numberPad
+        genderField.autocapitalizationType = .none
+        genderField.autocorrectionType = .no
+        genderField.tintColor = UIColor.white
+        
         
         heightField.attributedPlaceholder = NSAttributedString(string:"HEIGHT",
                                                                  attributes:[NSForegroundColorAttributeName: UIColor.white])
