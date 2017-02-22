@@ -70,6 +70,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate {
         }
         currentUser.weight = Int(userWeightField.text!)
         userWeightField.text = "\(currentUser.weight!) pounds"
+    
     }
     
     override func didReceiveMemoryWarning() {
