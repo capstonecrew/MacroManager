@@ -11,9 +11,17 @@ import UIKit
 class DailyGoalProgressCell: UITableViewCell {
 
     
+    @IBOutlet weak var proteinLabel: UILabel!
+    @IBOutlet weak var carbLabel: UILabel!
+    @IBOutlet weak var fatLabel: UILabel!
     @IBOutlet weak var proteinProgressBack: UIView!
     @IBOutlet weak var carbsProgressBack: UIView!
     @IBOutlet weak var fatsProgressBack: UIView!
+    var proteinProgress: CALayer!
+    var fatsProgress: CALayer!
+    var carbsProgress: CALayer!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -34,48 +42,50 @@ class DailyGoalProgressCell: UITableViewCell {
         let carbsProgressWidth = 30/100 * progressBarMaxWidth
         let fatsProgressWidth = 85/100 * progressBarMaxWidth
         
+        /*let proteinProgressWidth = CGFloat(currentUser.proteinToday / currentUser.proteinCount) * progressBarMaxWidth
+        let carbsProgressWidth = 30/100 * progressBarMaxWidth
+        let fatsProgressWidth = 85/100 * progressBarMaxWidth*/
+        
+
+        
         let proteinRect = CGRect(x: 0, y: 0, width: proteinProgressWidth, height: 21)
-        let proteinPath = UIBezierPath(roundedRect: proteinRect, cornerRadius: 10)
         let carbsRect = CGRect(x: 0, y: 0, width: carbsProgressWidth, height: 21)
-        let carbsPath = UIBezierPath(roundedRect: carbsRect, cornerRadius: 10)
         let fatsRect = CGRect(x: 0, y: 0, width: fatsProgressWidth, height: 21)
-        let fatsPath = UIBezierPath(roundedRect: fatsRect, cornerRadius: 10)
         
-        let proteinProgress = CAShapeLayer()
-        proteinProgress.fillColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
-        proteinProgress.path = proteinPath.cgPath
+        proteinProgress = CALayer()
+        proteinProgress.backgroundColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
+        proteinProgress.bounds = proteinRect
+        proteinProgress.anchorPoint = CGPoint.zero
+        proteinProgress.cornerRadius = 10
         
-        let carbsProgress = CAShapeLayer()
-        carbsProgress.fillColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
-        carbsProgress.path = carbsPath.cgPath
+        fatsProgress = CALayer()
+        fatsProgress.backgroundColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
+        fatsProgress.bounds = fatsRect
+        fatsProgress.anchorPoint = CGPoint.zero
+        fatsProgress.cornerRadius = 10
         
-        let fatsProgress = CAShapeLayer()
-        fatsProgress.fillColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
-        fatsProgress.path = fatsPath.cgPath
+        carbsProgress = CALayer()
+        carbsProgress.backgroundColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
+        carbsProgress.bounds = carbsRect
+        carbsProgress.anchorPoint = CGPoint.zero
+        carbsProgress.cornerRadius = 10
         
-        let anim = CABasicAnimation(keyPath: "fillColor")
-        anim.fromValue = UIColor.clear.cgColor
-        anim.toValue = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
-        anim.duration = 2
-        proteinProgress.add(anim, forKey: "anim")
-        
-        let anim2 = CABasicAnimation(keyPath: "fillColor")
-        anim2.fromValue = UIColor.clear.cgColor
-        anim2.toValue = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
-        anim2.duration = 2
-        carbsProgress.add(anim2, forKey: "anim")
-        
-        let anim3 = CABasicAnimation(keyPath: "fillColor")
-        anim3.fromValue = UIColor.clear.cgColor
-        anim3.toValue = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
-        anim3.duration = 2
-        fatsProgress.add(anim3, forKey: "anim")
+        //proteinProgress.fillColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0).cgColor
+        //proteinProgress.path = proteinPath.cgPath
         
         
         proteinProgressBack.layer.addSublayer(proteinProgress)
         carbsProgressBack.layer.addSublayer(carbsProgress)
         fatsProgressBack.layer.addSublayer(fatsProgress)
-    
+        
+//        UIView.animate(withDuration: 2.0, delay: 5.0, options: .curveEaseInOut, animations: {
+//            self.proteinProgress.bounds.size = CGSize(width: self.proteinProgress.bounds.size.width + proteinProgressWidth, height: self.proteinProgress.bounds.size.height)
+//            self.carbsProgress.bounds.size = CGSize(width: self.carbsProgress.bounds.size.width + carbsProgressWidth, height: self.carbsProgress.bounds.size.height)
+//            self.fatsProgress.bounds.size = CGSize(width: self.fatsProgress.bounds.size.width + fatsProgressWidth, height: self.fatsProgress.bounds.size.height)
+//        }, completion: {(completed) in
+//            print("done")
+//        })
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

@@ -15,6 +15,8 @@ protocol FoodCollectionCellDelegate {
 class FoodCollectionCell: UICollectionViewCell {
 
     var delegate: FoodCollectionCellDelegate?
+    
+    @IBOutlet weak var foodLbl: UILabel!
     @IBOutlet weak var foodBtn: UIButton!
     
     override func awakeFromNib() {
