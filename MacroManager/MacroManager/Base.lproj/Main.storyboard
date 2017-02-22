@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fZl-pN-XUr">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="fZl-pN-XUr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -396,7 +396,7 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="J8C-xa-bh3" eventType="touchUpInside" id="9f4-Ne-wcS"/>
-                                    <segue destination="xjs-9d-p4m" kind="show" id="RTM-XX-4nl"/>
+                                    <segue destination="xjs-9d-p4m" kind="show" identifier="toActivityView" id="RTM-XX-4nl"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wpd-oA-xzK">
@@ -529,7 +529,7 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="J8C-xa-bh3" eventType="touchUpInside" id="K9g-F5-kuF"/>
-                                    <segue destination="3Rw-fP-9Wg" kind="show" id="gvz-ui-A8E"/>
+                                    <segue destination="3Rw-fP-9Wg" kind="show" identifier="toGoalView" id="gvz-ui-A8E"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -757,89 +757,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Total User Points:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5i3-w0-zrk">
-                                <rect key="frame" x="92" y="72" width="135" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNh-af-TGU">
-                                <rect key="frame" x="241" y="72" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="iln-c3-Dpy">
-                                <rect key="frame" x="112" y="306" width="150" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eV5-1q-ObH">
-                                <rect key="frame" x="112" y="404" width="150" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Bbf-ax-G3R">
-                                <rect key="frame" x="112" y="503" width="150" height="2"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </progressView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YHQ-Ii-LKA">
-                                <rect key="frame" x="61" y="316" width="251" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eXb-zg-gQ3">
-                                <rect key="frame" x="61" y="414" width="251" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yaw-iU-xXw">
-                                <rect key="frame" x="61" y="513" width="251" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b50-5e-lv3">
-                                <rect key="frame" x="270" y="395" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MyE-q0-k5z">
-                                <rect key="frame" x="270" y="494" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X9f-VO-ANW">
-                                <rect key="frame" x="270" y="297" width="42" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="PnS-NM-5tl">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="hbO-9Q-L2W" id="ynQ-qg-rRG"/>
+                                    <outlet property="delegate" destination="hbO-9Q-L2W" id="11L-JD-TAI"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="PnS-NM-5tl" firstAttribute="top" secondItem="naI-Zm-DW5" secondAttribute="bottom" id="Def-7D-QMS"/>
+                            <constraint firstItem="Diz-fB-M5C" firstAttribute="top" secondItem="PnS-NM-5tl" secondAttribute="bottom" id="X55-sh-88d"/>
+                            <constraint firstItem="PnS-NM-5tl" firstAttribute="leading" secondItem="0wl-RD-rT2" secondAttribute="leadingMargin" constant="-16" id="xax-jC-ryJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PnS-NM-5tl" secondAttribute="trailing" constant="-16" id="zXO-S3-uG3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="sNk-Gw-UFn"/>
                     <connections>
-                        <outlet property="progress1" destination="iln-c3-Dpy" id="XbH-kF-Lwk"/>
-                        <outlet property="progress2" destination="eV5-1q-ObH" id="xk9-Wu-LQa"/>
-                        <outlet property="progress3" destination="Bbf-ax-G3R" id="iUd-td-4Or"/>
-                        <outlet property="progressLbl1" destination="YHQ-Ii-LKA" id="55i-Id-UuD"/>
-                        <outlet property="progressLbl2" destination="eXb-zg-gQ3" id="6cG-hv-hju"/>
-                        <outlet property="progressLbl3" destination="Yaw-iU-xXw" id="8Lc-fg-9Nc"/>
-                        <outlet property="progressReward1" destination="X9f-VO-ANW" id="5Ra-Nm-UqQ"/>
-                        <outlet property="progressReward2" destination="b50-5e-lv3" id="UcT-pU-YuB"/>
-                        <outlet property="progressReward3" destination="MyE-q0-k5z" id="Pev-Z6-i6A"/>
-                        <outlet property="totalLbl" destination="KNh-af-TGU" id="ztk-Uf-FCv"/>
+                        <outlet property="tableView" destination="PnS-NM-5tl" id="VJf-Vn-SqS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cp5-Ic-ih5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1032,7 +969,7 @@
                                 </state>
                                 <connections>
                                     <action selector="login:" destination="J8C-xa-bh3" eventType="touchUpInside" id="q4U-za-rbJ"/>
-                                    <segue destination="gFm-Q2-RtX" kind="show" identifier="goalsToData" id="mfb-kC-TVe"/>
+                                    <action selector="registerUser:" destination="3Rw-fP-9Wg" eventType="touchUpInside" id="Ha7-JI-pEQ"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -1059,6 +996,7 @@
                         <outlet property="loseWeight" destination="MDh-2N-8WH" id="XXX-1E-mu8"/>
                         <outlet property="maintainWeight" destination="m6N-AZ-hka" id="yhc-wf-kXG"/>
                         <outlet property="signUpButton" destination="rXs-ge-UPn" id="pKA-W3-CoS"/>
+                        <segue destination="1cP-nY-dCA" kind="showDetail" identifier="toDashboard" id="81g-yV-hFW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BkJ-kM-fcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1347,6 +1285,7 @@
         <image name="trophy_icon.png" width="28" height="31"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="81g-yV-hFW"/>
         <segue reference="pRZ-vY-9bS"/>
     </inferredMetricsTieBreakers>
 </document>
