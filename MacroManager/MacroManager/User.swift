@@ -28,6 +28,7 @@ class User {
     
     var mealLog = [NixItem]() // meal history
     var favoriteLog = [NixItem]() // favorite meal list
+    var customMealList = [NixItem]() // custom meals
     
     init() {
         // TEMP DUMMY USER INFO
@@ -52,6 +53,13 @@ class User {
     {
         favoriteLog.append(mealEaten)
         
+    }
+    
+    
+    // add custom meal
+    func addCustomMeal(itenName: String, itemDescription: String?, fats: Double?, proteins: Double?, carbs: Double?) {
+        let custNix: NixItem! = NixItem(itemName: itenName, itemId: "custom", itemDescription: itemDescription, fats: fats, proteins: proteins, carbs: carbs)
+        customMealList.append(custNix) // add to custom meal log
     }
     
     func removeMealFromFavorite(mealEaten: NixItem)
