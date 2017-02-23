@@ -91,6 +91,11 @@
 		797CB1C71E5CCEFF007AAFFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 797CB1C51E5CCEFF007AAFFE /* GoogleService-Info.plist */; };
 		797CB1C81E5CCEFF007AAFFE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 797CB1C51E5CCEFF007AAFFE /* GoogleService-Info.plist */; };
 		79CC6ADD1E314AF70050BCD8 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CC6ADC1E314AF70050BCD8 /* MealViewController.swift */; };
+		79F586541E5E5A6F00C52F52 /* AddCustomMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F586531E5E5A6F00C52F52 /* AddCustomMealViewController.swift */; };
+		79F5B49A1E5F69B700131378 /* CustomMealDetailCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5B4981E5F69B700131378 /* CustomMealDetailCellTableViewCell.swift */; };
+		79F5B49B1E5F69B700131378 /* CustomMealDetailCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F5B4991E5F69B700131378 /* CustomMealDetailCellTableViewCell.xib */; };
+		79F5B4A51E5F6A1B00131378 /* CustomMealHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5B4A31E5F6A1B00131378 /* CustomMealHeaderCell.swift */; };
+		79F5B4A61E5F6A1B00131378 /* CustomMealHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F5B4A41E5F6A1B00131378 /* CustomMealHeaderCell.xib */; };
 		A15E911EDE47E9AFE731D571 /* Pods_MacroManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73556E47F595364E82576442 /* Pods_MacroManagerTests.framework */; };
 		BD6E73ADEC550889CBF4927D /* Pods_MacroManagerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F545AFD66D21D0582C0FF8D2 /* Pods_MacroManagerUITests.framework */; };
 		C29CC3621E5CFFFF00872B47 /* ActivityLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C29CC3611E5CFFFF00872B47 /* ActivityLevelViewController.swift */; };
@@ -273,6 +278,11 @@
 		797AB72B1E311D280075F8D3 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		797CB1C51E5CCEFF007AAFFE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79CC6ADC1E314AF70050BCD8 /* MealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
+		79F586531E5E5A6F00C52F52 /* AddCustomMealViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddCustomMealViewController.swift; sourceTree = "<group>"; };
+		79F5B4981E5F69B700131378 /* CustomMealDetailCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMealDetailCellTableViewCell.swift; sourceTree = "<group>"; };
+		79F5B4991E5F69B700131378 /* CustomMealDetailCellTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMealDetailCellTableViewCell.xib; sourceTree = "<group>"; };
+		79F5B4A31E5F6A1B00131378 /* CustomMealHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomMealHeaderCell.swift; sourceTree = "<group>"; };
+		79F5B4A41E5F6A1B00131378 /* CustomMealHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomMealHeaderCell.xib; sourceTree = "<group>"; };
 		9504CDE732DCF0748B4FBAAE /* Pods-MacroManagerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacroManagerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MacroManagerUITests/Pods-MacroManagerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		98C12C87C06B949247C62F59 /* Pods_MacroManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MacroManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C2868E907DF42BB898CB97E /* Pods-MacroManagerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacroManagerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MacroManagerTests/Pods-MacroManagerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -364,51 +374,53 @@
 			isa = PBXGroup;
 			children = (
 				797CB1C51E5CCEFF007AAFFE /* GoogleService-Info.plist */,
-				6AA739FE1E3BC38D00FF831D /* MealView2Controller.swift */,
-				6AA739FF1E3BC38D00FF831D /* MealHeaderCell.xib */,
-				6AA73A001E3BC38D00FF831D /* MealHeaderCell.swift */,
-				6AA73A011E3BC38D00FF831D /* MealDetailsCell.xib */,
-				6A24E3661DBED3BF00F95408 /* Main.storyboard */,
-				6AEB3B6D1E5D190800BBAC20 /* AchievementProgressCell.swift */,
-				6AEB3B6E1E5D190800BBAC20 /* AchievementProgressCell.xib */,
-				2DFFAEDA1E5CD6AF00785761 /* AchievementModel.swift */,
-				6AA73A0D1E3BC48300FF831D /* MealDetailsCell.swift */,
-				6A3D05731DDEBC8E008CDDF7 /* DashboardViewController.swift */,
-				6A14ECDF1E4D8AC40001BB3C /* HeaderCell.swift */,
-				6A14ECE01E4D8AC40001BB3C /* HeaderCell.xib */,
-				6A3943D71E28340E00E13F2B /* FoodCollectionCell.swift */,
-				6A3943D81E28340E00E13F2B /* FoodCollectionCell.xib */,
-				6A3943D31E282F2400E13F2B /* SuggestedFoodsCell.swift */,
-				6A3943D41E282F2400E13F2B /* SuggestedFoodsCell.xib */,
-				6A3D057B1DDEC754008CDDF7 /* DailyGoalProgressCell.swift */,
-				6A3D057C1DDEC754008CDDF7 /* DailyGoalProgressCell.xib */,
-				6A3D05751DDEBED7008CDDF7 /* WelcomeUserCell.swift */,
-				6A3D05761DDEBED7008CDDF7 /* WelcomeUserCell.xib */,
 				6A4608EB1DDD7DC2003D77B5 /* AcheivementsViewController.swift */,
-				6A4608ED1DDD7DD1003D77B5 /* ProfileViewController.swift */,
-				197962A81DDA71C700AE1C92 /* NixRouter.swift */,
-				095AC4471E272933004A4A2C /* wikiViewController.swift */,
-				6A24E3621DBED3BF00F95408 /* AppDelegate.swift */,
-				7901E9391DD249F600089564 /* dataTestViewController.swift */,
-				092D64AA1DCAC3B8009457FC /* GoalSliderViewController.swift */,
-				6A3943C41E281B7300E13F2B /* InitialViewController.swift */,
-				092D64A81DCAB1B2009457FC /* DetailsViewController.swift */,
+				2DFFAEDA1E5CD6AF00785761 /* AchievementModel.swift */,
 				C29CC3611E5CFFFF00872B47 /* ActivityLevelViewController.swift */,
-				6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */,
-				6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */,
-				19B7250A1DDEC15B008B9E01 /* NixApiManager.swift */,
-				197FBF801DDF4ACD0095D8BF /* SwiftyJSON.swift */,
-				19B725131DDEC22A008B9E01 /* NixItem.swift */,
-				6AC12E151DC80F7C007C2D45 /* Fonts */,
-				6A24E36C1DBED3BF00F95408 /* Assets.xcassets */,
-				6A24E36E1DBED3BF00F95408 /* LaunchScreen.storyboard */,
-				6AC12E101DC800C2007C2D45 /* ImageAssets */,
-				6A24E3711DBED3BF00F95408 /* Info.plist */,
-				6A24E3691DBED3BF00F95408 /* MacroManager.xcdatamodeld */,
-				797AB72B1E311D280075F8D3 /* User.swift */,
+				79F586531E5E5A6F00C52F52 /* AddCustomMealViewController.swift */,
+				6A24E3621DBED3BF00F95408 /* AppDelegate.swift */,
+				79F5B4981E5F69B700131378 /* CustomMealDetailCellTableViewCell.swift */,
+				79F5B4A31E5F6A1B00131378 /* CustomMealHeaderCell.swift */,
+				6A3D057B1DDEC754008CDDF7 /* DailyGoalProgressCell.swift */,
+				6A3D05731DDEBC8E008CDDF7 /* DashboardViewController.swift */,
+				7901E9391DD249F600089564 /* dataTestViewController.swift */,
+				092D64A81DCAB1B2009457FC /* DetailsViewController.swift */,
+				6A3943D71E28340E00E13F2B /* FoodCollectionCell.swift */,
+				092D64AA1DCAC3B8009457FC /* GoalSliderViewController.swift */,
+				6A14ECDF1E4D8AC40001BB3C /* HeaderCell.swift */,
+				6A3943C41E281B7300E13F2B /* InitialViewController.swift */,
+				6AA73A0D1E3BC48300FF831D /* MealDetailsCell.swift */,
+				6AA73A001E3BC38D00FF831D /* MealHeaderCell.swift */,
+				6AA739FE1E3BC38D00FF831D /* MealView2Controller.swift */,
 				79CC6ADC1E314AF70050BCD8 /* MealViewController.swift */,
-				7925B98C1E3A6F9D00AD343A /* SearchViewController.swift */,
+				19B7250A1DDEC15B008B9E01 /* NixApiManager.swift */,
+				19B725131DDEC22A008B9E01 /* NixItem.swift */,
+				197962A81DDA71C700AE1C92 /* NixRouter.swift */,
+				6A4608ED1DDD7DD1003D77B5 /* ProfileViewController.swift */,
+				6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */,
 				7925B98E1E3A701200AD343A /* SearchTableViewCell.swift */,
+				7925B98C1E3A6F9D00AD343A /* SearchViewController.swift */,
+				6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */,
+				6A3943D31E282F2400E13F2B /* SuggestedFoodsCell.swift */,
+				197FBF801DDF4ACD0095D8BF /* SwiftyJSON.swift */,
+				797AB72B1E311D280075F8D3 /* User.swift */,
+				6A3D05751DDEBED7008CDDF7 /* WelcomeUserCell.swift */,
+				095AC4471E272933004A4A2C /* wikiViewController.swift */,
+				6A24E36C1DBED3BF00F95408 /* Assets.xcassets */,
+				79F5B4991E5F69B700131378 /* CustomMealDetailCellTableViewCell.xib */,
+				79F5B4A41E5F6A1B00131378 /* CustomMealHeaderCell.xib */,
+				6A3D057C1DDEC754008CDDF7 /* DailyGoalProgressCell.xib */,
+				6A3943D81E28340E00E13F2B /* FoodCollectionCell.xib */,
+				6A14ECE01E4D8AC40001BB3C /* HeaderCell.xib */,
+				6AA73A011E3BC38D00FF831D /* MealDetailsCell.xib */,
+				6AA739FF1E3BC38D00FF831D /* MealHeaderCell.xib */,
+				6A3943D41E282F2400E13F2B /* SuggestedFoodsCell.xib */,
+				6A3D05761DDEBED7008CDDF7 /* WelcomeUserCell.xib */,
+				6AC12E151DC80F7C007C2D45 /* Fonts */,
+				6AC12E101DC800C2007C2D45 /* ImageAssets */,
+				6A24E36E1DBED3BF00F95408 /* LaunchScreen.storyboard */,
+				6A24E3691DBED3BF00F95408 /* MacroManager.xcdatamodeld */,
+				6A24E3661DBED3BF00F95408 /* Main.storyboard */,
 			);
 			path = MacroManager;
 			sourceTree = "<group>";
@@ -688,9 +700,9 @@
 				6A4608CA1DDD791B003D77B5 /* profile_icon@3x.png in Resources */,
 				6A4608CF1DDD792E003D77B5 /* search_icon@2x.png in Resources */,
 				6A3D057A1DDEBFE1008CDDF7 /* welcome_header.jpg in Resources */,
+				79F5B4A61E5F6A1B00131378 /* CustomMealHeaderCell.xib in Resources */,
 				6A4228FC1E4DA1B200FC8C2C /* favoriteFilled@2x.png in Resources */,
 				6AC12E121DC80DE4007C2D45 /* MacroManager.png in Resources */,
-				6AE02BCB1E5E8C7700EDE396 /* blueAcheivement@3x.png in Resources */,
 				6A3943D01E281C5100E13F2B /* initialView@3x.png in Resources */,
 				6A4228FA1E4DA1B200FC8C2C /* favorite@3x.png in Resources */,
 				6A3943D21E281C5100E13F2B /* initialView@2x.png in Resources */,
@@ -898,12 +910,15 @@
 				6AEB3B6F1E5D190800BBAC20 /* AchievementProgressCell.swift in Sources */,
 				6A3943D91E28340E00E13F2B /* FoodCollectionCell.swift in Sources */,
 				797AB72C1E311D290075F8D3 /* User.swift in Sources */,
+				79F586541E5E5A6F00C52F52 /* AddCustomMealViewController.swift in Sources */,
 				6A3943D51E282F2400E13F2B /* SuggestedFoodsCell.swift in Sources */,
 				6A24E36B1DBED3BF00F95408 /* MacroManager.xcdatamodeld in Sources */,
 				7925B98D1E3A6F9D00AD343A /* SearchViewController.swift in Sources */,
+				79F5B49A1E5F69B700131378 /* CustomMealDetailCellTableViewCell.swift in Sources */,
 				2DFFAEDB1E5CD6AF00785761 /* AchievementModel.swift in Sources */,
 				197FBF811DDF4ACD0095D8BF /* SwiftyJSON.swift in Sources */,
 				6A3D057D1DDEC754008CDDF7 /* DailyGoalProgressCell.swift in Sources */,
+				79F5B4A51E5F6A1B00131378 /* CustomMealHeaderCell.swift in Sources */,
 				6AA73A0E1E3BC48300FF831D /* MealDetailsCell.swift in Sources */,
 				6A3D05741DDEBC8E008CDDF7 /* DashboardViewController.swift in Sources */,
 				6A14ECE11E4D8AC40001BB3C /* HeaderCell.swift in Sources */,
