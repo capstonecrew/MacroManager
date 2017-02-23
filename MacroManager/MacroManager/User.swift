@@ -22,7 +22,7 @@ class User {
     var gender: String!
     var activityLevel: String!
    // var calorieCount: Double!
-    
+    var client:AchievementSystem = AchievementSystem()
     var proteinToday: Int!
     var carbToday: Int!
     var fatToday: Int!

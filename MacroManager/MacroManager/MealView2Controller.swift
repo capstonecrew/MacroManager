@@ -153,6 +153,8 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     @IBAction func addBtnPressed(_ sender: Any) {
         self.addMealToHistory()
+        currentUser.client.updatePoints(d: "eatMeal")
+        
     }
     
     func addMealToHistory() {

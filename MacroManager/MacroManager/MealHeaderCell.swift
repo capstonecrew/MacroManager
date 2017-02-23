@@ -37,7 +37,14 @@ class MealHeaderCell: UITableViewCell {
             self.delegate?.addFavorite(sender: self)
             self.favoriteBtn.setImage(UIImage(named: "favoriteFilled"), for: .normal)
             isFavorite = true
-            
+            currentUser.client.updatePoints(d: "addFav")
+            print(currentUser.client.getAchievement(num: 0).getName())
+            print(currentUser.client.getAchievement(num: 0).getPoints())
+            print(currentUser.client.getAchievement(num: 1).getName())
+            print(currentUser.client.getAchievement(num: 1).getPoints())
+            print(currentUser.client.getAchievement(num: 2).getName())
+            print(currentUser.client.getAchievement(num: 2).getPoints())
+           
         }else{
             self.delegate?.removeFavorite(sender: self)
             self.favoriteBtn.setImage(UIImage(named: "favorite"), for: .normal)

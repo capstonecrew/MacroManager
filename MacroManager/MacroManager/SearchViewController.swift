@@ -156,6 +156,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             self.view.endEditing(true)
             doneButton.isEnabled = false
             performSearch(searchText: text)
+            currentUser.client.updatePoints(d: "search")
         }
     }
 

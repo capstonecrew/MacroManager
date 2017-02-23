@@ -11,7 +11,9 @@ import UIKit
 class AcheivementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
-    var client:AchievementSystem = AchievementSystem()
+
+     var currentAchievements: [achievement] = []
+    
     /*
     @IBOutlet weak var totalLbl: UILabel!
     @IBOutlet weak var progress1: UIProgressView!
@@ -32,13 +34,12 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.register(UINib(nibName: "AchievementProgressCell", bundle: nil), forCellReuseIdentifier: "achievementProgressCell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
+       
         
        /*
         self.totalLbl.text = String(client.getTotal())
         
-        var a = client.getAchievement(num: 0)
-        var b = client.getAchievement(num: 1)
-        var c = client.getAchievement(num: 2)
+       
         
         self.progress1.setProgress(Float(a.getPoints()), animated: true)
         self.progress2.setProgress(Float(b.getPoints()), animated: true)
@@ -54,6 +55,16 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
  */
         
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
+        var temp: [achievement] = []
+        currentAchievements = temp
+        currentAchievements.append(currentUser.client.getAchievement(num: 0))
+        currentAchievements.append(currentUser.client.getAchievement(num: 1))
+        currentAchievements.append(currentUser.client.getAchievement(num: 2))
+        self.tableView.reloadData()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -66,14 +77,29 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return currentAchievements.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "achievementProgressCell") as! AchievementProgressCell
-        //cell.titleLbl =
+       // cell.titleLbl.text = currentUser.client.achievements[indexPath.row].getName()
+       cell.titleLbl.text = self.currentAchievements[indexPath.row].getName()
+        cell.pointValueLbl.text = String(self.currentAchievements[indexPath.row].getReward())
+        cell.completionRatioLbl.text = "\(self.currentAchievements[indexPath.row].getPoints()) / \(self.currentAchievements[indexPath.row].getProgress())"
+        var progress = Float(self.currentAchievements[indexPath.row].getPoints())/Float(self.currentAchievements[indexPath.row].getProgress())
+        cell.progressView.setProgress(progress, animated: true)
         
+        /*
+         @IBOutlet weak var pointValueLbl: UILabel!
+         @IBOutlet weak var titleLbl: UILabel!
+         @IBOutlet weak var progressView: UIProgressView!
+         @IBOutlet weak var completionRatioLbl: UILabel!
+         var progress = Float(currentUser.proteinToday!)/Float(currentUser.proteinCount!)
+         print(progress)
+         cell.proteinProgress.setProgress(progress, animated: true)
+ 
+ */
         return cell
     }
     
