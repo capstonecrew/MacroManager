@@ -8,10 +8,11 @@
 
 import UIKit
 
-class AcheivementsViewController: UIViewController {
+class AcheivementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
     var client:AchievementSystem = AchievementSystem()
-    
+    /*
     @IBOutlet weak var totalLbl: UILabel!
     @IBOutlet weak var progress1: UIProgressView!
     @IBOutlet weak var progress2: UIProgressView!
@@ -22,13 +23,17 @@ class AcheivementsViewController: UIViewController {
     @IBOutlet weak var progressReward1: UILabel!
     @IBOutlet weak var progressReward2: UILabel!
     @IBOutlet weak var progressReward3: UILabel!
-  
+ */
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        self.tableView.register(UINib(nibName: "AchievementProgressCell", bundle: nil), forCellReuseIdentifier: "achievementProgressCell")
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
+       /*
         self.totalLbl.text = String(client.getTotal())
         
         var a = client.getAchievement(num: 0)
@@ -46,12 +51,37 @@ class AcheivementsViewController: UIViewController {
         self.progressLbl1.text = a.getName()
         self.progressLbl2.text = b.getName()
         self.progressLbl3.text = c.getName()
+ */
         
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "achievementProgressCell") as! AchievementProgressCell
+        //cell.titleLbl =
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        var height: CGFloat = 63.0
+        
+        return height
     }
     
 

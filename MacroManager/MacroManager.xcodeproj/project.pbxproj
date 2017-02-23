@@ -78,6 +78,11 @@
 		6AC12E121DC80DE4007C2D45 /* MacroManager.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC12E111DC80DE4007C2D45 /* MacroManager.png */; };
 		6AC12E141DC80F79007C2D45 /* coolvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6AC12E131DC80F79007C2D45 /* coolvetica.ttf */; };
 		6AC12E171DC8F17C007C2D45 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */; };
+		6AE02BC91E5E8C7700EDE396 /* blueAcheivement.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE02BC61E5E8C7700EDE396 /* blueAcheivement.png */; };
+		6AE02BCA1E5E8C7700EDE396 /* blueAcheivement@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE02BC71E5E8C7700EDE396 /* blueAcheivement@2x.png */; };
+		6AE02BCB1E5E8C7700EDE396 /* blueAcheivement@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE02BC81E5E8C7700EDE396 /* blueAcheivement@3x.png */; };
+		6AEB3B6F1E5D190800BBAC20 /* AchievementProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB3B6D1E5D190800BBAC20 /* AchievementProgressCell.swift */; };
+		6AEB3B701E5D190800BBAC20 /* AchievementProgressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AEB3B6E1E5D190800BBAC20 /* AchievementProgressCell.xib */; };
 		7901E93A1DD249F600089564 /* dataTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901E9391DD249F600089564 /* dataTestViewController.swift */; };
 		7925B98D1E3A6F9D00AD343A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7925B98C1E3A6F9D00AD343A /* SearchViewController.swift */; };
 		7925B98F1E3A701200AD343A /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7925B98E1E3A701200AD343A /* SearchTableViewCell.swift */; };
@@ -256,6 +261,11 @@
 		6AC12E111DC80DE4007C2D45 /* MacroManager.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MacroManager.png; sourceTree = "<group>"; };
 		6AC12E131DC80F79007C2D45 /* coolvetica.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = coolvetica.ttf; sourceTree = "<group>"; };
 		6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		6AE02BC61E5E8C7700EDE396 /* blueAcheivement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueAcheivement.png; sourceTree = "<group>"; };
+		6AE02BC71E5E8C7700EDE396 /* blueAcheivement@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueAcheivement@2x.png"; sourceTree = "<group>"; };
+		6AE02BC81E5E8C7700EDE396 /* blueAcheivement@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueAcheivement@3x.png"; sourceTree = "<group>"; };
+		6AEB3B6D1E5D190800BBAC20 /* AchievementProgressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementProgressCell.swift; sourceTree = "<group>"; };
+		6AEB3B6E1E5D190800BBAC20 /* AchievementProgressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchievementProgressCell.xib; sourceTree = "<group>"; };
 		73556E47F595364E82576442 /* Pods_MacroManagerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MacroManagerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7901E9391DD249F600089564 /* dataTestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataTestViewController.swift; sourceTree = "<group>"; };
 		7925B98C1E3A6F9D00AD343A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -422,6 +432,9 @@
 		6AC12E101DC800C2007C2D45 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				6AE02BC61E5E8C7700EDE396 /* blueAcheivement.png */,
+				6AE02BC71E5E8C7700EDE396 /* blueAcheivement@2x.png */,
+				6AE02BC81E5E8C7700EDE396 /* blueAcheivement@3x.png */,
 				6A4228F21E4DA1B200FC8C2C /* favorite.png */,
 				6A4228F31E4DA1B200FC8C2C /* favorite@2x.png */,
 				6A4228F41E4DA1B200FC8C2C /* favorite@3x.png */,
@@ -557,7 +570,7 @@
 				TargetAttributes = {
 					6A24E35E1DBED3BF00F95408 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = E7SDVJSRYY;
+						DevelopmentTeam = 88MN537MDW;
 						ProvisioningStyle = Automatic;
 					};
 					6A24E3751DBED3BF00F95408 = {
@@ -675,6 +688,7 @@
 				6A3D057A1DDEBFE1008CDDF7 /* welcome_header.jpg in Resources */,
 				6A4228FC1E4DA1B200FC8C2C /* favoriteFilled@2x.png in Resources */,
 				6AC12E121DC80DE4007C2D45 /* MacroManager.png in Resources */,
+				6AE02BCB1E5E8C7700EDE396 /* blueAcheivement@3x.png in Resources */,
 				6A3943D01E281C5100E13F2B /* initialView@3x.png in Resources */,
 				6A4228FA1E4DA1B200FC8C2C /* favorite@3x.png in Resources */,
 				6A3943D21E281C5100E13F2B /* initialView@2x.png in Resources */,
@@ -685,8 +699,11 @@
 				6AC12E0F1DC800B0007C2D45 /* Unknown.jpeg in Resources */,
 				6A24E3701DBED3BF00F95408 /* LaunchScreen.storyboard in Resources */,
 				6A3943E51E285C8B00E13F2B /* taco_Icon.png in Resources */,
+				6AE02BCA1E5E8C7700EDE396 /* blueAcheivement@2x.png in Resources */,
 				6A4608C91DDD791B003D77B5 /* profile_icon@2x.png in Resources */,
 				6A3943DA1E28340E00E13F2B /* FoodCollectionCell.xib in Resources */,
+				6AE02BC91E5E8C7700EDE396 /* blueAcheivement.png in Resources */,
+				6AEB3B701E5D190800BBAC20 /* AchievementProgressCell.xib in Resources */,
 				6A3943D61E282F2400E13F2B /* SuggestedFoodsCell.xib in Resources */,
 				6AA73A031E3BC38D00FF831D /* MealHeaderCell.xib in Resources */,
 				6A4228FD1E4DA1B200FC8C2C /* favoriteFilled@3x.png in Resources */,
@@ -876,6 +893,7 @@
 				095AC4481E272933004A4A2C /* wikiViewController.swift in Sources */,
 				6AC12E0D1DC7FCC5007C2D45 /* SignInViewController.swift in Sources */,
 				6A24E3631DBED3BF00F95408 /* AppDelegate.swift in Sources */,
+				6AEB3B6F1E5D190800BBAC20 /* AchievementProgressCell.swift in Sources */,
 				6A3943D91E28340E00E13F2B /* FoodCollectionCell.swift in Sources */,
 				797AB72C1E311D290075F8D3 /* User.swift in Sources */,
 				6A3943D51E282F2400E13F2B /* SuggestedFoodsCell.swift in Sources */,
@@ -1055,7 +1073,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = E7SDVJSRYY;
+				DEVELOPMENT_TEAM = 88MN537MDW;
 				INFOPLIST_FILE = MacroManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1073,7 +1091,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = E7SDVJSRYY;
+				DEVELOPMENT_TEAM = 88MN537MDW;
 				INFOPLIST_FILE = MacroManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
