@@ -19,7 +19,8 @@ class User {
     var proteinCount: Int!
     var carbCount: Int!
     var fatCount: Int!
-   //var gender: String!
+    var gender: String!
+    var activityLevel: String!
    // var calorieCount: Double!
     
     var proteinToday: Int!
@@ -29,6 +30,8 @@ class User {
     var mealLog = [NixItem]() // meal history
     var favoriteLog = [NixItem]() // favorite meal list
     var customMealList = [NixItem]() // custom meals
+    
+    
     
     init() {
         // TEMP DUMMY USER INFO
@@ -48,6 +51,20 @@ class User {
         fatToday = 0
         
     }
+    
+    init(name: String!, age: Int!, gender: String!, height: String!, weight: Int!, activityLevel: String!) {
+        self.name = name
+        self.age = age
+        self.gender = gender
+        self.height = height
+        self.weight = weight
+        self.activityLevel = activityLevel
+    }
+    
+    func toAnyObject() -> [String: Any] {
+        return ["name": name, "age": age, "gender": gender, "height": height, "weight": weight, "activityLevel": activityLevel]
+    }
+    
     
     func addMealToFavorite(mealEaten: NixItem)
     {
@@ -89,6 +106,8 @@ class User {
         
         return result
     }
+    
+    
     
     
 /*

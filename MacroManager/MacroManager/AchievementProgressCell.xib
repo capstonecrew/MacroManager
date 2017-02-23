@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="achievementProgressCell" rowHeight="63" id="KGk-i7-Jjw" customClass="AchievementProgressCell" customModule="MacroManager" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="62"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <progressView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="sMl-Ah-TUr">
+                        <rect key="frame" x="16" y="43" width="289" height="5"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="5" id="iHS-wW-tNf"/>
+                        </constraints>
+                    </progressView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="titleLbl" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4DA-Ta-cwc">
+                        <rect key="frame" x="16" y="14" width="123" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="zgZ-yf-cuh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="50" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mao-Re-525">
+                        <rect key="frame" x="252" y="16" width="25" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="apg-Fh-46g"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GaL-5p-80d">
+                        <rect key="frame" x="279" y="8" width="26" height="31"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="31" id="5cM-ez-pNy"/>
+                            <constraint firstAttribute="height" constant="31" id="M5K-8c-43y"/>
+                            <constraint firstAttribute="width" constant="26" id="xT2-bU-wvP"/>
+                        </constraints>
+                        <state key="normal" image="blueAcheivement.png"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="9/10" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PjM-fh-saH">
+                        <rect key="frame" x="211" y="17" width="37" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="osJ-nb-xCq"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PjM-fh-saH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="9" id="0Rc-Cr-HF1"/>
+                    <constraint firstAttribute="topMargin" secondItem="GaL-5p-80d" secondAttribute="top" id="3rQ-gL-xBC"/>
+                    <constraint firstItem="sMl-Ah-TUr" firstAttribute="top" secondItem="4DA-Ta-cwc" secondAttribute="bottom" constant="8" id="BJp-Un-EZF"/>
+                    <constraint firstItem="4DA-Ta-cwc" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Ipw-hx-Cyc"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="sMl-Ah-TUr" secondAttribute="trailing" constant="7" id="MRq-Hj-YBu"/>
+                    <constraint firstItem="sMl-Ah-TUr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="RF5-I8-PBV"/>
+                    <constraint firstItem="Mao-Re-525" firstAttribute="leading" secondItem="PjM-fh-saH" secondAttribute="trailing" constant="4" id="RUb-hs-iMt"/>
+                    <constraint firstItem="Mao-Re-525" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="8" id="avq-6s-gjS"/>
+                    <constraint firstItem="4DA-Ta-cwc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="6" id="bU6-Gd-nSs"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="GaL-5p-80d" secondAttribute="trailing" constant="7" id="krN-Mr-LUw"/>
+                    <constraint firstItem="sMl-Ah-TUr" firstAttribute="top" secondItem="GaL-5p-80d" secondAttribute="bottom" constant="4" id="svH-cR-78p"/>
+                    <constraint firstItem="GaL-5p-80d" firstAttribute="leading" secondItem="Mao-Re-525" secondAttribute="trailing" constant="2" id="ufq-BH-e2U"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="completionRatioLbl" destination="PjM-fh-saH" id="Y20-El-E0j"/>
+                <outlet property="pointValueLbl" destination="Mao-Re-525" id="og3-mS-mRg"/>
+                <outlet property="progressView" destination="sMl-Ah-TUr" id="hGh-Ae-hLr"/>
+                <outlet property="titleLbl" destination="4DA-Ta-cwc" id="am1-ra-e1Q"/>
+            </connections>
+            <point key="canvasLocation" x="25" y="51.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="blueAcheivement.png" width="21" height="23"/>
+    </resources>
+</document>
