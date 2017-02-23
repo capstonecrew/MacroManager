@@ -22,9 +22,9 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
     var heightPickerView = UIPickerView()
     var frontString = ""
     var backString = ""
-    var fromName = String() // set by regView
-    var fromEmail = String() // set by regView
-    var fromPassword = String() // set by regView
+    var fromName: String! // set by regView
+    var fromEmail: String! // set by regView
+    var fromPassword: String! // set by regView
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -166,14 +166,20 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "toActivityView" {
+            print("sending 3 fields to regView")
+            if let nextView: ActivityLevelViewController = segue.destination as? ActivityLevelViewController {
+                
+                nextView.fromName = self.fromName
+                nextView.fromEmail = self.fromEmail
+                nextView.fromPassword = self.fromPassword
+                nextView.fromHeight = self.heightField.text!
+                nextView.fromWeight = self.weightField.text!
+                nextView.fromGender = self.genderField.text!
+                nextView.fromAge = self.ageField.text!
+            }
+        }
     }
-    */
 
 }
