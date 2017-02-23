@@ -43,42 +43,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         NixApiManager.search(query: searchText, page: 0) { response in
             for item in response.value! {
-                
-                // ONLY ADD NIX ITEM IF ALL THREE MACROS HAVE A VALUE
-                /*guard item.proteins != nil else {
-                    return
-                }
-                
-                guard item.carbs != nil else {
-                    return
-                }
-                
-                guard item.fats != nil else {
-                    return
-                }*/
-                
-                /*
-                // if item name is too short
-                if searchText.characters.count >= 2 && item.itemName.characters.count <= 2 {
-                    print("too short")
-                    return
-                }
-                
-                // if item has no nutritional facts
-                if item.proteins! < 1.0 || item.carbs! < 1.0 {
-                    print ("not good")
-                    return
-                }
-                else {
-                
-                    //Fill table view
-                    self.foodSearchResults.append(item)
-                }
-                */
-                
                 //Fill table view
                 self.foodSearchResults.append(item)
-
                 
             }
             

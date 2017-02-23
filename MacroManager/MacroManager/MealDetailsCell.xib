@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -19,16 +19,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Nutrient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAa-dP-IED">
-                        <rect key="frame" x="15" y="11" width="239" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Nutrient" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rAa-dP-IED">
+                        <rect key="frame" x="15" y="11" width="210" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0g" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRS-q2-9vJ">
-                        <rect key="frame" x="256" y="11" width="43" height="21"/>
+                        <rect key="frame" x="209" y="11" width="90" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="43" id="MUb-8u-LNF"/>
+                            <constraint firstAttribute="width" constant="90" id="0Qj-al-xGW"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
@@ -36,7 +36,6 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="xRS-q2-9vJ" firstAttribute="leading" secondItem="rAa-dP-IED" secondAttribute="trailing" constant="2" id="9GG-4Z-7rK"/>
                     <constraint firstItem="rAa-dP-IED" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="buh-9R-FR5"/>
                     <constraint firstAttribute="trailingMargin" secondItem="xRS-q2-9vJ" secondAttribute="trailing" constant="13" id="iIb-fd-zCO"/>
                     <constraint firstItem="rAa-dP-IED" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="ouw-C1-eGZ"/>
