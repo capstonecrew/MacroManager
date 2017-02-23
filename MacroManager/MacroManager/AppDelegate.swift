@@ -11,6 +11,8 @@ import CoreData
 import Firebase
 import FirebaseAuth
 
+var currentUser: User = User()  // GLOBAL CURRENT USER VARIABLE
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
