@@ -20,7 +20,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="headerLbl" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CC3-fN-1my">
-                        <rect key="frame" x="22" y="11" width="290" height="21"/>
+                        <rect key="frame" x="12" y="11" width="300" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="klz-Fr-u2l"/>
                         </constraints>
@@ -30,8 +30,8 @@
                     </label>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="CC3-fN-1my" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="4" id="0c6-zd-drO"/>
                     <constraint firstItem="CC3-fN-1my" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="EJz-XV-ieX"/>
-                    <constraint firstItem="CC3-fN-1my" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="14" id="p7X-T3-QnA"/>
                     <constraint firstAttribute="trailingMargin" secondItem="CC3-fN-1my" secondAttribute="trailing" id="rqH-Ar-RMq"/>
                 </constraints>
             </tableViewCellContentView>

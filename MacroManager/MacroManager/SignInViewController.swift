@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 import Alamofire
 
-let currentUser: User = User()  // GLOBAL CURRENT USER VARIABLE
+var currentUser: User = User()  // GLOBAL CURRENT USER VARIABLE
 
 class SignInViewController: UIViewController, UITextFieldDelegate{
 

@@ -31,6 +31,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SuggestedFoodsCell
         cell.foodsCollectionView.reloadData()
+        animateBarGraph()
     }
 
     override func didReceiveMemoryWarning() {
@@ -120,9 +121,12 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
                 
             }else if(indexPath.row == 1){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "dailyGoalProgressCell") as! DailyGoalProgressCell
-                cell.proteinLabel.text = "Protein: \(currentUser.proteinToday!) g of \(currentUser.proteinCount!) g"
-                cell.carbLabel.text = "Carbs: \(currentUser.carbToday!) g of \(currentUser.carbCount!) g"
-                cell.fatLabel.text = "Fats: \(currentUser.fatToday!) g of \(currentUser.fatCount!) g"
+                cell.proteinLabel.text = "Proteins"
+                cell.proteinRatioLbl.text = "\(currentUser.proteinToday!) / \(currentUser.proteinCount!) g"
+                cell.carbLabel.text = "Carbs"
+                cell.carbsRatioLbl.text = "\(currentUser.carbToday!) / \(currentUser.carbCount!) g"
+                cell.fatLabel.text = "Fats"
+                cell.fatsRatioLbl.text = "\(currentUser.fatToday!) / \(currentUser.fatCount!) g"
                 return cell
             }
 
@@ -201,32 +205,17 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     func animateBarGraph(){
         print("animating bar graph")
         let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! DailyGoalProgressCell
-        let bounds = cell.proteinProgress.bounds
         
-        let screenSize: CGRect = UIScreen.main.bounds
-        let screenWidth = screenSize.width
-        print("curUser protToday: \(currentUser.proteinToday) protCount: \(currentUser.proteinCount)")
-        let progressBarMaxWidth = screenWidth - 30
-        //let proteinProgressWidth = 65/100 * progressBarMaxWidth
-        let proteinProgressWidth = CGFloat(currentUser.proteinToday! / currentUser.proteinCount!) * progressBarMaxWidth
-        print(CGFloat(currentUser.proteinToday!))
-        let carbsProgressWidth = CGFloat(currentUser.carbToday! / currentUser.carbCount!) * progressBarMaxWidth
-        let fatsProgressWidth = CGFloat(currentUser.fatToday / currentUser.fatCount) * progressBarMaxWidth
+        var progress = Float(currentUser.proteinToday!)/Float(currentUser.proteinCount!)
+        print(progress)
+        cell.proteinProgress.setProgress(progress, animated: true)
+        
+        progress = Float(currentUser.carbToday!)/Float(currentUser.carbCount!)
+        cell.carbsProgress.setProgress(progress, animated: true)
+        
+        progress = Float(currentUser.fatToday!)/Float(currentUser.fatCount!)
+        cell.fatsProgress.setProgress(progress, animated: true)
     
-        UIView.setAnimationsEnabled(true)
-        
-                    UIView.animate(withDuration: 5.0, delay: 0.0, options: .curveEaseInOut, animations: {
-                
-                cell.layoutSubviews()
-                cell.proteinProgress.bounds.size = CGSize(width: cell.proteinProgress.bounds.size.width + CGFloat(currentUser.proteinToday), height: cell.proteinProgress.bounds.size.height)
-                cell.carbsProgress.bounds.size = CGSize(width: cell.carbsProgress.bounds.size.width + 70, height: cell.carbsProgress.bounds.size.height)
-                cell.fatsProgress.bounds.size = CGSize(width: cell.fatsProgress.bounds.size.width + 40, height: cell.fatsProgress.bounds.size.height)
-            }, completion: {(complete) in
-                
-                print(complete)
-            })
-        
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

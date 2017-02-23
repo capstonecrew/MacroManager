@@ -79,7 +79,7 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        var height: CGFloat = 44.0
+        var height: CGFloat = 63.0
         
         return height
     }
