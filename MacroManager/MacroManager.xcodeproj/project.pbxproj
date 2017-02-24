@@ -80,7 +80,6 @@
 		6AC12E171DC8F17C007C2D45 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */; };
 		6AE02BC91E5E8C7700EDE396 /* blueAcheivement.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE02BC61E5E8C7700EDE396 /* blueAcheivement.png */; };
 		6AE02BCA1E5E8C7700EDE396 /* blueAcheivement@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE02BC71E5E8C7700EDE396 /* blueAcheivement@2x.png */; };
-		6AE02BCB1E5E8C7700EDE396 /* blueAcheivement@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AE02BC81E5E8C7700EDE396 /* blueAcheivement@3x.png */; };
 		6AEB3B6F1E5D190800BBAC20 /* AchievementProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB3B6D1E5D190800BBAC20 /* AchievementProgressCell.swift */; };
 		6AEB3B701E5D190800BBAC20 /* AchievementProgressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AEB3B6E1E5D190800BBAC20 /* AchievementProgressCell.xib */; };
 		7901E93A1DD249F600089564 /* dataTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7901E9391DD249F600089564 /* dataTestViewController.swift */; };
@@ -93,7 +92,6 @@
 		79CC6ADD1E314AF70050BCD8 /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CC6ADC1E314AF70050BCD8 /* MealViewController.swift */; };
 		79F586541E5E5A6F00C52F52 /* AddCustomMealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F586531E5E5A6F00C52F52 /* AddCustomMealViewController.swift */; };
 		79F5B49A1E5F69B700131378 /* CustomMealDetailCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5B4981E5F69B700131378 /* CustomMealDetailCellTableViewCell.swift */; };
-		79F5B49B1E5F69B700131378 /* CustomMealDetailCellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F5B4991E5F69B700131378 /* CustomMealDetailCellTableViewCell.xib */; };
 		79F5B4A51E5F6A1B00131378 /* CustomMealHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F5B4A31E5F6A1B00131378 /* CustomMealHeaderCell.swift */; };
 		79F5B4A61E5F6A1B00131378 /* CustomMealHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79F5B4A41E5F6A1B00131378 /* CustomMealHeaderCell.xib */; };
 		A15E911EDE47E9AFE731D571 /* Pods_MacroManagerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73556E47F595364E82576442 /* Pods_MacroManagerTests.framework */; };
@@ -209,7 +207,6 @@
 		6A24E36A1DBED3BF00F95408 /* MacroManager.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MacroManager.xcdatamodel; sourceTree = "<group>"; };
 		6A24E36C1DBED3BF00F95408 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6A24E36F1DBED3BF00F95408 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6A24E3711DBED3BF00F95408 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6A24E3761DBED3BF00F95408 /* MacroManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MacroManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6A24E37A1DBED3BF00F95408 /* MacroManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacroManagerTests.swift; sourceTree = "<group>"; };
 		6A24E37C1DBED3BF00F95408 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
