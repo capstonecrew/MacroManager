@@ -753,10 +753,75 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <segue destination="jBY-s2-Sxv" kind="presentation" identifier="showAddedAlert" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="KCw-8k-r4n"/>
+                        <segue destination="jBY-s2-Sxv" kind="presentation" identifier="showRemovedAlert" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="vnl-nR-z0K"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8bt-S8-B6r" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2503.1999999999998" y="1342.5787106446778"/>
+        </scene>
+        <!--Custom Alert View Controller-->
+        <scene sceneID="8mO-88-FNV">
+            <objects>
+                <viewController id="jBY-s2-Sxv" customClass="CustomAlertViewController" customModule="MacroManager" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="oXH-MO-RCP"/>
+                        <viewControllerLayoutGuide type="bottom" id="Z3N-qK-UiX"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jgI-0o-rlO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YKq-yi-1xR">
+                                <rect key="frame" x="67" y="269" width="240" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUz-ZL-OkE">
+                                        <rect key="frame" x="88" y="8" width="65" height="65"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="65" id="8Xy-yh-G67"/>
+                                            <constraint firstAttribute="height" constant="65" id="N6L-kr-maf"/>
+                                        </constraints>
+                                        <state key="normal" image="checkmark.png"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Added!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMV-gZ-68E">
+                                        <rect key="frame" x="33" y="74" width="174" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="AD5-vj-w37"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="nMV-gZ-68E" firstAttribute="top" secondItem="aUz-ZL-OkE" secondAttribute="bottom" constant="2" id="0Iz-1M-GVS"/>
+                                    <constraint firstAttribute="width" constant="240" id="1Dh-ai-yBk"/>
+                                    <constraint firstAttribute="height" constant="128" id="F80-Pk-ftM"/>
+                                    <constraint firstItem="nMV-gZ-68E" firstAttribute="top" secondItem="aUz-ZL-OkE" secondAttribute="bottom" constant="2" id="JPB-CW-g1Z"/>
+                                    <constraint firstItem="aUz-ZL-OkE" firstAttribute="top" secondItem="YKq-yi-1xR" secondAttribute="top" constant="8" id="MnJ-zs-qIv"/>
+                                    <constraint firstItem="aUz-ZL-OkE" firstAttribute="centerX" secondItem="YKq-yi-1xR" secondAttribute="centerX" id="hFj-7M-pOZ"/>
+                                    <constraint firstItem="nMV-gZ-68E" firstAttribute="centerX" secondItem="YKq-yi-1xR" secondAttribute="centerX" id="keE-Wk-kw6"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.70824163732394363" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YKq-yi-1xR" firstAttribute="centerY" secondItem="jgI-0o-rlO" secondAttribute="centerY" id="Yn7-Sj-PPz"/>
+                            <constraint firstItem="YKq-yi-1xR" firstAttribute="centerX" secondItem="jgI-0o-rlO" secondAttribute="centerX" id="qfS-RW-oOf"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="alertView" destination="YKq-yi-1xR" id="ZcE-g7-olG"/>
+                        <outlet property="checkmarkBtn" destination="aUz-ZL-OkE" id="mlp-mv-ysN"/>
+                        <outlet property="titleLbl" destination="nMV-gZ-68E" id="cBS-V8-fDN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P2Z-fu-DSR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3256.8000000000002" y="1342.5787106446778"/>
         </scene>
         <!--Acheivements View Controller-->
         <scene sceneID="MD2-nE-GNE">
@@ -1249,7 +1314,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Yde-ZR-ccX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Yde-ZR-ccX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1270,7 +1335,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="r3O-2v-Fht">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="r3O-2v-Fht">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1291,7 +1356,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="4aH-wx-Rte">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4aH-wx-Rte">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1312,7 +1377,7 @@
                         <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="FBF-b4-FSg">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="FBF-b4-FSg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.99489795920000001" green="0.98979591840000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1331,7 +1396,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fZl-pN-XUr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j4h-73-XkN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j4h-73-XkN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1349,7 +1414,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="4dk-th-blR" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="uJK-RQ-Mqc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="uJK-RQ-Mqc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.99489795920000001" green="0.98979591840000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -1412,7 +1477,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Q9U-aZ-rGw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Item" id="Wa7-5U-FZi"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="94d-gL-SWD">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="94d-gL-SWD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1428,6 +1493,7 @@
     </scenes>
     <resources>
         <image name="MacroManager.png" width="226" height="226"/>
+        <image name="checkmark.png" width="22" height="26"/>
         <image name="dashboard_icon.png" width="32" height="32"/>
         <image name="initialView.png" width="384" height="262"/>
         <image name="profile_icon.png" width="27" height="30"/>
@@ -1437,5 +1503,6 @@
     <inferredMetricsTieBreakers>
         <segue reference="81g-yV-hFW"/>
         <segue reference="pRZ-vY-9bS"/>
+        <segue reference="vnl-nR-z0K"/>
     </inferredMetricsTieBreakers>
 </document>
