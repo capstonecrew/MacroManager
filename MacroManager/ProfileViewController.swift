@@ -52,6 +52,9 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         goalPicker.isUserInteractionEnabled = false
         goalPicker.isUserInteractionEnabled = false
         
+        self.editButton.layer.cornerRadius = 10
+        self.editButton.backgroundColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
+        
     }
     
     func hideKeyboard(){
