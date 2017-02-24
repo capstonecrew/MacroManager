@@ -45,6 +45,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             for item in response.value! {
                 //Fill table view
                 self.foodSearchResults.append(item)
+                
             }
             
             
@@ -119,6 +120,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             self.view.endEditing(true)
             doneButton.isEnabled = false
             performSearch(searchText: text)
+            currentUser.client.updatePoints(d: "search")
         }
     }
 

@@ -19,8 +19,9 @@ class AchievementProgressCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        progressView.layer.cornerRadius = 5
+        progressView.layer.cornerRadius = 10
         progressView.clipsToBounds = true
+        self.layoutIfNeeded()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

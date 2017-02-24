@@ -17,18 +17,15 @@ class FoodCollectionCell: UICollectionViewCell {
     var delegate: FoodCollectionCellDelegate?
     
     @IBOutlet weak var foodLbl: UILabel!
-    @IBOutlet weak var foodBtn: UIButton!
+    @IBOutlet weak var foodImageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        foodImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(cellTapped)))
     }
-
     
-    @IBAction func cellTapped(_ sender: Any) {
-       
+    func cellTapped(){
         self.delegate?.tapped(sender: self)
     }
-    
-    
 }

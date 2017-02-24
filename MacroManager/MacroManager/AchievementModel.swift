@@ -20,9 +20,24 @@ class AchievementSystem{
     //initialize 8 achivement objects
     init(){
         if(setup){
+            
+            /*
+            IMPLEMENTED
+             weight[]
+             eatmeal[]
+             search[]
+             create[]
+             goals[]
+             addFav[X]
+             eatFav[]
+             udpate[]
+ 
+ 
+ 
+        */
             var newAchievement = achievement(n: "5lb Weight Goal",p: 0,pro: 1, d: "weight", r: 50)
             achievements.append(newAchievement)
-            newAchievement = achievement(n: "Eat 10 Suggested Meals",p: 0,pro: 10, d: "suggested", r: 10)
+            newAchievement = achievement(n: "Eat 10 Meals",p: 0,pro: 10, d: "eatMeal", r: 10)
             achievements.append(newAchievement)
             newAchievement = achievement(n: "Perform 10 Meal Searches",p: 0,pro: 10, d: "search", r: 10)
             achievements.append(newAchievement)
