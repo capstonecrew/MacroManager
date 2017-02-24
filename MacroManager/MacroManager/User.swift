@@ -29,7 +29,7 @@ class User {
     var mealLog = [NixItem]() // meal history
     var favoriteLog = [NixItem]() // favorite meal list
     var customMealList = [NixItem]() // custom meals
-    
+     var client:AchievementSystem = AchievementSystem()
     
     
     init() {
