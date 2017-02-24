@@ -19,6 +19,7 @@ class GoalSliderViewController: UIViewController {
     @IBOutlet weak var loseWeight: UIButton!
     @IBOutlet weak var maintainWeight: UIButton!
     @IBOutlet weak var gainWeight: UIButton!
+    @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     var previousBtn: UIButton!
     
@@ -67,7 +68,7 @@ class GoalSliderViewController: UIViewController {
         gainWeight.addTarget(self, action: #selector(GoalSliderViewController.selected), for: .touchUpInside)
         maintainWeight.addTarget(self, action: #selector(GoalSliderViewController.selected), for: .touchUpInside)
     
-        // Do any additional setup after loading the view.
+        loadingWheel.hidesWhenStopped = true
     }
 
     
@@ -80,28 +81,29 @@ class GoalSliderViewController: UIViewController {
     
     @IBAction func registerUser(_ sender: Any) {
     
-        //register user
-        FIRAuth.auth()?.createUser(withEmail: self.fromEmail, password: self.fromPassword, completion: {(error) in
-            
-            FIRAuth.auth()?.addStateDidChangeListener({ (auth:FIRAuth, user:FIRUser?) in
-                if let user = user {
-                    
-                    let userRef = self.dbRef.child("users").child(user.uid)
-                    
-                    let user = User(name: self.fromName, age: Int(self.fromAge), gender: self.fromGender, height: self.fromHeight, weight: Int(self.fromWeight), activityLevel: self.fromActivity, goal: self.goalSelected)
-                    userRef.setValue(user.toAnyObject())
-                    
-                    user.calorieCalc() // update users daily calories
-                    user.macronutrientCalc() // update users daily macro count
-
-                    currentUser = user
-                    
-                    self.performSegue(withIdentifier: "toDashboard", sender: self)
-                    
-                }else{
-                    
-                }
-            })
+        self.signUpButton.setTitle("", for: .normal)
+        self.loadingWheel.startAnimating()
+        
+        FIRAuth.auth()?.addStateDidChangeListener({ (auth:FIRAuth, user:FIRUser?) in
+            if let user = user {
+                
+                let userRef = self.dbRef.child("users").child(user.uid)
+                
+                let user = User(name: self.fromName, age: Int(self.fromAge), gender: self.fromGender, height: self.fromHeight, weight: Int(self.fromWeight), activityLevel: self.fromActivity, goal: self.goalSelected)
+                userRef.setValue(user.toAnyObject())
+                
+                user.calorieCalc() // update users daily calories
+                user.macronutrientCalc() // update users daily macro count
+                
+                currentUser = user
+                
+                self.loadingWheel.stopAnimating()
+                self.signUpButton.setTitle("Welcome \(currentUser.name)!", for: .normal)
+                self.performSegue(withIdentifier: "toDashboard", sender: self)
+                
+            }else{
+                print("No user signed in.")
+            }
         })
     }
     
