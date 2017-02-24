@@ -99,8 +99,8 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         genderField.tag = 4
         genderField.delegate = self
         genderField.returnKeyType = .next
-        genderField.keyboardType = .numberPad
-        genderField.autocapitalizationType = .words
+        genderField.keyboardType = .default
+        genderField.autocapitalizationType = .none
         genderField.autocorrectionType = .no
         genderField.tintColor = UIColor.white
         

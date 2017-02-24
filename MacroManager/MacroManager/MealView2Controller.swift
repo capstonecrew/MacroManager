@@ -172,23 +172,30 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
             currentUser.addMealToFavorite(mealEaten: self.recievedNix!)
             self.isFavorite = true
             
-            let alertController = UIAlertController(title: "", message:"Favorite food added!", preferredStyle: UIAlertControllerStyle.alert)
-            alertController.addAction(UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil))
+            self.performSegue(withIdentifier: "showAddedAlert", sender: self)
             
-            self.present(alertController,animated:true,completion:nil)
-            
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "showAddedAlert" {
+            if let nextView: CustomAlertViewController = segue.destination as? CustomAlertViewController {
+                nextView.added = true
+            }
+        }else if segue.identifier == "showRemovedAlert" {
+            if let nextView: CustomAlertViewController = segue.destination as? CustomAlertViewController {
+                nextView.added = false
+            }
         }
     }
     
     func removeFavorite(sender: MealHeaderCell)
     {
-        
-        let alertController = UIAlertController(title: "", message:"Favorite food removed!", preferredStyle: UIAlertControllerStyle.alert)
-        alertController.addAction(UIAlertAction(title:"Ok", style:UIAlertActionStyle.default, handler:nil))
-        
-        self.present(alertController,animated:true,completion:nil)
         currentUser.removeMealFromFavorite(mealEaten: recievedNix!)
         self.isFavorite = false
+        
+        self.performSegue(withIdentifier: "showRemovedAlert", sender: self)
         
     }
     
