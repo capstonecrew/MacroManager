@@ -125,6 +125,7 @@
             <connections>
                 <outlet property="carbsTextField" destination="1Qx-R3-pke" id="Af4-4B-D9v"/>
                 <outlet property="fatsTextField" destination="hoM-3c-CPL" id="nwj-Lm-hSB"/>
+                <outlet property="favoriteBtn" destination="8Kk-J6-XkZ" id="Wdo-o8-XNZ"/>
                 <outlet property="nameTextField" destination="5Qm-0V-z2e" id="5wU-cZ-ieg"/>
                 <outlet property="proteinTextField" destination="u6S-3z-Elp" id="sLC-Df-mWQ"/>
             </connections>
