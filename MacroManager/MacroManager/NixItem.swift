@@ -21,6 +21,7 @@ class NixItem {
     var fats : Double?
     var proteins : Double?
     var carbs : Double?
+    var imageUrl: String?
     
     //Misc variables
     var miscNutrients : [NutrientDetail] = []
