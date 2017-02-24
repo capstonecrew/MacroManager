@@ -209,14 +209,25 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! DailyGoalProgressCell
         
         var progress = Float(currentUser.proteinToday!)/Float(currentUser.proteinCount!)
+        if (progress >= 1)
+        {
+            currentUser.client.updatePoints(d: "goals")
+        }
         print(progress)
         cell.proteinProgress.setProgress(progress, animated: true)
         
         progress = Float(currentUser.carbToday!)/Float(currentUser.carbCount!)
         cell.carbsProgress.setProgress(progress, animated: true)
-        
+        if (progress >= 1)
+        {
+            currentUser.client.updatePoints(d: "goals")
+        }
         progress = Float(currentUser.fatToday!)/Float(currentUser.fatCount!)
         cell.fatsProgress.setProgress(progress, animated: true)
+        if (progress >= 1)
+        {
+            currentUser.client.updatePoints(d: "goals")
+        }
     
     }
     
