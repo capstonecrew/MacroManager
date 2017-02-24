@@ -30,6 +30,7 @@ class User {
     var favoriteLog = [NixItem]() // favorite meal list
     var favoriteImage = [String]() // favorite meal list
     var customMealList = [NixItem]() // custom meals
+    var client:AchievementSystem = AchievementSystem()
     
     init() {
         // TEMP DUMMY USER INFO
