@@ -28,9 +28,9 @@ class User {
     
     var mealLog = [NixItem]() // meal history
     var favoriteLog = [NixItem]() // favorite meal list
+    var favoriteImage = [String]() // favorite meal list
     var customMealList = [NixItem]() // custom meals
-     var client:AchievementSystem = AchievementSystem()
-    
+    var client:AchievementSystem = AchievementSystem()
     
     init() {
         // TEMP DUMMY USER INFO
@@ -61,6 +61,9 @@ class User {
         self.activityLevel = activityLevel
         self.goal = goal
 
+        proteinCount = 211
+        carbCount = 316
+        fatCount = 78
         proteinToday = 0
         carbToday = 0
         fatToday = 0

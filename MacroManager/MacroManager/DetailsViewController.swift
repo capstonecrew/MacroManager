@@ -34,8 +34,10 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         
         heightPickerView.dataSource = self
         heightPickerView.delegate = self
+        heightPickerView.backgroundColor = .white
+        
         feetPickerData = ["1", "2", "3", "4", "5", "6", "7"]
-         inchesPickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
+        inchesPickerData = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
         
         //CONFIGURE TEXT BOXES - SCB
@@ -75,6 +77,21 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         heightField.tintColor = UIColor.white
         heightField.inputView = heightPickerView
         
+        let toolBar = UIToolbar()
+        toolBar.barStyle = UIBarStyle.default
+        toolBar.barTintColor = .lightGray
+        toolBar.tintColor = .white
+        toolBar.isTranslucent = true
+        toolBar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.hideKeyboard))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(self.hideKeyboard))
+        
+        toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
+        toolBar.isUserInteractionEnabled = true
+        heightField.inputAccessoryView = toolBar
+        
         genderField.attributedPlaceholder = NSAttributedString(string:"GENDER",
                                                             attributes:[NSForegroundColorAttributeName: UIColor.white])
         genderField.borderStyle = .none
@@ -94,12 +111,33 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
         //CONFIGURE NEXT BUTTON - SCB
         nextButton.backgroundColor = UIColor.white
         nextButton.layer.cornerRadius = 20
+        
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        
     }
-    func hideKeyboard()
-    {
+    func hideKeyboard(){
+        
         view.endEditing(true)
     }
     
+//    func keyboardWillShow(notification: NSNotification) {
+//        
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y == 0{
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//        
+//    }
+//    
+//    func keyboardWillHide(notification: NSNotification) {
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y != 0{
+//                self.view.frame.origin.y += keyboardSize.height
+//            }
+//        }
+//    }
     
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -158,9 +196,6 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
             backString = inchesPickerData[row]
              heightField.text = frontString + "' " + backString + "\""        }
     }
-    
-    
-    
     
     @IBAction func unwindFromGoalSlider(segue:UIStoryboardSegue) {
         

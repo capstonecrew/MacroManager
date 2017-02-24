@@ -24,13 +24,13 @@ class AchievementSystem{
             /*
             IMPLEMENTED
              weight[]
-             eatmeal[]
-             search[]
-             create[]
-             goals[]
+             eatmeal[X]
+             search[X]
+             addMeal[]
+             goals[X]
              addFav[X]
              eatFav[]
-             udpate[]
+             udpate[X]
  
  
  
@@ -41,7 +41,7 @@ class AchievementSystem{
             achievements.append(newAchievement)
             newAchievement = achievement(n: "Perform 10 Meal Searches",p: 0,pro: 10, d: "search", r: 10)
             achievements.append(newAchievement)
-            newAchievement = achievement(n: "Add 5 Meals",p: 0,pro: 5, d: "create", r: 20)
+            newAchievement = achievement(n: "Add 5 Custom Meals",p: 0,pro: 5, d: "customMeal", r: 20)
             achievements.append(newAchievement)
             newAchievement = achievement(n: "3 Daily Goals Met",p: 0,pro: 3, d: "goals", r: 30)
             achievements.append(newAchievement)

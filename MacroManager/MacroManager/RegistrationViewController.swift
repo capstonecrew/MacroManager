@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class RegistrationViewController: UIViewController, UITextFieldDelegate{
 
@@ -15,6 +16,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var passwordField: UITextField!
     
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     
     override func viewDidLoad() {
@@ -75,7 +77,7 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate{
         nextButton.backgroundColor = UIColor.white
         nextButton.layer.cornerRadius = 20
         
-        // Do any additional setup after loading the view.
+        self.loadingWheel.hidesWhenStopped = true
 
     }
     
@@ -117,6 +119,46 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate{
             }
         }
     }
+    
+    
+    @IBAction func nextBtnPressed(_ sender: Any) {
+    
+        registerUserWithFirebase()
+    }
+    
+    func registerUserWithFirebase(){
+        
+        self.nextButton.setTitle("", for: .normal)
+        self.loadingWheel.startAnimating()
+        FIRAuth.auth()?.createUser(withEmail: self.emailField.text!, password: self.passwordField.text!, completion: {(user, error) in
+            
+            if error != nil{
+                self.loadingWheel.stopAnimating()
+                if error?.localizedDescription == "The password must be 6 characters long or more."{
+                
+                    self.nextButton.setTitle("SIGN UP", for: .normal)
+                    let alertView = UIAlertController(title: "Invalid Password", message: "The password must be 6 characters long or more.", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alertView.addAction(action)
+                    self.present(alertView, animated: true, completion: nil)
+                    
+                }else if error?.localizedDescription == "The email address is already in use by another account."{
+                    
+                    self.nextButton.setTitle("SIGN UP", for: .normal)
+                    let alertView = UIAlertController(title: "Invalid Email", message: "The email address is already in use by another account.", preferredStyle: .alert)
+                    let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                    alertView.addAction(action)
+                    self.present(alertView, animated: true, completion: nil)
+
+                }
+            }else{
+                self.loadingWheel.stopAnimating()
+                self.performSegue(withIdentifier: "regToDetail", sender: self)
+            }
+        })
+
+    }
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
