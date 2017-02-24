@@ -57,6 +57,8 @@ enum NixRouter : URLRequestConvertible {
             let parameters : Parameters = [
                 "results" : "\(pageStart):\(pageEnd)",
                 "fields" : "*",
+                "sort" : ["field" : "_score", "order" : "desc"],
+                "filters" : ["item_type":3],
                 "appId" : "\(NixRouter.appID)",
                 "appKey" : "\(NixRouter.appKey)"
             ]

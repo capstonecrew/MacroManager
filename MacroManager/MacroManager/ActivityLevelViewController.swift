@@ -31,7 +31,7 @@ class ActivityLevelViewController: UIViewController {
     var fromGender: String!
     var selectedOption: Int!
     
-    let options = ["Little to None", "Light", "Moderate", "Heavy", "Very Heavy"]
+    let options : [String] = ["Little to None", "Light", "Moderate", "Heavy", "Very Heavy"]
     
    
     override func viewDidLoad() {
@@ -108,12 +108,11 @@ class ActivityLevelViewController: UIViewController {
                 nextView.fromName = self.fromName
                 nextView.fromEmail = self.fromEmail
                 nextView.fromPassword = self.fromPassword
-                nextView.fromHeight = self.fromWeight
+                nextView.fromHeight = self.fromHeight
                 nextView.fromWeight = self.fromWeight
                 nextView.fromGender = self.fromGender
                 nextView.fromAge = self.fromAge
                 nextView.fromActivity = options[self.selectedOption]
-                
             }
         }
     }

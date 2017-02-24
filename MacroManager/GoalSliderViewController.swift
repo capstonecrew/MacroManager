@@ -30,6 +30,11 @@ class GoalSliderViewController: UIViewController {
     var fromHeight: String! // set by details
     var fromActivity: String!
     var fromGender: String!
+    var goalSelected: String!
+    var selectedTag: Int!
+    
+    let goalOptions : [String] = ["Lose Fat", "Maintain", "Gain Muscle"]
+
     var dbRef: FIRDatabaseReference!
     
     override func viewDidLoad() {
@@ -45,14 +50,17 @@ class GoalSliderViewController: UIViewController {
         
         loseWeight.backgroundColor = .white
         loseWeight.layer.cornerRadius = 20
+        loseWeight.tag = 0
         loseWeight?.titleLabel?.textColor = .lightGray
         
         maintainWeight.backgroundColor = .white
         maintainWeight.layer.cornerRadius = 20
+        maintainWeight.tag = 1
         maintainWeight?.titleLabel?.textColor = .lightGray
         
         gainWeight.backgroundColor = .white
         gainWeight.layer.cornerRadius = 20
+        gainWeight.tag = 2
         gainWeight?.titleLabel?.textColor = .lightGray
         
         loseWeight.addTarget(self, action: #selector(GoalSliderViewController.selected), for: .touchUpInside)
@@ -80,17 +88,21 @@ class GoalSliderViewController: UIViewController {
                     
                     let userRef = self.dbRef.child("users").child(user.uid)
                     
-                    let user = User(name: self.fromName, age: Int(self.fromAge), gender: self.fromGender, height: self.fromHeight, weight: Int(self.fromWeight), activityLevel: self.fromActivity)
+                    let user = User(name: self.fromName, age: Int(self.fromAge), gender: self.fromGender, height: self.fromHeight, weight: Int(self.fromWeight), activityLevel: self.fromActivity, goal: self.goalSelected)
                     userRef.setValue(user.toAnyObject())
+                    
+                    user.calorieCalc() // update users daily calories
+                    user.macronutrientCalc() // update users daily macro count
+
                     currentUser = user
+                    
+                    self.performSegue(withIdentifier: "toDashboard", sender: self)
                     
                 }else{
                     
                 }
             })
         })
-        
-        self.performSegue(withIdentifier: "toDashboard", sender: self)
     }
     
     
@@ -125,6 +137,8 @@ class GoalSliderViewController: UIViewController {
         let selectedBtn = sender as UIButton
         selectedBtn.backgroundColor = .darkGray
         selectedBtn.tintColor = .white
+        
+        goalSelected = goalOptions[selectedBtn.tag]
         
         previousBtn = selectedBtn
         
