@@ -45,6 +45,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             for item in response.value! {
                 //Fill table view
                 self.foodSearchResults.append(item)
+                
             }
             
             

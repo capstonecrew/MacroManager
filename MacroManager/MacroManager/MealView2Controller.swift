@@ -53,11 +53,21 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        if let nix = recievedNix {
+            return nix.miscNutrients.count
+        }
+        else {
+            return 0
+        }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mealDetailsCell") as! MealDetailsCell
+        
+        if let nix = recievedNix {
+            cell.mainLbl.text = nix.miscNutrients[indexPath.row].name
+            cell.accessoryLbl.text = "\(nix.miscNutrients[indexPath.row].amount)\(nix.miscNutrients[indexPath.row].units)"
+        }
         
         return cell
    
