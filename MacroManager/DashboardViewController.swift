@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate, SuggestedFoodsCellDelegate {
 
@@ -185,6 +186,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodCollectionCell", for: indexPath) as!FoodCollectionCell
         cell.tag = indexPath.row
         cell.foodLbl.text = currentUser.favoriteLog[indexPath.row].itemName
+        cell.foodImageView.af_setImage(withURL: URL(string: "https://i.kinja-img.com/gawker-media/image/upload/s--o61FoxA8--/1529045153148652578.jpg")! , placeholderImage: UIImage(named: "taco_Icon"), filter: CircleFilter())
         cell.delegate = self
         
         return cell

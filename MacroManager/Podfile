@@ -9,6 +9,7 @@ target 'MacroManager' do
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'AlamofireImage'
 
   target 'MacroManagerTests' do
     inherit! :search_paths
