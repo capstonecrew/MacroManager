@@ -192,6 +192,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("Selected indexPath: \(indexPath.section), \(indexPath.row)")
+        self.performSegue(withIdentifier: "showFavoriteMeal", sender: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

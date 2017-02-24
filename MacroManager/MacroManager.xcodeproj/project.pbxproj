@@ -75,6 +75,11 @@
 		6AA73A0E1E3BC48300FF831D /* MealDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA73A0D1E3BC48300FF831D /* MealDetailsCell.swift */; };
 		6AAE42071E5FF3DB00CFB586 /* AchievementProgressCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE42051E5FF3DB00CFB586 /* AchievementProgressCell.swift */; };
 		6AAE42081E5FF3DB00CFB586 /* AchievementProgressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AAE42061E5FF3DB00CFB586 /* AchievementProgressCell.xib */; };
+		6AAE421E1E60811900CFB586 /* AcheivementHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AAE421C1E60811900CFB586 /* AcheivementHeaderCell.swift */; };
+		6AAE421F1E60811900CFB586 /* AcheivementHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AAE421D1E60811900CFB586 /* AcheivementHeaderCell.xib */; };
+		6AAE42361E60826400CFB586 /* blueAcheivement_Lrg.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AAE42331E60826400CFB586 /* blueAcheivement_Lrg.png */; };
+		6AAE42371E60826400CFB586 /* blueAcheivement_Lrg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AAE42341E60826400CFB586 /* blueAcheivement_Lrg@2x.png */; };
+		6AAE42381E60826400CFB586 /* blueAcheivement_Lrg@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AAE42351E60826400CFB586 /* blueAcheivement_Lrg@3x.png */; };
 		6AC12E0D1DC7FCC5007C2D45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */; };
 		6AC12E0F1DC800B0007C2D45 /* Unknown.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 6AC12E0E1DC800B0007C2D45 /* Unknown.jpeg */; };
 		6AC12E121DC80DE4007C2D45 /* MacroManager.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AC12E111DC80DE4007C2D45 /* MacroManager.png */; };
@@ -262,6 +267,11 @@
 		6AA73A0D1E3BC48300FF831D /* MealDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealDetailsCell.swift; sourceTree = "<group>"; };
 		6AAE42051E5FF3DB00CFB586 /* AchievementProgressCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementProgressCell.swift; sourceTree = "<group>"; };
 		6AAE42061E5FF3DB00CFB586 /* AchievementProgressCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AchievementProgressCell.xib; sourceTree = "<group>"; };
+		6AAE421C1E60811900CFB586 /* AcheivementHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcheivementHeaderCell.swift; sourceTree = "<group>"; };
+		6AAE421D1E60811900CFB586 /* AcheivementHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AcheivementHeaderCell.xib; sourceTree = "<group>"; };
+		6AAE42331E60826400CFB586 /* blueAcheivement_Lrg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blueAcheivement_Lrg.png; sourceTree = "<group>"; };
+		6AAE42341E60826400CFB586 /* blueAcheivement_Lrg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueAcheivement_Lrg@2x.png"; sourceTree = "<group>"; };
+		6AAE42351E60826400CFB586 /* blueAcheivement_Lrg@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blueAcheivement_Lrg@3x.png"; sourceTree = "<group>"; };
 		6AC12E0C1DC7FCC5007C2D45 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		6AC12E0E1DC800B0007C2D45 /* Unknown.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Unknown.jpeg; sourceTree = "<group>"; };
 		6AC12E111DC80DE4007C2D45 /* MacroManager.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MacroManager.png; sourceTree = "<group>"; };
@@ -383,6 +393,8 @@
 				79F5B4A31E5F6A1B00131378 /* CustomMealHeaderCell.swift */,
 				6A3D057B1DDEC754008CDDF7 /* DailyGoalProgressCell.swift */,
 				6A3D05731DDEBC8E008CDDF7 /* DashboardViewController.swift */,
+				6AAE421C1E60811900CFB586 /* AcheivementHeaderCell.swift */,
+				6AAE421D1E60811900CFB586 /* AcheivementHeaderCell.xib */,
 				7901E9391DD249F600089564 /* dataTestViewController.swift */,
 				092D64A81DCAB1B2009457FC /* DetailsViewController.swift */,
 				6A24E36C1DBED3BF00F95408 /* Assets.xcassets */,
@@ -447,6 +459,9 @@
 		6AC12E101DC800C2007C2D45 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				6AAE42331E60826400CFB586 /* blueAcheivement_Lrg.png */,
+				6AAE42341E60826400CFB586 /* blueAcheivement_Lrg@2x.png */,
+				6AAE42351E60826400CFB586 /* blueAcheivement_Lrg@3x.png */,
 				6AE02BC61E5E8C7700EDE396 /* blueAcheivement.png */,
 				6AE02BC71E5E8C7700EDE396 /* blueAcheivement@2x.png */,
 				6AE02BC81E5E8C7700EDE396 /* blueAcheivement@3x.png */,
@@ -693,6 +708,7 @@
 				6A3943F71E28624600E13F2B /* moreBtn@3x.png in Resources */,
 				6A3D05781DDEBED7008CDDF7 /* WelcomeUserCell.xib in Resources */,
 				1985FD061E2736FC009A59D5 /* under_construction_gif.gif in Resources */,
+				6AAE42371E60826400CFB586 /* blueAcheivement_Lrg@2x.png in Resources */,
 				6A4608C41DDD7903003D77B5 /* dashboard_icon@3x.png in Resources */,
 				6A3943E41E285C8B00E13F2B /* taco_Icon@3x.png in Resources */,
 				6AA73A051E3BC38D00FF831D /* MealDetailsCell.xib in Resources */,
@@ -705,6 +721,7 @@
 				6A4608CF1DDD792E003D77B5 /* search_icon@2x.png in Resources */,
 				6A3D057A1DDEBFE1008CDDF7 /* welcome_header.jpg in Resources */,
 				79F5B4A61E5F6A1B00131378 /* CustomMealHeaderCell.xib in Resources */,
+				6AAE42381E60826400CFB586 /* blueAcheivement_Lrg@3x.png in Resources */,
 				6A4228FC1E4DA1B200FC8C2C /* favoriteFilled@2x.png in Resources */,
 				6AC12E121DC80DE4007C2D45 /* MacroManager.png in Resources */,
 				6A3943D01E281C5100E13F2B /* initialView@3x.png in Resources */,
@@ -717,6 +734,8 @@
 				6AC12E0F1DC800B0007C2D45 /* Unknown.jpeg in Resources */,
 				6A24E3701DBED3BF00F95408 /* LaunchScreen.storyboard in Resources */,
 				6A3943E51E285C8B00E13F2B /* taco_Icon.png in Resources */,
+				6AAE42361E60826400CFB586 /* blueAcheivement_Lrg.png in Resources */,
+				6AAE421F1E60811900CFB586 /* AcheivementHeaderCell.xib in Resources */,
 				6AE02BCA1E5E8C7700EDE396 /* blueAcheivement@2x.png in Resources */,
 				6A4608C91DDD791B003D77B5 /* profile_icon@2x.png in Resources */,
 				6A3943DA1E28340E00E13F2B /* FoodCollectionCell.xib in Resources */,
@@ -932,6 +951,7 @@
 				7925B98F1E3A701200AD343A /* SearchTableViewCell.swift in Sources */,
 				6AC12E171DC8F17C007C2D45 /* RegistrationViewController.swift in Sources */,
 				092D64A91DCAB1B2009457FC /* DetailsViewController.swift in Sources */,
+				6AAE421E1E60811900CFB586 /* AcheivementHeaderCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

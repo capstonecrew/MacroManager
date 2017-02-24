@@ -13,8 +13,8 @@ enum NixRouter : URLRequestConvertible {
     case search(query: String, page: Int)
     
     static let baseURL = "https://api.nutritionix.com/v1_1"
-    static let appID = "cb97eaa1"
-    static let appKey = "8b25255f947b1e4e766723450a580578"
+    static let appID = "67b57b76"
+    static let appKey = "321f7a18064a4b626261f5fb80af51d6"
     static let perPage = 10
     
     var method: HTTPMethod {
