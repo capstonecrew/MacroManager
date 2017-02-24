@@ -17,6 +17,7 @@ class CustomMealHeaderCell: UITableViewCell, UITextFieldDelegate {
     
     var delegate: CustomMealHeaderCellDelegate?
     var isFavorite: Bool!
+    
     @IBOutlet weak var favoriteBtn: UIButton!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var proteinTextField: UITextField!
