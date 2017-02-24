@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="customMealHeaderCell" rowHeight="251" id="Jmn-uR-ocF" customClass="CustomMealHeaderCell" customModule="MacroManager" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="251"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Jmn-uR-ocF" id="zD4-oW-cWv">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="250"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="initialView.png" translatesAutoresizingMaskIntoConstraints="NO" id="0u3-kB-c8P">
+                        <rect key="frame" x="0.0" y="1" width="320" height="150"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="1fj-I7-Cg8"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mc3-tw-0lU">
+                        <rect key="frame" x="0.0" y="149" width="320" height="102"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Proteins" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xf5-1a-FqM">
+                                <rect key="frame" x="32" y="60" width="63" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="N9E-Pp-7Rt"/>
+                                    <constraint firstAttribute="width" constant="63" id="UBO-HC-Tre"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Fats" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oqH-Tu-uiN">
+                                <rect key="frame" x="144" y="60" width="32" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="32" id="2ne-ym-V06"/>
+                                    <constraint firstAttribute="height" constant="21" id="ita-wS-9ZL"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Carbs" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Oec-OG-J6S">
+                                <rect key="frame" x="230" y="60" width="54" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="54" id="amO-zh-X22"/>
+                                    <constraint firstAttribute="height" constant="21" id="cta-Vw-5tm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0g" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="u6S-3z-Elp">
+                                <rect key="frame" x="23" y="21" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.0" green="0.57010596990585327" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0g" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hoM-3c-CPL">
+                                <rect key="frame" x="120" y="21" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.0" green="0.57010596989999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="0g" textAlignment="center" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1Qx-R3-pke">
+                                <rect key="frame" x="217" y="21" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="textColor" red="0.0" green="0.57010596989999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" red="0.91218189660000004" green="0.91218189660000004" blue="0.91218189660000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Kk-J6-XkZ">
+                        <rect key="frame" x="266" y="99" width="57" height="55"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="57" id="apd-ir-9Rk"/>
+                            <constraint firstAttribute="height" constant="55" id="klG-L0-Vbm"/>
+                        </constraints>
+                        <state key="normal" image="favorite.png"/>
+                        <connections>
+                            <action selector="favoriteButtonClick:" destination="Jmn-uR-ocF" eventType="touchUpInside" id="hmr-c7-NB4"/>
+                        </connections>
+                    </button>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" usesAttributedText="YES" clearsOnBeginEditing="YES" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Qm-0V-z2e">
+                        <rect key="frame" x="8" y="61" width="304" height="30"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Meal Name">
+                                <attributes>
+                                    <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <font key="NSFont" size="29" name="Helvetica-Bold"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="yes" spellCheckingType="yes" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                    </textField>
+                </subviews>
+                <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="mc3-tw-0lU" firstAttribute="top" secondItem="0u3-kB-c8P" secondAttribute="bottom" constant="-2" id="3FS-1A-ria"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mc3-tw-0lU" secondAttribute="trailing" constant="-8" id="OAh-cx-xQA"/>
+                    <constraint firstItem="mc3-tw-0lU" firstAttribute="leading" secondItem="zD4-oW-cWv" secondAttribute="leadingMargin" constant="-8" id="S2J-zf-UbL"/>
+                    <constraint firstItem="0u3-kB-c8P" firstAttribute="leading" secondItem="zD4-oW-cWv" secondAttribute="leadingMargin" constant="-8" id="SWW-8I-B3J"/>
+                    <constraint firstItem="8Kk-J6-XkZ" firstAttribute="top" secondItem="zD4-oW-cWv" secondAttribute="topMargin" constant="91" id="VeZ-y8-JJR"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="mc3-tw-0lU" secondAttribute="bottom" constant="-9" id="dgk-Ez-m5X"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="8Kk-J6-XkZ" secondAttribute="trailing" constant="-11" id="gcg-Bg-XBq"/>
+                    <constraint firstItem="0u3-kB-c8P" firstAttribute="top" secondItem="zD4-oW-cWv" secondAttribute="topMargin" constant="-7" id="wl9-Sm-Jc6"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="0u3-kB-c8P" secondAttribute="trailing" constant="-8" id="wxJ-ZU-scR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="carbsTextField" destination="1Qx-R3-pke" id="Af4-4B-D9v"/>
+                <outlet property="fatsTextField" destination="hoM-3c-CPL" id="nwj-Lm-hSB"/>
+                <outlet property="favoriteBtn" destination="8Kk-J6-XkZ" id="Wdo-o8-XNZ"/>
+                <outlet property="nameTextField" destination="5Qm-0V-z2e" id="5wU-cZ-ieg"/>
+                <outlet property="proteinTextField" destination="u6S-3z-Elp" id="sLC-Df-mWQ"/>
+            </connections>
+            <point key="canvasLocation" x="90" y="157.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="favorite.png" width="29" height="28"/>
+        <image name="initialView.png" width="384" height="262"/>
+    </resources>
+</document>

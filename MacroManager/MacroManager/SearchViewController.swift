@@ -48,8 +48,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 
             }
             
-            // SORT ALPHABETICALLY
-            self.foodSearchResults.sort { $0.itemName < $1.itemName }
             
             // Refresh table view after new data
             self.tableView.reloadData()

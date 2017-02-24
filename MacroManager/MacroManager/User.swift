@@ -11,7 +11,7 @@ import Foundation
 class User {
     var age: Int!
     var email: String!
-    var goal: Int!
+    var goal: String!
     var height: String!
     var name: String!
     var password: String!
@@ -21,25 +21,26 @@ class User {
     var fatCount: Int!
     var gender: String!
     var activityLevel: String!
-   // var calorieCount: Double!
-    
+    var calorieCount: Double!
     var proteinToday: Int!
     var carbToday: Int!
     var fatToday: Int!
     
     var mealLog = [NixItem]() // meal history
     var favoriteLog = [NixItem]() // favorite meal list
+    var customMealList = [NixItem]() // custom meals
     
     
     
     init() {
         // TEMP DUMMY USER INFO
         name = "Aaron Edwards"
-      //  gender = "male"
+        gender = "male"
         age = 24
         email = "aaronedwards@gmail.com"
         password = "passwordLOL"
-        goal = 1
+        goal = "Maintain"
+        activityLevel = "heavy"
         height = "5' 11\""
         weight = 167
         proteinCount = 211
@@ -51,14 +52,21 @@ class User {
         
     }
     
-    init(name: String!, age: Int!, gender: String!, height: String!, weight: Int!, activityLevel: String!) {
+    init(name: String!, age: Int!, gender: String!, height: String!, weight: Int!, activityLevel: String!, goal: String!) {
         self.name = name
         self.age = age
         self.gender = gender
         self.height = height
         self.weight = weight
         self.activityLevel = activityLevel
+        self.goal = goal
+
+        proteinToday = 0
+        carbToday = 0
+        fatToday = 0
+
     }
+    
     
     func toAnyObject() -> [String: Any] {
         return ["name": name, "age": age, "gender": gender, "height": height, "weight": weight, "activityLevel": activityLevel]
@@ -69,6 +77,13 @@ class User {
     {
         favoriteLog.append(mealEaten)
         
+    }
+    
+    
+    // add custom meal
+    func addCustomMeal(itenName: String, itemDescription: String?, fats: Double?, proteins: Double?, carbs: Double?) {
+        let custNix: NixItem! = NixItem(itemName: itenName, itemId: "custom", itemDescription: itemDescription, fats: fats, proteins: proteins, carbs: carbs)
+        customMealList.append(custNix) // add to custom meal log
     }
     
     func removeMealFromFavorite(mealEaten: NixItem)
@@ -102,14 +117,14 @@ class User {
     
     
     
-/*
-    // returns a tuple of daily macronutrients (protein, carb, fat)
+
+    // sets daily macronutrients (protein, carb, fat)
     
-    func macronutrientCalc(goal: String) -> (protein: Double, carb: Double, fat: Double)
+    func macronutrientCalc()
     {
         var macros = (protein: 0.0, carb: 0.0, fat: 0.0)
         
-        if goal == "Gain"
+        if goal == "Gain Muscle"
         {
            macros.protein = (calorieCount * 0.30) / 4.0
            macros.carb = (calorieCount * 0.50) / 4.0
@@ -128,7 +143,11 @@ class User {
            macros.fat = (calorieCount * 0.35) / 9.0
         }
         
-        return macros
+     
+        proteinCount = Int(macros.protein)
+        carbCount = Int(macros.carb)
+        fatCount = Int(macros.fat)
+
     }
     
     
@@ -136,20 +155,33 @@ class User {
     
     // returns final calorie count for user
     
-    func calorieCalc(activity: String, bmr: Double, gender: String, age: Double, height: Double, weight: Double)
+    func calorieCalc()
     {
+        var temp : Double = 0
+        var heightFeetInch: [String] = height.components(separatedBy: "' ")
+        var Feet: String = heightFeetInch [0]
+        var tempInch: String = heightFeetInch [1]
+        
+        var Inches: [String] = tempInch.components(separatedBy: "\"")
+        var Inch: String = Inches[0]
+        
+        var FeetToInch = Double(Feet)! * 12.0
+        var convertedHeight = FeetToInch + Double(Inch)!
+        
         
         if gender == "male"
         {
-            calorieCount = 66 + (6.2 * weight) + (12.7 * height) - (6.76 * age)
-            calorieCount = activityLvl(activity: activity, bmr: calorieCount)
+            temp = 66 + (6.2 * Double(weight))
+            temp = temp + (12.7 * convertedHeight) - (6.76 * Double(age))
+            calorieCount = activityLvl(bmr: temp)
         }
             
         else
         {
             
-            calorieCount = 655.1 + (4.35 * weight) + (4.7 * height) - (4.7 * age)
-            calorieCount = activityLvl(activity: activity, bmr: calorieCount)
+            temp = 655.1 + (4.35 * Double(weight))
+            temp = temp + (4.7 * convertedHeight) - (4.7 * Double(age))
+            calorieCount = activityLvl(bmr: temp)
 
         }
         
@@ -159,23 +191,24 @@ class User {
     
     // returns daily calorie count with activity level considered
     
-    func activityLvl (activity: String, bmr : Double) -> Double
+    func activityLvl (bmr : Double) -> Double
     {
         var calorie : Double = 0
         
-        if activity == "little to none"
+        if activityLevel == "Little to None"
         {
             calorie = bmr * 1.2
         }
-        else if activity == "light"
+        else if activityLevel == "Light"
         {
             calorie = bmr * 1.375
+
         }
-        else if activity == "moderate"
+        else if activityLevel == "Moderate"
         {
             calorie = bmr * 1.55
         }
-        else if activity == "heavy"
+        else if activityLevel == "Heavy"
         {
             calorie = bmr * 1.725
         }
@@ -183,12 +216,12 @@ class User {
         {
             calorie = bmr * 1.9
         }
-        
+
         return calorie
         
     }
     
-*/
+
     
     
     func addMealToLog(mealEaten: NixItem) {

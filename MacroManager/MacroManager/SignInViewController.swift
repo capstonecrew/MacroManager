@@ -10,8 +10,6 @@ import UIKit
 import CoreData
 import Alamofire
 
-var currentUser: User = User()  // GLOBAL CURRENT USER VARIABLE
-
 class SignInViewController: UIViewController, UITextFieldDelegate{
 
     @IBOutlet weak var emailField: UITextField!

@@ -79,7 +79,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
                                                             attributes:[NSForegroundColorAttributeName: UIColor.white])
         genderField.borderStyle = .none
         genderField.textColor = UIColor.white
-        genderField.tag = 0
+        genderField.tag = 4
         genderField.delegate = self
         genderField.returnKeyType = .next
         genderField.keyboardType = .numberPad
@@ -178,6 +178,7 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 nextView.fromWeight = self.weightField.text!
                 nextView.fromGender = self.genderField.text!
                 nextView.fromAge = self.ageField.text!
+                
             }
         }
     }
