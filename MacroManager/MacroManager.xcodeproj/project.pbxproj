@@ -75,6 +75,9 @@
 		6AA3C98F1E60A24B00BF3AC1 /* removed.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3C98C1E60A24B00BF3AC1 /* removed.png */; };
 		6AA3C9901E60A24B00BF3AC1 /* removed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3C98D1E60A24B00BF3AC1 /* removed@2x.png */; };
 		6AA3C9911E60A24B00BF3AC1 /* removed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3C98E1E60A24B00BF3AC1 /* removed@3x.png */; };
+		6AA3C9961E60AB9500BF3AC1 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3C9931E60AB9500BF3AC1 /* placeholder.png */; };
+		6AA3C9971E60AB9500BF3AC1 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3C9941E60AB9500BF3AC1 /* placeholder@2x.png */; };
+		6AA3C9981E60AB9500BF3AC1 /* placeholder@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6AA3C9951E60AB9500BF3AC1 /* placeholder@3x.png */; };
 		6AA73A021E3BC38D00FF831D /* MealView2Controller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA739FE1E3BC38D00FF831D /* MealView2Controller.swift */; };
 		6AA73A031E3BC38D00FF831D /* MealHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6AA739FF1E3BC38D00FF831D /* MealHeaderCell.xib */; };
 		6AA73A041E3BC38D00FF831D /* MealHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA73A001E3BC38D00FF831D /* MealHeaderCell.swift */; };
@@ -274,6 +277,9 @@
 		6AA3C98C1E60A24B00BF3AC1 /* removed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = removed.png; sourceTree = "<group>"; };
 		6AA3C98D1E60A24B00BF3AC1 /* removed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "removed@2x.png"; sourceTree = "<group>"; };
 		6AA3C98E1E60A24B00BF3AC1 /* removed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "removed@3x.png"; sourceTree = "<group>"; };
+		6AA3C9931E60AB9500BF3AC1 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
+		6AA3C9941E60AB9500BF3AC1 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
+		6AA3C9951E60AB9500BF3AC1 /* placeholder@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@3x.png"; sourceTree = "<group>"; };
 		6AA739FE1E3BC38D00FF831D /* MealView2Controller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealView2Controller.swift; sourceTree = "<group>"; };
 		6AA739FF1E3BC38D00FF831D /* MealHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MealHeaderCell.xib; sourceTree = "<group>"; };
 		6AA73A001E3BC38D00FF831D /* MealHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MealHeaderCell.swift; sourceTree = "<group>"; };
@@ -474,6 +480,9 @@
 		6AC12E101DC800C2007C2D45 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				6AA3C9931E60AB9500BF3AC1 /* placeholder.png */,
+				6AA3C9941E60AB9500BF3AC1 /* placeholder@2x.png */,
+				6AA3C9951E60AB9500BF3AC1 /* placeholder@3x.png */,
 				6AA3C98C1E60A24B00BF3AC1 /* removed.png */,
 				6AA3C98D1E60A24B00BF3AC1 /* removed@2x.png */,
 				6AA3C98E1E60A24B00BF3AC1 /* removed@3x.png */,
@@ -734,6 +743,7 @@
 				6A3943E41E285C8B00E13F2B /* taco_Icon@3x.png in Resources */,
 				6AA73A051E3BC38D00FF831D /* MealDetailsCell.xib in Resources */,
 				6AAE42081E5FF3DB00CFB586 /* AchievementProgressCell.xib in Resources */,
+				6AA3C9961E60AB9500BF3AC1 /* placeholder.png in Resources */,
 				6A4608C21DDD7903003D77B5 /* dashboard_icon.png in Resources */,
 				797CB1C61E5CCEFF007AAFFE /* GoogleService-Info.plist in Resources */,
 				6A4228F91E4DA1B200FC8C2C /* favorite@2x.png in Resources */,
@@ -755,12 +765,14 @@
 				6A4228FB1E4DA1B200FC8C2C /* favoriteFilled.png in Resources */,
 				6AC12E141DC80F79007C2D45 /* coolvetica.ttf in Resources */,
 				6AC12E0F1DC800B0007C2D45 /* Unknown.jpeg in Resources */,
+				6AA3C9981E60AB9500BF3AC1 /* placeholder@3x.png in Resources */,
 				6A24E3701DBED3BF00F95408 /* LaunchScreen.storyboard in Resources */,
 				6A3943E51E285C8B00E13F2B /* taco_Icon.png in Resources */,
 				6AAE42361E60826400CFB586 /* blueAcheivement_Lrg.png in Resources */,
 				6AAE421F1E60811900CFB586 /* AcheivementHeaderCell.xib in Resources */,
 				6AE02BCA1E5E8C7700EDE396 /* blueAcheivement@2x.png in Resources */,
 				6A4608C91DDD791B003D77B5 /* profile_icon@2x.png in Resources */,
+				6AA3C9971E60AB9500BF3AC1 /* placeholder@2x.png in Resources */,
 				6AA3C98F1E60A24B00BF3AC1 /* removed.png in Resources */,
 				6AA3C9821E609EF200BF3AC1 /* checkmark@3x.png in Resources */,
 				6A3943DA1E28340E00E13F2B /* FoodCollectionCell.xib in Resources */,
