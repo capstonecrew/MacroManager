@@ -42,6 +42,8 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         achievements.append(currentUser.client.getAchievement(num: 0))
         achievements.append(currentUser.client.getAchievement(num: 1))
         achievements.append(currentUser.client.getAchievement(num: 2))
+        achievements.append(currentUser.client.getAchievement(num: 3))
+        achievements.append(currentUser.client.getAchievement(num: 4))
         /*
          self.totalLbl.text = String(client.getTotal())
          
@@ -70,6 +72,8 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         achievements.append(currentUser.client.getAchievement(num: 0))
         achievements.append(currentUser.client.getAchievement(num: 1))
         achievements.append(currentUser.client.getAchievement(num: 2))
+        achievements.append(currentUser.client.getAchievement(num: 3))
+        achievements.append(currentUser.client.getAchievement(num: 4))
         tableView.reloadData()
     }
     override func didReceiveMemoryWarning() {

@@ -13,7 +13,7 @@ class AchievementSystem{
     var setup: Bool = true
     //users overall score
     var totalPoints = 0
-    //current 3 achievement indexes
+    //current 5 achievement indexes
     var current: [Int] = []
     //all achievements
     var achievements: [achievement] = []
@@ -52,8 +52,8 @@ class AchievementSystem{
             newAchievement = achievement(n: "Update Weight",p: 0,pro: 1, d: "update", r: 10)
             achievements.append(newAchievement)
             
-            //randomly assign 3 achievements
-            for i in 0...2{
+            //randomly assign 5 achievements
+            for i in 0...4{
                 if i == 0{
                     current.append(Int(arc4random_uniform(8)))
                 }
@@ -103,7 +103,7 @@ class AchievementSystem{
         while(current.contains(randomInt) || randomInt == num){
             randomInt = Int(arc4random_uniform(8))
         }
-        for a in 0...2{
+        for a in 0...4{
             if(num == current[a]){
                 current[a] = randomInt
             }
