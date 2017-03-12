@@ -11,7 +11,7 @@ import CoreData
 import Firebase
 import FirebaseAuth
 
-var currentUser: User = User()  // GLOBAL CURRENT USER VARIABLE
+var currentUser: User!  // GLOBAL CURRENT USER VARIABLE
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,6 +22,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        
+        FIRAuth.auth()?.addStateDidChangeListener({ (auth:FIRAuth, user: FIRUser?) in
+            self.window = UIWindow.init(frame: UIScreen.main.bounds)
+            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+
+            if let user = user {
+                print("logged in")
+                // go directly to dashboard
+                let viewController = storyboard.instantiateViewController(withIdentifier: "Dashboard")
+                self.window?.rootViewController = viewController
+                self.window?.makeKeyAndVisible()
+                
+                // FORCE SIGN OUT OPTION
+                /*do  {
+                try FIRAuth.auth()?.signOut() 
+                    
+                } catch {
+                    
+                }*/
+                
+                currentUser = UserDefaults.standard.object(forKey: "currentUser") as! User
+            } else {
+                print("NOT LOGGED IN")
+                // bring to initial screen
+                let viewController = storyboard.instantiateViewController(withIdentifier: "Login")
+                self.window?.rootViewController = viewController
+                self.window?.makeKeyAndVisible()
+            }
+            
+        })
         
         return true
     }

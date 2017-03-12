@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class User {
     var age: Int!
@@ -50,6 +51,8 @@ class User {
         carbToday = 0
         fatToday = 0
         
+        print("dummy info used")
+        
     }
     
     init(name: String!, age: Int!, gender: String!, height: String!, weight: Int!, activityLevel: String!, goal: String!) {
@@ -67,7 +70,24 @@ class User {
         proteinToday = 0
         carbToday = 0
         fatToday = 0
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(self, forKey: "currentUser") // set user default
 
+    }
+    
+    init(snap: FIRDataSnapshot) {
+        self.name = snap.value(forKey: "name") as! String
+        self.age = snap.value(forKey: "age") as! Int
+        self.gender = snap.value(forKey: "gender") as! String
+        self.height = snap.value(forKey: "height") as! String
+        self.weight = snap.value(forKey: "weight") as! Int
+        self.activityLevel = snap.value(forKey: "activityLevel") as! String!
+        print("created user from FIRDatabase")
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(self, forKey: "currentUser") // set user default
+
+        
     }
     
     
