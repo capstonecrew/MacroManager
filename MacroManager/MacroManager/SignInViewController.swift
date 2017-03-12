@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import Alamofire
+import Firebase
 
 class SignInViewController: UIViewController, UITextFieldDelegate{
 
@@ -126,7 +127,17 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         }else{
         
             print("LOGGED IN \(email) with password \(password).")
-            performSegue(withIdentifier: "toDashboardView", sender: self)
+            
+            FIRAuth.auth()?.signIn(withEmail: emailField.text!, password: passwordField.text!, completion: { (user:FIRUser?, error:Error?) in
+                if error != nil {
+                    print(error?.localizedDescription)
+                    
+                    
+                }else{
+                    print("logged in from sign in properly")
+                    self.performSegue(withIdentifier: "toDashboardView", sender: user)
+                }
+            })            
         }
         
     }
@@ -145,6 +156,14 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDashboardView"{
+            let user = sender as! FIRUser
+            let userRef = FIRDatabase.database().reference().child("users").child(user.uid)
+            
+            userRef.observeSingleEvent(of: .value, with: { (snapshot:FIRDataSnapshot) in
+                let user = User(snap: snapshot)
+                currentUser = UserDefaults.standard.object(forKey: "currentUser") as! User
+                
+            })
             
         }
     }
