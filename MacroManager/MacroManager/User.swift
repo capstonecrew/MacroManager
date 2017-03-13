@@ -400,8 +400,6 @@ class User: NSObject {
         
     }
     
-    
-    
     // returns daily calorie count with activity level considered
     
     func activityLvl (bmr : Double) -> Double

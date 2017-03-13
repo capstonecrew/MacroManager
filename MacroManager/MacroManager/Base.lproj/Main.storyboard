@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1014,7 +1014,14 @@
                         </constraints>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="ISa-yr-9UX"/>
+                    <navigationItem key="navigationItem" id="ISa-yr-9UX">
+                        <barButtonItem key="rightBarButtonItem" image="moreBtn.png" id="7FT-09-wKd">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="logoutMenuBtnPressed:" destination="0VQ-Ef-TEM" id="aD6-Kf-nSL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="activityPicker" destination="bOk-Ec-hdn" id="TcY-Vn-oEJ"/>
@@ -1396,7 +1403,7 @@
             <objects>
                 <navigationController storyboardIdentifier="Login" automaticallyAdjustsScrollViewInsets="NO" id="fZl-pN-XUr" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="j4h-73-XkN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="j4h-73-XkN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1496,6 +1503,7 @@
         <image name="checkmark.png" width="22" height="26"/>
         <image name="dashboard_icon.png" width="32" height="32"/>
         <image name="initialView.png" width="384" height="262"/>
+        <image name="moreBtn.png" width="24" height="7"/>
         <image name="profile_icon.png" width="27" height="30"/>
         <image name="search_icon.png" width="31" height="31"/>
         <image name="trophy_icon.png" width="28" height="31"/>
