@@ -205,12 +205,16 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     }
     
     @IBAction func addBtnPressed(_ sender: Any) {
-        self.addMealToHistory()
+        
         currentUser.client.updatePoints(d: "eatMeal")
+        self.addMealToHistory()
+        
     }
     
     func addMealToHistory() {
         currentUser.addMealToLog(mealEaten: (self.recievedNix)!)
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            self.tabBarController?.selectedIndex = 0
+        })
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 import Firebase
 
-class User {
+class User: NSObject {
     var age: Int!
     var email: String!
     var goal: String!
@@ -33,7 +33,8 @@ class User {
     var customMealList = [NixItem]() // custom meals
     var client:AchievementSystem = AchievementSystem()
     
-    init() {
+    override init() {
+        super.init()
         // TEMP DUMMY USER INFO
         name = "Aaron Edwards"
         gender = "male"
@@ -56,6 +57,7 @@ class User {
     }
     
     init(name: String!, age: Int!, gender: String!, height: String!, weight: Int!, activityLevel: String!, goal: String!) {
+        super.init()
         self.name = name
         self.age = age
         self.gender = gender
@@ -63,36 +65,227 @@ class User {
         self.weight = weight
         self.activityLevel = activityLevel
         self.goal = goal
-
-        proteinCount = 211
-        carbCount = 316
-        fatCount = 78
-        proteinToday = 0
-        carbToday = 0
-        fatToday = 0
+        self.proteinToday = 0
+        self.carbToday = 0
+        self.fatToday = 0
         
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(self, forKey: "currentUser") // set user default
-
+        self.calorieCalc()
+        self.macronutrientCalc()
+        
     }
     
     init(snap: FIRDataSnapshot) {
-        self.name = snap.value(forKey: "name") as! String
-        self.age = snap.value(forKey: "age") as! Int
-        self.gender = snap.value(forKey: "gender") as! String
-        self.height = snap.value(forKey: "height") as! String
-        self.weight = snap.value(forKey: "weight") as! Int
-        self.activityLevel = snap.value(forKey: "activityLevel") as! String!
+        super.init()
+        
+        let value = snap.value as? NSDictionary
+        
+        
+        if let n = value!["name"] as? String{
+            
+            self.name = n
+            
+        }else{
+            
+            self.name = ""
+        }
+        
+        if let a = value!["age"] as? Int{
+            
+            self.age = a
+            
+        }else{
+            
+            self.age = 0
+        }
+        
+        if let g = value!["gender"] as? String{
+            
+            self.gender = g
+            
+        }else{
+            
+            self.gender = ""
+            
+        }
+        
+        if let h = value?["height"] as? String{
+            
+            self.height = h
+            
+        }else{
+            
+            self.height = ""
+        }
+        
+        if let w = value?["weight"] as? Int{
+            
+            self.weight = w
+            
+        }else{
+            
+            self.weight = 0
+        }
+        
+        if let activity = value?["activityLevel"] as? String{
+            
+            self.activityLevel = activity
+            
+        }else{
+            
+            self.activityLevel = ""
+        }
+        
+        if let weightGoal = value?["goal"] as? String{
+            
+            self.goal = weightGoal
+            
+        }else{
+            
+            self.goal = ""
+        }
+        
+        if let protein = value?["proteinToday"] as? Int{
+            
+            self.proteinToday = protein
+            
+        }else{
+            
+            self.proteinToday = 0
+        }
+        
+        if let fat = value?["fatToday"] as? Int{
+            
+            self.fatToday = fat
+            
+        }else{
+            
+            self.fatToday = 0
+        }
+        
+        if let carb = value?["carbToday"] as? Int{
+            
+            self.carbToday = carb
+            
+        }else{
+            
+            self.carbToday = 0
+        }
+        
+        self.calorieCalc()
+        self.macronutrientCalc()
+        
         print("created user from FIRDatabase")
-        let userDefaults = UserDefaults.standard
-        userDefaults.set(self, forKey: "currentUser") // set user default
-
+        
         
     }
     
+    init(dict: [String: Any]) {
+        super.init()
+        
+        let value = dict
+        
+        if let n = value["name"] as? String{
+            
+            self.name = n
+            
+        }else{
+            
+            self.name = ""
+        }
+        
+        if let a = value["age"] as? Int{
+            
+            self.age = a
+            
+        }else{
+            
+            self.age = 0
+        }
+        
+        if let g = value["gender"] as? String{
+            
+            self.gender = g
+            
+        }else{
+            
+            self.gender = ""
+            
+        }
+        
+        if let h = value["height"] as? String{
+            
+            self.height = h
+            
+        }else{
+            
+            self.height = ""
+        }
+        
+        if let w = value["weight"] as? Int{
+            
+            self.weight = w
+            
+        }else{
+            
+            self.weight = 0
+        }
+        
+        if let activity = value["activityLevel"] as? String{
+            
+            self.activityLevel = activity
+            
+        }else{
+            
+            self.activityLevel = ""
+        }
+        
+        if let weightGoal = value["goal"] as? String{
+            
+            self.goal = weightGoal
+            
+        }else{
+            
+             self.goal = ""
+        }
+        
+        if let protein = value["proteinToday"] as? Int{
+            
+            self.proteinToday = protein
+            
+        }else{
+            
+            self.proteinToday = 0
+        }
+        
+        if let fat = value["fatToday"] as? Int{
+            
+            self.fatToday = fat
+            
+        }else{
+            
+            self.fatToday = 0
+        }
+        
+        if let carb = value["carbToday"] as? Int{
+            
+            self.carbToday = carb
+            
+        }else{
+            
+            self.carbToday = 0
+        }
+        
+        self.calorieCalc()
+        self.macronutrientCalc()
+        
+        print("created user from user dafaults")
+        
+    }
+
+    
     
     func toAnyObject() -> [String: Any] {
-        return ["name": name, "age": age, "gender": gender, "height": height, "weight": weight, "activityLevel": activityLevel]
+        return ["name": self.name, "age": self.age, "gender": self.gender, "height": self.height, "weight": self.weight, "activityLevel": self.activityLevel, "goal": self.goal, "proteinToday": self.proteinToday, "fatToday": self.fatToday, "carbToday": self.carbToday]
     }
     
     
@@ -192,20 +385,17 @@ class User {
         var convertedHeight = FeetToInch + Double(Inch)!
         
         
-        if gender == "male"
-        {
+        if gender == "male" || gender == "Male"{
+            
             temp = 66 + (6.2 * Double(weight))
             temp = temp + (12.7 * convertedHeight) - (6.76 * Double(age))
             calorieCount = activityLvl(bmr: temp)
-        }
             
-        else
-        {
+        }else{
             
             temp = 655.1 + (4.35 * Double(weight))
             temp = temp + (4.7 * convertedHeight) - (4.7 * Double(age))
             calorieCount = activityLvl(bmr: temp)
-
         }
         
     }
@@ -244,14 +434,27 @@ class User {
         
     }
     
-
-    
-    
     func addMealToLog(mealEaten: NixItem) {
         mealLog.append(mealEaten)
+        
         proteinToday = proteinToday + Int(mealEaten.proteins!)
         carbToday = carbToday + Int(mealEaten.carbs!)
         fatToday = fatToday + Int(mealEaten.fats!)
+        
+        if let user = FIRAuth.auth()?.currentUser{
+            
+            let proteinRef = FIRDatabase.database().reference().child("users").child(user.uid).child("proteinToday")
+            proteinRef.setValue(self.proteinToday)
+            
+            let carbRef = FIRDatabase.database().reference().child("users").child(user.uid).child("carbToday")
+            carbRef.setValue(self.carbToday)
+            
+            let fatRef = FIRDatabase.database().reference().child("users").child(user.uid).child("fatToday")
+            fatRef.setValue(self.fatToday)
+        }
+        
+        UserDefaults.standard.set(self.toAnyObject(), forKey: "currentUser")
+        
         print("prot: \(proteinToday), carb: \(carbToday), fat: \(fatToday)")
     }
     

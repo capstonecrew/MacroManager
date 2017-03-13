@@ -92,10 +92,13 @@ class GoalSliderViewController: UIViewController {
                 let user = User(name: self.fromName, age: Int(self.fromAge), gender: self.fromGender, height: self.fromHeight, weight: Int(self.fromWeight), activityLevel: self.fromActivity, goal: self.goalSelected)
                 userRef.setValue(user.toAnyObject())
                 
-                user.calorieCalc() // update users daily calories
-                user.macronutrientCalc() // update users daily macro count
-                
                 currentUser = user
+                let storedUser = user.toAnyObject()
+                let userDefaults = UserDefaults.standard
+                userDefaults.set(storedUser, forKey: "currentUser") // set user default
+                
+                //user.calorieCalc() // update users daily calories
+                //user.macronutrientCalc() // update users daily macro count
                 
                 self.loadingWheel.stopAnimating()
                 self.signUpButton.setTitle("Welcome \(currentUser.name)!", for: .normal)
