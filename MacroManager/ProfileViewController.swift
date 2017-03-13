@@ -7,6 +7,7 @@
 //  Alex Schultz - 1/18/17
 
 import UIKit
+import Firebase
 
 class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
     
@@ -152,6 +153,38 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             
             
         }
+    }
+    
+    @IBAction func logoutMenuBtnPressed(_ sender: Any) {
+    
+        let myActionSheet = UIAlertController(title: "", message: "What to do?", preferredStyle: .actionSheet)
+       
+        let logoutAction = UIAlertAction(title: "Logout", style: .destructive){ (ACTION) in
+            do{
+                try FIRAuth.auth()?.signOut()
+                if let storyboard = self.storyboard {
+                    
+                    self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "Login")
+                    self.view.window?.rootViewController = viewController
+                    self.view.window?.makeKeyAndVisible()
+                }
+            }catch{
+                print("Error signing out...")
+            }
+            
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){ (ACTION) in
+            print("cancel button tapped")
+            
+        }
+        myActionSheet.addAction(logoutAction)
+        myActionSheet.addAction(cancelAction)
+        
+        self.present(myActionSheet, animated: true, completion: nil)
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
