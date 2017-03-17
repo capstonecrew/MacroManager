@@ -32,7 +32,7 @@ class NixApiManager {
                 //Extract array of hits from JSON
                 for item in hits {
                     if let newNixItem: NixItem = NixItem(json: item as! [String : Any]) {
-                        guard newNixItem.proteins != nil else {
+                        /*guard newNixItem.proteins != nil else {
                             continue
                         }
                         
@@ -42,12 +42,12 @@ class NixApiManager {
                         
                         guard newNixItem.fats != nil else {
                             continue
-                        }
+                        }*/
                         
                         // if item has no nutritional facts
-                        if newNixItem.proteins! < 1.0 || newNixItem.carbs! < 1.0 || newNixItem.itemDescription == nil || newNixItem.itemDescription == "" {
+                        /*if newNixItem.proteins! < 1.0 || newNixItem.carbs! < 1.0 || newNixItem.itemDescription == nil || newNixItem.itemDescription == "" {
                             continue
-                        }
+                        }*/
                         
                         items.append(newNixItem)
                     }
