@@ -23,7 +23,7 @@ class CustomMealHeaderCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var proteinTextField: UITextField!
     @IBOutlet weak var fatsTextField: UITextField!
     @IBOutlet weak var carbsTextField: UITextField!
-
+    weak var addparentVC: AddCustomMealViewController! //
     override func awakeFromNib() {
         super.awakeFromNib()
         nameTextField.backgroundColor = UIColor(colorLiteralRed: 255, green: 255, blue: 255, alpha: 0.0)
@@ -31,6 +31,7 @@ class CustomMealHeaderCell: UITableViewCell, UITextFieldDelegate {
         proteinTextField.delegate = self
         fatsTextField.delegate = self
         carbsTextField.delegate = self
+        isFavorite = false
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -51,8 +52,9 @@ class CustomMealHeaderCell: UITableViewCell, UITextFieldDelegate {
             self.favoriteBtn.setImage(UIImage(named: "favorite"), for: .normal)
             isFavorite = false
         }
+ 
     }
-    
+    /*
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         let nextTag = textField.tag + 1;
@@ -69,7 +71,7 @@ class CustomMealHeaderCell: UITableViewCell, UITextFieldDelegate {
             print("done with process")        }
         return false
     }
-
+*/
    
     
 }
