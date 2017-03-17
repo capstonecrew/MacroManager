@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2657" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -17,22 +19,35 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nutrient" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H5k-Gm-40P">
-                        <rect key="frame" x="8" y="6" width="167" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Nutrient" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H5k-Gm-40P">
+                        <rect key="frame" x="17" y="6" width="167" height="30"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="167" id="BeX-XD-45o"/>
+                            <constraint firstAttribute="height" constant="30" id="uND-Os-3xm"/>
+                        </constraints>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
-                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T7N-p9-NoC">
-                        <rect key="frame" x="215" y="5" width="97" height="30"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T7N-p9-NoC">
+                        <rect key="frame" x="206" y="6" width="97" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="5mt-kW-Mr7"/>
+                            <constraint firstAttribute="width" constant="97" id="TIr-TG-m0W"/>
+                        </constraints>
                         <nil key="textColor"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <textInputTraits key="textInputTraits"/>
+                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                     </textField>
                 </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailingMargin" secondItem="T7N-p9-NoC" secondAttribute="trailing" constant="9" id="1OU-yI-5Vm"/>
+                    <constraint firstItem="H5k-Gm-40P" firstAttribute="top" secondItem="SOZ-Aq-emX" secondAttribute="topMargin" constant="-2" id="7FY-gY-jP1"/>
+                    <constraint firstItem="H5k-Gm-40P" firstAttribute="leading" secondItem="SOZ-Aq-emX" secondAttribute="leadingMargin" constant="9" id="D7f-K2-8kg"/>
+                    <constraint firstItem="T7N-p9-NoC" firstAttribute="top" secondItem="SOZ-Aq-emX" secondAttribute="topMargin" constant="-2" id="Tbt-7i-TXY"/>
+                    <constraint firstItem="T7N-p9-NoC" firstAttribute="leading" secondItem="H5k-Gm-40P" secondAttribute="trailing" constant="22" id="dAh-2m-uFY"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="amountTextField" destination="T7N-p9-NoC" id="1Lv-Dw-80V"/>

@@ -78,7 +78,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     func performSearch(searchText: String) {
         foodSearchResults.removeAll()
-        
+        foodSearchResults = foodSearchResults + currentUser.customMealList
         NixApiManager.search(query: searchText, page: 0) { response in
             for item in response.value! {
                 //Fill table view
