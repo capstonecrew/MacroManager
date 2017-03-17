@@ -23,36 +23,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FIRApp.configure()
         
-        FIRAuth.auth()?.addStateDidChangeListener({ (auth:FIRAuth, user: FIRUser?) in
-            self.window = UIWindow.init(frame: UIScreen.main.bounds)
-            let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-
-            if let user = user {
-                print("logged in")
-                // go directly to dashboard
+        self.window = UIWindow.init(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        
+//        // FORCE SIGN OUT OPTION
+//        do  {
+//            try FIRAuth.auth()?.signOut()
+//            
+//        } catch {
+//            
+//        }
+        
+        if let user = FIRAuth.auth()?.currentUser{
+            
+            print("logged in")
+            
+            if let userObj = UserDefaults.standard.object(forKey: "currentUser") as? [String: Any]{
+                
+                currentUser = User(dict: userObj)
                 let viewController = storyboard.instantiateViewController(withIdentifier: "Dashboard")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
+
                 
-                // FORCE SIGN OUT OPTION
-                /*do  {
-                try FIRAuth.auth()?.signOut() 
-                    
-                } catch {
-                    
-                }*/
+            }else{
                 
-                currentUser = UserDefaults.standard.object(forKey: "currentUser") as! User
-            } else {
-                print("NOT LOGGED IN")
-                // bring to initial screen
-                let viewController = storyboard.instantiateViewController(withIdentifier: "Login")
-                self.window?.rootViewController = viewController
-                self.window?.makeKeyAndVisible()
+                let userRef = FIRDatabase.database().reference().child("users").child(user.uid)
+                
+                userRef.observeSingleEvent(of: .value, with: { (snapshot:FIRDataSnapshot) in
+                    
+                    let user = User(snap: snapshot)
+                    currentUser = UserDefaults.standard.object(forKey: "currentUser") as! User
+                    print(currentUser)
+                    
+                    // go directly to dashboard
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "Dashboard")
+                    self.window?.rootViewController = viewController
+                    self.window?.makeKeyAndVisible()
+                    
+                })
             }
             
-        })
-        
+            
+        } else {
+            print("NOT LOGGED IN")
+            // bring to initial screen
+            let viewController = storyboard.instantiateViewController(withIdentifier: "Login")
+            self.window?.rootViewController = viewController
+            self.window?.makeKeyAndVisible()
+        }
+    
         return true
     }
 

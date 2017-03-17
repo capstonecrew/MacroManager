@@ -15,9 +15,11 @@ class AchievementSystem{
     var totalPoints = 0
     //current 5 achievement indexes
     var current: [Int] = []
+    //current 5 achievement types
+    var types: [String] = []
     //all achievements
     var achievements: [achievement] = []
-    //initialize 8 achivement objects
+    //initialize 27 achivement objects
     init(){
         if(setup){
             
@@ -37,17 +39,55 @@ class AchievementSystem{
         */
             var newAchievement = achievement(n: "5lb Weight Goal",p: 0,pro: 1, d: "weight", r: 50)
             achievements.append(newAchievement)
-            newAchievement = achievement(n: "Eat 10 Meals",p: 0,pro: 10, d: "eatMeal", r: 10)
+            newAchievement = achievement(n: "8lb Weight Goal",p: 0,pro: 1, d: "weight", r: 100)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Eat 5 Meals",p: 0,pro: 5, d: "eatMeal", r: 10)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Eat 10 Meals",p: 0,pro: 10, d: "eatMeal", r: 20)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Eat 15 Meals",p: 0,pro: 15, d: "eatMeal", r: 30)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Eat 20 Meals",p: 0,pro: 20, d: "eatMeal", r: 40)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Eat 25 Meals",p: 0,pro: 25, d: "eatMeal", r: 50)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Eat 50 Meals",p: 0,pro: 50, d: "eatMeal", r: 150)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Perform 5 Meal Searches",p: 0,pro: 5, d: "search", r: 5)
             achievements.append(newAchievement)
             newAchievement = achievement(n: "Perform 10 Meal Searches",p: 0,pro: 10, d: "search", r: 10)
             achievements.append(newAchievement)
-            newAchievement = achievement(n: "Add 5 Custom Meals",p: 0,pro: 5, d: "customMeal", r: 20)
+            newAchievement = achievement(n: "Perform 25 Meal Searches",p: 0,pro: 25, d: "search", r: 50)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Perform 50 Meal Searches",p: 0,pro: 50, d: "search", r: 100)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Perform 100 Meal Searches",p: 0,pro: 100, d: "search", r: 250)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Add Custom Meal",p: 0,pro: 1, d: "customMeal", r: 5)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Add 5 Custom Meals",p: 0,pro: 5, d: "customMeal", r: 50)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Add 10 Custom Meals",p: 0,pro: 10, d: "customMeal", r: 150)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Daily Goal Met",p: 0,pro: 1, d: "goals", r: 10)
             achievements.append(newAchievement)
             newAchievement = achievement(n: "3 Daily Goals Met",p: 0,pro: 3, d: "goals", r: 30)
             achievements.append(newAchievement)
+            newAchievement = achievement(n: "5 Daily Goals Met",p: 0,pro: 5, d: "goals", r: 50)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Add Favorite Meal",p: 0,pro: 1, d: "addFav", r: 5)
+            achievements.append(newAchievement)
             newAchievement = achievement(n: "Add 5 Favorite Meals",p: 0,pro: 5, d: "addFav", r: 20)
             achievements.append(newAchievement)
+            newAchievement = achievement(n: "Add 10 Favorite Meals",p: 0,pro: 10, d: "addFav", r: 50)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Add 25 Favorite Meals",p: 0,pro: 25, d: "addFav", r: 100)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Eat Favorite Meal",p: 0,pro: 1, d: "eatFav", r: 5)
+            achievements.append(newAchievement)
             newAchievement = achievement(n: "Eat 5 Favorite Meals",p: 0,pro: 5, d: "eatFav", r: 20)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "Eat 10 Favorite Meals",p: 0,pro: 10, d: "eatFav", r: 50)
             achievements.append(newAchievement)
             newAchievement = achievement(n: "Update Weight",p: 0,pro: 1, d: "update", r: 10)
             achievements.append(newAchievement)
@@ -55,28 +95,33 @@ class AchievementSystem{
             //randomly assign 5 achievements
             for i in 0...4{
                 if i == 0{
-                    current.append(Int(arc4random_uniform(8)))
+                    let rand = Int(arc4random_uniform(27))
+                    types.append(achievements[rand].des)
+                    current.append(rand)
                 }
                 else{
                     var randomInt = current[0]
-                    while(current.contains(randomInt)){
-                        randomInt = Int(arc4random_uniform(8))
+                    while(current.contains(randomInt) || types.contains(achievements[randomInt].des)){
+                        randomInt = Int(arc4random_uniform(27))
                     }
                     current.append(randomInt)
+                    types.append(achievements[randomInt].des)
                 }
             }
         }
         setup = false
     }
     
+    
     //generate new achievement
     func newAchievement(name: String) -> achievement{
         var randomInt = current[0]
-        while(current.contains(randomInt)){
-            randomInt = Int(arc4random_uniform(8))
+        while(current.contains(randomInt) || types.contains(achievements[randomInt].des)){
+            randomInt = Int(arc4random_uniform(27))
         }
         return achievements[randomInt]
     }
+ 
     
     //update progress
     func updatePoints(d: String){
@@ -100,12 +145,13 @@ class AchievementSystem{
     //add new achievement to current
     func finishedAchievement(num: Int){
         var randomInt = current[0]
-        while(current.contains(randomInt) || randomInt == num){
-            randomInt = Int(arc4random_uniform(8))
+        while(current.contains(randomInt) || randomInt == num || types.contains(achievements[randomInt].des)){
+            randomInt = Int(arc4random_uniform(27))
         }
         for a in 0...4{
             if(num == current[a]){
                 current[a] = randomInt
+                types[a] = achievements[randomInt].des
             }
         }
     }
