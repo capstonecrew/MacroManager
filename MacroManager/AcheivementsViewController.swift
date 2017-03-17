@@ -161,7 +161,7 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         case 0:
             height = 97.0
         case 1:
-            height = 63.0
+            height = 76.0
         default:
             break
         }

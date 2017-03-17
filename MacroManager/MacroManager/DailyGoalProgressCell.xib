@@ -59,6 +59,9 @@
                             <constraint firstAttribute="height" constant="30" id="xhY-ve-AdX"/>
                         </constraints>
                         <state key="normal" image="moreBtn.png"/>
+                        <connections>
+                            <action selector="moreBtnPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="ufq-Vy-ced"/>
+                        </connections>
                     </button>
                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vhf-xD-hAh">
                         <rect key="frame" x="16" y="156" width="289" height="20"/>
@@ -141,6 +144,7 @@
                 <outlet property="fatLabel" destination="uP5-hQ-aIa" id="x4z-0j-c6X"/>
                 <outlet property="fatsProgress" destination="Vhf-xD-hAh" id="2Pw-C2-BYd"/>
                 <outlet property="fatsRatioLbl" destination="66b-VS-MkH" id="0Mx-LA-Cdb"/>
+                <outlet property="moreBtn" destination="1QI-9n-Hvl" id="UE3-yV-M0R"/>
                 <outlet property="proteinLabel" destination="W1Y-YA-TaQ" id="HLL-Er-XvI"/>
                 <outlet property="proteinProgress" destination="L6v-Mh-RNB" id="Jsa-j4-AgS"/>
                 <outlet property="proteinRatioLbl" destination="wSh-T7-pLs" id="Dpj-v2-ziN"/>

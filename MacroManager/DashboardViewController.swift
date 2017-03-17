@@ -9,7 +9,7 @@
 import UIKit
 import AlamofireImage
 
-class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate, SuggestedFoodsCellDelegate {
+class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate, SuggestedFoodsCellDelegate, DailyGoalProgressCellDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,6 +126,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
                 cell.carbsRatioLbl.text = "\(currentUser.carbToday!) / \(currentUser.carbCount!) g"
                 cell.fatLabel.text = "Fats"
                 cell.fatsRatioLbl.text = "\(currentUser.fatToday!) / \(currentUser.fatCount!) g"
+                cell.delegate = self
                 return cell
             }
 
@@ -257,6 +258,33 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     
     func toSearch() {
         self.tabBarController?.selectedIndex = 1
+    }
+    
+    func showDetailsMenu(sender: DailyGoalProgressCell) {
+        
+        let myActionSheet = UIAlertController(title: "What would you like to do?", message: nil, preferredStyle: .actionSheet)
+        
+        let viewHistoryAction = UIAlertAction(title: "View Goal History", style: .default){ (ACTION) in
+        
+            print("go to goal history")
+            
+        }
+        
+        let goalAction = UIAlertAction(title: "Manually Adjust Macro Goal", style: .default){ (ACTION) in
+            print("macro change button tapped")
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel){ (ACTION) in
+            print("cancel button tapped")
+            
+        }
+        
+        myActionSheet.addAction(viewHistoryAction)
+        myActionSheet.addAction(goalAction)
+        myActionSheet.addAction(cancelAction)
+        
+        self.present(myActionSheet, animated: true, completion: nil)
     }
     
     func tapped(sender: FoodCollectionCell) {

@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol DailyGoalProgressCellDelegate {
+    func showDetailsMenu(sender: DailyGoalProgressCell)
+}
+
 class DailyGoalProgressCell: UITableViewCell {
 
     @IBOutlet weak var proteinLabel: UILabel!
@@ -21,6 +25,10 @@ class DailyGoalProgressCell: UITableViewCell {
     @IBOutlet weak var proteinRatioLbl: UILabel!
     @IBOutlet weak var carbsRatioLbl: UILabel!
     @IBOutlet weak var fatsRatioLbl: UILabel!
+    
+    var delegate: DailyGoalProgressCellDelegate!
+    
+    @IBOutlet weak var moreBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,9 +46,9 @@ class DailyGoalProgressCell: UITableViewCell {
         carbsProgress.clipsToBounds = true
         fatsProgress.clipsToBounds = true
         
-        proteinProgress.tintColor = UIColor(red:0.45, green:0.87, blue:0.60, alpha:1.0)
-        carbsProgress.tintColor = UIColor(red:0.45, green:0.87, blue:0.60, alpha:1.0)
-        fatsProgress.tintColor = UIColor(red:0.45, green:0.87, blue:0.60, alpha:1.0)
+        proteinProgress.tintColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0)
+        carbsProgress.tintColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0)
+        fatsProgress.tintColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0)
         
         proteinProgress.trackTintColor = UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0)
         carbsProgress.trackTintColor = UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0)
@@ -53,5 +61,11 @@ class DailyGoalProgressCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    @IBAction func moreBtnPressed(_ sender: Any) {
+    
+        delegate.showDetailsMenu(sender: self)
+    }
+    
     
 }

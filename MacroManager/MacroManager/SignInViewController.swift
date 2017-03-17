@@ -18,6 +18,7 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var createAccountButton: UIButton!
     @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var loadingWheel: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,12 +75,11 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         loginButton.backgroundColor = UIColor.white
         loginButton.layer.cornerRadius = 20
         
+        loadingWheel.hidesWhenStopped = true
+        
         // Do any additional setup after loading the view.
         
     }
-    
-   
-
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
@@ -105,6 +105,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
         {
             //CLEAR KEYBOARD AND TRY LOGIN - AJE
             textField.resignFirstResponder()
+            
+            self.loginButton.setTitle("", for: .normal)
+            self.loadingWheel.startAnimating()
             loginSpecifiedUser(email: emailField.text!, password: passwordField.text!)
         }
         return false
@@ -112,6 +115,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
 
     @IBAction func login(_ sender: AnyObject) {
         
+        
+        self.loginButton.setTitle("", for: .normal)
+        self.loadingWheel.startAnimating()
         loginSpecifiedUser(email: emailField.text!, password: passwordField.text!)
     }
     
@@ -135,6 +141,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
                 if error != nil {
                     print(error?.localizedDescription)
                     
+                    self.loadingWheel.stopAnimating()
+                    self.loginButton.setTitle("LOGIN", for: .normal)
                     
                 }else{
                     
@@ -155,6 +163,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
 
                         //UserDefaults.standard.object(forKey: "currentUser") as! [String: Any]
                         print(currentUser)
+                        
+                        self.loadingWheel.stopAnimating()
+                        self.loginButton.setTitle("WELCOME", for: .normal)
+                        
                         self.performSegue(withIdentifier: "toDashboardView", sender: user)
                     })
                    

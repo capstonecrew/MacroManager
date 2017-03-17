@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Firebase
 
 class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
@@ -161,6 +162,9 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         }
         
         
+        let favoriteRef = FIRDatabase.database().reference().child((FIRAuth.auth()?.currentUser?.uid)!).child("favorites").child((recievedNix?.itemId)!)
+        favoriteRef.setValue(recievedNix?.toAnyObject())
+        
         Alamofire.request("https://www.googleapis.com/customsearch/v1?q=\(q)&cx=000748290492374586623%3A00pjyzbfpy4&num=1&searchType=image&key=AIzaSyCvYEp9GQqoX-c99F8w5HvaaiEg_lU6dz4").responseJSON{ response in
             
             print(response.data)
@@ -194,6 +198,9 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     {
         currentUser.removeMealFromFavorite(mealEaten: recievedNix!)
         self.isFavorite = false
+        
+        let favoriteRef = FIRDatabase.database().reference().child((FIRAuth.auth()?.currentUser?.uid)!).child("favorites").child((recievedNix?.itemId)!)
+        favoriteRef.removeValue()
         
         self.performSegue(withIdentifier: "showRemovedAlert", sender: self)
         
