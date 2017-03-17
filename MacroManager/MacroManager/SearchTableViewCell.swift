@@ -15,6 +15,7 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var proteinLabel: UILabel!
     @IBOutlet weak var carbsLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var qualityLabel: UILabel!
     
     
     override func awakeFromNib() {
@@ -25,6 +26,22 @@ class SearchTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    // Custom functions for qualityLabel
+    func setQualityBad(){
+        qualityLabel.text = "Bad."
+        qualityLabel.textColor = UIColor.red
+    }
+    
+    func setQualityOkay(){
+        qualityLabel.text = "Okay."
+        qualityLabel.textColor = UIColor.yellow
+    }
+    
+    func setQualityGood(){
+        qualityLabel.text = "Good!"
+        qualityLabel.textColor = UIColor.green
     }
 
 }
