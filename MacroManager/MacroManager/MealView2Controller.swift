@@ -205,7 +205,9 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     }
     
     @IBAction func addBtnPressed(_ sender: Any) {
-        
+        if isFavorite == true {
+            currentUser.client.updatePoints(d: "eatFav")
+        }
         currentUser.client.updatePoints(d: "eatMeal")
         self.addMealToHistory()
         
