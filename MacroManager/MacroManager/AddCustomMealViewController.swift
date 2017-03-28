@@ -44,29 +44,46 @@ class AddCustomMealViewController: UITableViewController, CustomMealHeaderCellDe
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if(indexPath.row == 0)
+        {
+            let cell2 = tableView.dequeueReusableCell(withIdentifier: "customMealHeaderCell") as! CustomMealHeaderCell
+            return cell2
+        }
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "customMealDetailCellTableViewCell") as! CustomMealDetailCellTableViewCell
         
         
         return cell
         
     }
-    
+    /*
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let cell = tableView.dequeueReusableCell(withIdentifier: "customMealHeaderCell") as! CustomMealHeaderCell
-                
-        return cell
+        cell.tag = -1
+        //cell.contentView.tag = -1
+        return cell.contentView
         
     }
-    
+    */
+    /*
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
         return 244.0
     }
-    
+    */
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath.row==0
+        {
+            return 244.0
+        }
+        else
+        {
         return 44.0
+        }
     }
-    
+ 
     func addFavorite(sender: CustomMealHeaderCell)
     {
         
@@ -101,8 +118,18 @@ class AddCustomMealViewController: UITableViewController, CustomMealHeaderCellDe
     }
 
     @IBAction func SaveCustomMeal(_ sender: Any) {
-        currentUser.addCustomMeal(itenName: "testName", itemDescription: "testDesc", fats: 11.0, proteins: 11.0, carbs: 11.0)
+        
+        let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! CustomMealHeaderCell
+        
+
+        
+        
+ 
+        currentUser.addCustomMeal(itenName: cell.nameTextField.text!, itemDescription: "", fats: Double(cell.fatsTextField.text!), proteins: Double(cell.proteinTextField.text!), carbs: Double(cell.carbsTextField.text!))
         print("added meal")
+        print(cell.nameTextField.text! + " name")
+        print((cell.proteinTextField.text!) + "protein")
+        self.dismiss(animated: true, completion: nil)
     }
 
 
