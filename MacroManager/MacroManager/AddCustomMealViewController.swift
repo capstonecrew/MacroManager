@@ -118,6 +118,8 @@ class AddCustomMealViewController: UITableViewController, CustomMealHeaderCellDe
     }
 
     @IBAction func SaveCustomMeal(_ sender: Any) {
+        //add custom meal achievement
+        currentUser.client.updatePoints(d: "customMeal")
         
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! CustomMealHeaderCell
         
