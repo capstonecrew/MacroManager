@@ -17,22 +17,23 @@ struct NutrientDetail {
 enum FoodSource {
     case edamam
     case yummly
+    case custom // for custom meals
 }
 
 class GenericFoodItem {
     var itemName : String
     var itemId : String
     var itemDescription : String = ""
-    var fats : Double
-    var proteins : Double
-    var carbs : Double
+    var fats : Int!
+    var proteins : Int!
+    var carbs : Int!
     var imageUrl: String = ""
     var foodSource : FoodSource
     
     //Misc variables
     var miscNutrients : [NutrientDetail] = []
     
-    required init?(itemName: String, itemId: String, fats: Double, proteins: Double, carbs: Double, foodSource : FoodSource) {
+    required init?(itemName: String, itemId: String, fats: Int, proteins: Int, carbs: Int, foodSource : FoodSource) {
         self.itemName = itemName
         self.itemId = itemId
         self.fats = fats
@@ -91,11 +92,11 @@ class GenericFoodItem {
             
             //Optionals
             
-            let proteins = (proteinDetails["quantity"] as? Double)!/yield
-            let carbs = (carbDetails["quantity"] as? Double)! / yield
-            let fats = (fatDetails["quantity"] as? Double)! / yield
+            let proteins = Double((proteinDetails["quantity"] as? Int)!)/yield
+            let carbs = Double((carbDetails["quantity"] as? Int)!) / yield
+            let fats = Double((fatDetails["quantity"] as? Int)!) / yield
             
-            self.init(itemName: itemName, itemId: itemId, fats: fats, proteins: proteins, carbs: carbs, foodSource: FoodSource.edamam)
+            self.init(itemName: itemName, itemId: itemId, fats: Int(fats), proteins: Int(proteins), carbs: Int(carbs), foodSource: FoodSource.edamam)
             
             self.imageUrl = image
             
