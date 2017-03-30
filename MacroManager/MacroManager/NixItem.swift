@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct NutrientDetail {
-    var name : String = ""
-    var amount : Double = 0
-    var units : String = ""
-}
+//struct NutrientDetail {
+//    var name : String = ""
+//    var amount : Double = 0
+//    var units : String = ""
+//}
 
 class NixItem {
     var itemName : String
@@ -87,6 +87,11 @@ class NixItem {
         if let potassium = fieldsDict["nf_potassium"] as? Double {
             self.miscNutrients.append(NutrientDetail(name: "Potassium", amount: potassium, units: "mg"))
         }
+    }
+    
+    func toAnyObject() -> [String: Any]{
+        
+        return ["itemName": self.itemName, "itemId": self.itemId, "itemDescription": self.itemDescription ?? "", "fats": self.fats ?? 0.0, "carbs": self.carbs ?? 0.0, "proteins": self.proteins ?? 0.0]
     }
     
     func toString() -> String {

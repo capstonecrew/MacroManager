@@ -10,18 +10,18 @@ import UIKit
 import Firebase
 
 class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
-    
 
-    
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var userNameField: UITextField!
     @IBOutlet weak var userLevelLabel: UILabel!
     @IBOutlet weak var userBirthField: UITextField!
     @IBOutlet weak var userGoalLabel: UILabel!
     @IBOutlet weak var userWeightField: UITextField!
-   var editable = false
-     let options : [String] = ["Little to None", "Light", "Moderate", "Heavy", "Very Heavy"]
-     let goalOptions : [String] = ["Lose Fat", "Maintain", "Gain Muscle"]
+    
+    var editable = false
+    let options : [String] = ["Little to None", "Light", "Moderate", "Heavy", "Very Heavy"]
+    let goalOptions : [String] = ["Lose Fat", "Maintain", "Gain Muscle"]
+    
     @IBOutlet weak var goalPicker: UIPickerView!
     
     @IBOutlet weak var activityPicker: UIPickerView!

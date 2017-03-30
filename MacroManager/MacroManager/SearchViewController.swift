@@ -15,6 +15,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     var foodSearchResults:Array<NixItem> = []
+
+    var recipeSearchResults:Array<RecipeItem> = []
+
     var numMealsLeft = 0
     
     var fatGoalTotal = 0;
@@ -26,6 +29,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var fatToday = 0;
     var proteinToday = 0;
     var carbToday = 0;
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +42,24 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
             doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
         }
+        
+        EdamamApiManager.search(query: "mac and cheese", count: 30) { response in
+            for item in response.value! {
+                
+                print(item.itemName)
+                //self.recipeSearchResults.append(item)
+                
+            }
+        }
+        
+        YummlyApiManager.search(query: "mac and cheese", count: 10, completionHandler: { response in
+            
+            for item in response.value! {
+                print(item.itemName)
+                
+            }
+            
+        })
         
         //tableView.estimatedRowHeight = 110.0
         //tableView.rowHeight = UITableViewAutomaticDimension
@@ -86,11 +108,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
                 
             }
             
-            
             // Refresh table view after new data
             self.tableView.reloadData()
         
         }
+    
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
