@@ -15,9 +15,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
     var foodSearchResults:Array<NixItem> = []
-<<<<<<< HEAD
+
     var recipeSearchResults:Array<RecipeItem> = []
-=======
+
     var numMealsLeft = 0
     
     var fatGoalTotal = 0;
@@ -29,7 +29,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var fatToday = 0;
     var proteinToday = 0;
     var carbToday = 0;
->>>>>>> master
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +43,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
         }
         
-        EdamamApiManager.search(query: "velveeta", count: 30) { response in
+        EdamamApiManager.search(query: "mac and cheese", count: 30) { response in
             for item in response.value! {
                 self.recipeSearchResults.append(item)
                 print(item.toString())
