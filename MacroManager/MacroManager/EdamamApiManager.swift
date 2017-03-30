@@ -10,9 +10,9 @@ import Foundation
 import Alamofire
 
 class EdamamApiManager {
-    class func search(query: String, count: Int, completionHandler: @escaping (Result<[RecipeItem]>) -> Void) {
+    class func search(query: String, count: Int, completionHandler: @escaping (Result<[GenericFoodItem]>) -> Void) {
         let request = EdamamRouter.search(query: query, count: count)
-        var items: [RecipeItem] = []
+        var items: [GenericFoodItem] = []
         
         Alamofire.request(request)
             .responseJSON { response in
@@ -31,23 +31,10 @@ class EdamamApiManager {
                 
                 //Extract array of hits from JSON
                 for item in hits {
-                    if let newRecipeItem: RecipeItem = RecipeItem(json: item as! [String : Any]) {
-                        guard newRecipeItem.proteins != nil else {
-                            continue
-                        }
-                        
-                        guard newRecipeItem.carbs != nil else {
-                            continue
-                        }
-                        
-                        guard newRecipeItem.fats != nil else {
-                            continue
-                        }
-                        
-                        // if item has no nutritional facts
-                        if newRecipeItem.proteins! < 1.0 || newRecipeItem.carbs! < 1.0 || newRecipeItem.itemName == "" {
-                            continue
-                        }
+                    
+                    let json = item as! [String: Any]
+                    
+                    if let newRecipeItem: GenericFoodItem = GenericFoodItem(json: json, foodSource: .edamam) {
                         
                         items.append(newRecipeItem)
                     }

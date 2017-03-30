@@ -48,7 +48,6 @@ enum EdamamRouter : URLRequestConvertible {
             ]
             
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
-            print(urlRequest)
         }
         
         return urlRequest

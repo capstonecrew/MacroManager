@@ -45,11 +45,21 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         EdamamApiManager.search(query: "mac and cheese", count: 30) { response in
             for item in response.value! {
-                self.recipeSearchResults.append(item)
-                print(item.toString())
+                
+                print(item.itemName)
+                //self.recipeSearchResults.append(item)
                 
             }
         }
+        
+        YummlyApiManager.search(query: "mac and cheese", count: 10, completionHandler: { response in
+            
+            for item in response.value! {
+                print(item.itemName)
+                
+            }
+            
+        })
         
         //tableView.estimatedRowHeight = 110.0
         //tableView.rowHeight = UITableViewAutomaticDimension

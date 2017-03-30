@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct NutrientDetail {
-    var name : String = ""
-    var amount : Double = 0
-    var units : String = ""
-}
+//struct NutrientDetail {
+//    var name : String = ""
+//    var amount : Double = 0
+//    var units : String = ""
+//}
 
 class NixItem {
     var itemName : String
