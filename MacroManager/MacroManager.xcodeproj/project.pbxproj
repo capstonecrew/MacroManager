@@ -19,6 +19,9 @@
 		19B725141DDEC22A008B9E01 /* NixItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B725131DDEC22A008B9E01 /* NixItem.swift */; };
 		2C89F7463D9BCA5464422D39 /* Pods_MacroManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 98C12C87C06B949247C62F59 /* Pods_MacroManager.framework */; };
 		2DFFAEDB1E5CD6AF00785761 /* AchievementModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFFAEDA1E5CD6AF00785761 /* AchievementModel.swift */; };
+		6A08227A1E7BB00F00D39F31 /* EdamamRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0822791E7BB00F00D39F31 /* EdamamRouter.swift */; };
+		6A0822831E7BB5CB00D39F31 /* EdamamApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0822821E7BB5CB00D39F31 /* EdamamApiManager.swift */; };
+		6A0822851E7BB6A500D39F31 /* RecipeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A0822841E7BB6A500D39F31 /* RecipeItem.swift */; };
 		6A14ECE11E4D8AC40001BB3C /* HeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A14ECDF1E4D8AC40001BB3C /* HeaderCell.swift */; };
 		6A14ECE21E4D8AC40001BB3C /* HeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6A14ECE01E4D8AC40001BB3C /* HeaderCell.xib */; };
 		6A24E3631DBED3BF00F95408 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A24E3621DBED3BF00F95408 /* AppDelegate.swift */; };
@@ -216,6 +219,9 @@
 		19B725131DDEC22A008B9E01 /* NixItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NixItem.swift; sourceTree = "<group>"; };
 		2DFFAEDA1E5CD6AF00785761 /* AchievementModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AchievementModel.swift; sourceTree = "<group>"; };
 		5832A7AB7A2011FA349E0885 /* Pods-MacroManagerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MacroManagerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-MacroManagerUITests/Pods-MacroManagerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		6A0822791E7BB00F00D39F31 /* EdamamRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdamamRouter.swift; sourceTree = "<group>"; };
+		6A0822821E7BB5CB00D39F31 /* EdamamApiManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdamamApiManager.swift; sourceTree = "<group>"; };
+		6A0822841E7BB6A500D39F31 /* RecipeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipeItem.swift; sourceTree = "<group>"; };
 		6A14ECDF1E4D8AC40001BB3C /* HeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderCell.swift; sourceTree = "<group>"; };
 		6A14ECE01E4D8AC40001BB3C /* HeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HeaderCell.xib; sourceTree = "<group>"; };
 		6A24E35F1DBED3BF00F95408 /* MacroManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacroManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -428,6 +434,9 @@
 				19B7250A1DDEC15B008B9E01 /* NixApiManager.swift */,
 				19B725131DDEC22A008B9E01 /* NixItem.swift */,
 				197962A81DDA71C700AE1C92 /* NixRouter.swift */,
+				6A0822821E7BB5CB00D39F31 /* EdamamApiManager.swift */,
+				6A0822791E7BB00F00D39F31 /* EdamamRouter.swift */,
+				6A0822841E7BB6A500D39F31 /* RecipeItem.swift */,
 				6A4608ED1DDD7DD1003D77B5 /* ProfileViewController.swift */,
 				6AC12E161DC8F17C007C2D45 /* RegistrationViewController.swift */,
 				7925B98E1E3A701200AD343A /* SearchTableViewCell.swift */,
@@ -630,7 +639,7 @@
 				TargetAttributes = {
 					6A24E35E1DBED3BF00F95408 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = C6227XWG3F;
+						DevelopmentTeam = 88MN537MDW;
 						ProvisioningStyle = Automatic;
 					};
 					6A24E3751DBED3BF00F95408 = {
@@ -957,6 +966,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6A4608EC1DDD7DC2003D77B5 /* AcheivementsViewController.swift in Sources */,
+				6A0822831E7BB5CB00D39F31 /* EdamamApiManager.swift in Sources */,
 				6AA73A041E3BC38D00FF831D /* MealHeaderCell.swift in Sources */,
 				19B725141DDEC22A008B9E01 /* NixItem.swift in Sources */,
 				79CC6ADD1E314AF70050BCD8 /* MealViewController.swift in Sources */,
@@ -981,12 +991,14 @@
 				197FBF811DDF4ACD0095D8BF /* SwiftyJSON.swift in Sources */,
 				6A3D057D1DDEC754008CDDF7 /* DailyGoalProgressCell.swift in Sources */,
 				79F5B4A51E5F6A1B00131378 /* CustomMealHeaderCell.swift in Sources */,
+				6A0822851E7BB6A500D39F31 /* RecipeItem.swift in Sources */,
 				6AA73A0E1E3BC48300FF831D /* MealDetailsCell.swift in Sources */,
 				6A3D05741DDEBC8E008CDDF7 /* DashboardViewController.swift in Sources */,
 				6A14ECE11E4D8AC40001BB3C /* HeaderCell.swift in Sources */,
 				092D64AB1DCAC3B8009457FC /* GoalSliderViewController.swift in Sources */,
 				6A3D05771DDEBED7008CDDF7 /* WelcomeUserCell.swift in Sources */,
 				6A3943C51E281B7300E13F2B /* InitialViewController.swift in Sources */,
+				6A08227A1E7BB00F00D39F31 /* EdamamRouter.swift in Sources */,
 				6A4608EE1DDD7DD1003D77B5 /* ProfileViewController.swift in Sources */,
 				7925B98F1E3A701200AD343A /* SearchTableViewCell.swift in Sources */,
 				6AC12E171DC8F17C007C2D45 /* RegistrationViewController.swift in Sources */,
@@ -1153,11 +1165,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = C6227XWG3F;
+				DEVELOPMENT_TEAM = 88MN537MDW;
 				INFOPLIST_FILE = MacroManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.macromanager.sbrown;
+				PRODUCT_BUNDLE_IDENTIFIER = com.macromanager.alex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1171,11 +1183,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = C6227XWG3F;
+				DEVELOPMENT_TEAM = 88MN537MDW;
 				INFOPLIST_FILE = MacroManager/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.macromanager.sbrown;
+				PRODUCT_BUNDLE_IDENTIFIER = com.macromanager.alex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

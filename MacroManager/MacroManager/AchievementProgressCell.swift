@@ -19,7 +19,7 @@ class AchievementProgressCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        //progressView.layer.cornerRadius = 10
+        progressView.layer.cornerRadius = 3
         progressView.clipsToBounds = true
         self.layoutIfNeeded()
     }

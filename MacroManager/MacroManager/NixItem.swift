@@ -89,6 +89,11 @@ class NixItem {
         }
     }
     
+    func toAnyObject() -> [String: Any]{
+        
+        return ["itemName": self.itemName, "itemId": self.itemId, "itemDescription": self.itemDescription ?? "", "fats": self.fats ?? 0.0, "carbs": self.carbs ?? 0.0, "proteins": self.proteins ?? 0.0]
+    }
+    
     func toString() -> String {
         return "Item Name: \(self.itemName)\n" +
             "Item ID: \(self.itemId)\n" +
