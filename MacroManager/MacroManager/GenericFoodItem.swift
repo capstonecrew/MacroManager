@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct NutrientDetail {
     var name : String = ""
@@ -258,7 +259,7 @@ class GenericFoodItem {
     
     func toAnyObject() -> [String: Any]{
         
-        return ["itemName": self.itemName, "itemId": self.itemId, "itemDescription": self.itemDescription ?? "", "fats": self.fats ?? 0.0, "carbs": self.carbs ?? 0.0, "proteins": self.proteins ?? 0.0]
+        return ["itemName": self.itemName, "itemId": self.itemId, "itemDescription": self.itemDescription ?? "", "fats": self.fats ?? 0.0, "carbs": self.carbs ?? 0.0, "proteins": self.proteins ?? 0.0, "image": imageUrl]
     }
     
     func toString() -> String {
