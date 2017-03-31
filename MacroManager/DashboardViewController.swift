@@ -98,9 +98,8 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
                 
                 
             }
-            
->>>>>>> origin/master
         }
+        
         self.tableView.reloadData()
 
     }
