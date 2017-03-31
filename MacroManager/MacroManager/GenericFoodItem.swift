@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 struct NutrientDetail {
     var name : String = ""
@@ -48,7 +49,64 @@ class GenericFoodItem {
             self.foodSource = nil
         }
     }
+    init(snap: FIRDataSnapshot)
+    {
+        //super.init()
+        let value = snap.value as? NSDictionary
+        
+        if let c = value!["carbs"] as? Double{
+            self.carbs = c
+        }
+        else{
+            self.carbs = 0.0
+        }
+        if let f = value!["fats"] as? Double{
+            self.fats = f
+        }
+        else{
+            self.fats = 0.0
+        }
+        if let p = value!["proteins"] as? Double{
+            self.proteins = p
+        }
+        else{
+            self.proteins = 0.0
+        }
+        if let i = value!["image"] as? String{
+            self.imageUrl = i
+        }
+        else{
+            self.imageUrl = ""
+        }
+        
+        if let description = value!["imageDescription"] as? String{
+            self.itemDescription = description
+            
+        }
+        else{
+            self.itemDescription = ""
+            
+        }
+        
+        if let iId = value!["itemId"] as? String
+        {
+            self.itemId = iId
+        }
+        else{
+            self.itemId = ""
+        }
+        if let iName = value!["itemName"] as? String
+        {
+            self.itemName = iName
+            
+        }
+        else{
+            self.itemName = ""
+        }
+    }
     
+    
+
     convenience init?(json: [String: Any], foodSource : FoodSource) {
         switch foodSource {
         case FoodSource.edamam:

@@ -198,6 +198,9 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     }
     
     func addMealToHistory() {
+       
+        
+        
         currentUser.addMealToLog(mealEaten: (self.recievedItem)!)
         self.dismiss(animated: true, completion: {
             self.tabBarController?.selectedIndex = 0

@@ -8,9 +8,10 @@
 
 import UIKit
 import AlamofireImage
+import Firebase
 
 class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate, SuggestedFoodsCellDelegate, DailyGoalProgressCellDelegate {
-    
+    var historyMealLog = [GenericFoodItem]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,6 +27,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        loadData()
         tableView.reloadData()
         
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SuggestedFoodsCell
@@ -53,12 +55,38 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         case 0:
             numRows = 2
         case 1:
-            numRows = currentUser.mealLog.count
+            numRows = historyMealLog.count
         default:
             break
         }
         
         return numRows
+    }
+    
+    /*
+     get user ID
+     let userID = FIRAuth.auth()?.currentUser?.uid
+     reference to the DB
+     let ref = FIRDatabase.database().reference()
+     ref to child node of history if one exists, making an auto ID for the child, in which you can set my the .setValue method
+     let historyRef = ref.child("history").child(userID!).childByAutoId()
+     historyRef.setValue(recievedItem?.toAnyObject())
+     */
+    
+    func loadData()
+    {
+        historyMealLog = [GenericFoodItem]()
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        let historyRef = ref.child("history").child(userID!)
+        historyRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            for item in snapshot.children
+            {
+                let historyItem = GenericFoodItem.init(snap: item as! FIRDataSnapshot)
+            self.historyMealLog.append(historyItem)
+            }
+        }
+
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -134,7 +162,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "mealDetailsCell") as! MealDetailsCell
             cell.accessoryLbl.isHidden = true
-            cell.mainLbl.text = currentUser.mealLog[indexPath.row].itemName
+            cell.mainLbl.text = historyMealLog[indexPath.row].itemName
             return cell
             
         default:
@@ -237,8 +265,8 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             let selectedIndex: IndexPath = sender as! IndexPath
             if let vc = segue.destination as? UINavigationController{
                 if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
-                    nextView.recievedItem = currentUser.mealLog[selectedIndex.row]
-                    nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.mealLog[selectedIndex.row].itemId)
+                    nextView.recievedItem = historyMealLog[selectedIndex.row]
+                    nextView.isFavorite = currentUser.checkFavorite(itemId: historyMealLog[selectedIndex.row].itemId)
                     print(selectedIndex.row)
                 }
             }
