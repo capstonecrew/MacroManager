@@ -19,6 +19,13 @@ enum FoodSource {
     case yummly
 }
 
+enum Quality {
+    case good
+    case okay
+    case bad
+    case uninitialized
+}
+
 class GenericFoodItem {
     var itemName : String
     var itemId : String
@@ -28,6 +35,7 @@ class GenericFoodItem {
     var carbs : Double
     var imageUrl: String = ""
     var foodSource : FoodSource?
+    var quality : Quality = .uninitialized
     
     //Misc variables
     var miscNutrients : [NutrientDetail] = []
