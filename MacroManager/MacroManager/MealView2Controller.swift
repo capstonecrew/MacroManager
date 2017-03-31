@@ -168,13 +168,14 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     }
     
     func addMealToHistory() {
-        
+
         let userId = FIRAuth.auth()?.currentUser?.uid
         let ref = FIRDatabase.database().reference()
         
         let historyRef = ref.child("history").child(userId!).childByAutoId()
         historyRef.setValue(recievedItem?.toAnyObject())
     
+
         currentUser.addMealToLog(mealEaten: (self.recievedItem)!)
         self.dismiss(animated: true, completion: {
             self.tabBarController?.selectedIndex = 0

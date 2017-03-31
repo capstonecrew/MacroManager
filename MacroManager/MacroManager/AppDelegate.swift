@@ -30,12 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
         
 //        // FORCE SIGN OUT OPTION
-//        do  {
-//            try FIRAuth.auth()?.signOut()
-//            
-//        } catch {
-//            
-//        }
+        do  {
+            try FIRAuth.auth()?.signOut()
+            
+        } catch {
+            
+        }
         
         if let user = FIRAuth.auth()?.currentUser{
             
