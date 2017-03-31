@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
     
@@ -263,8 +264,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
 
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "meal", for: indexPath) as! SearchTableViewCell
-        
         let item = self.foodSearchResults[indexPath.row]
+        let circleFilter = CircleFilter()
+        cell.itemImage.af_setImage(withURL: URL(string: item.imageUrl)!, placeholderImage: UIImage(named: "placeholder"), filter: circleFilter)
         
         cell.mealNameLabel.text = item.itemName
         
@@ -273,6 +275,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         }else{
             cell.descriptionLabel.text = "No Description"
         }
+        
+        cell.descriptionLabel.isHidden = true
         
         cell.fatLabel.text = "Fats: \(item.fats)"
         

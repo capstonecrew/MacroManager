@@ -15,11 +15,13 @@ class SearchTableViewCell: UITableViewCell {
     @IBOutlet weak var proteinLabel: UILabel!
     @IBOutlet weak var carbsLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
-    @IBOutlet weak var qualityLabel: UILabel!
-    
+    @IBOutlet weak var itemImage: UIImageView!
+    @IBOutlet weak var qualityIcon: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.itemImage.layer.cornerRadius = self.itemImage.bounds.width/2
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -30,18 +32,19 @@ class SearchTableViewCell: UITableViewCell {
     
     // Custom functions for qualityLabel
     func setQualityBad(){
-        qualityLabel.text = "Bad."
-        qualityLabel.textColor = UIColor.red
+    
+        qualityIcon.setImage(UIImage(named: "bad_Icon"), for: .normal)
     }
     
     func setQualityOkay(){
-        qualityLabel.text = "Okay."
-        qualityLabel.textColor = UIColor.yellow
+        
+        qualityIcon.setImage(UIImage(named: "ok_Icon"), for: .normal)
     }
     
     func setQualityGood(){
-        qualityLabel.text = "Good!"
-        qualityLabel.textColor = UIColor.green
+        
+        qualityIcon.setImage(UIImage(named: "good_Icon"), for: .normal)
+        
     }
 
 }

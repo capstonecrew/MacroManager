@@ -78,29 +78,44 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         let userID = FIRAuth.auth()?.currentUser?.uid
         let ref = FIRDatabase.database().reference()
         let historyRef = ref.child("history").child(userID!)
+        
+        let lookupGroup = DispatchGroup()
+        
+        lookupGroup.enter()
+        
         historyRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-            for item in snapshot.children
-            {
+            
+            for item in snapshot.children{
                 let historyItem = GenericFoodItem.init(snap: item as! FIRDataSnapshot)
                 self.historyMealLog.append(historyItem)
             }
             
-            self.tableView.reloadData()
-
+            lookupGroup.leave()
         }
         
+        
+        lookupGroup.enter()
+        favoritesMealLog = [GenericFoodItem]()
+        currentUser.favoriteLog = [GenericFoodItem]()
         let favoritesRef = ref.child("favorites").child(userID!)
         favoritesRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
-            for item in snapshot.children
-            {
+            for item in snapshot.children{
                 let favoritesItem = GenericFoodItem.init(snap: item as!  FIRDataSnapshot)
                 self.favoritesMealLog.append(favoritesItem)
-                
+                currentUser.favoriteLog.append(favoritesItem)
                 
             }
+            
+            lookupGroup.leave()
         }
         
-        self.tableView.reloadData()
+        lookupGroup.notify(queue: .main, execute: {
+            
+            print(self.favoritesMealLog.count)
+            self.tableView.reloadData()
+        })
+        
+       
 
     }
     
@@ -157,6 +172,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
                 }
                 
                 cell.foodsCollectionView.collectionViewLayout.accessibilityScroll(.right)
+                cell.foodsCollectionView.reloadData()
                 cell.delegate = self
                 
                 return cell

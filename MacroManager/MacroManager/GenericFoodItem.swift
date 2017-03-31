@@ -128,11 +128,20 @@ class GenericFoodItem {
                     return nil
             }
             
-            guard let itemId = fieldsDict["uri"] as? String
+            guard let id = fieldsDict["uri"] as? String
                 else {
                     return nil
             }
             
+            var identifier = id.replacingOccurrences(of: ".", with: "0")
+            identifier = identifier.replacingOccurrences(of: "$", with: "0")
+            identifier = identifier.replacingOccurrences(of: "[", with: "0")
+            identifier = identifier.replacingOccurrences(of: "]", with: "0")
+            identifier = identifier.replacingOccurrences(of: "#", with: "0")
+            identifier = identifier.replacingOccurrences(of: "/", with: "0")
+            
+            print(identifier)
+        
             guard let image = fieldsDict["image"] as? String
                 else {
                     return nil
@@ -169,7 +178,7 @@ class GenericFoodItem {
             let carbs = (carbDetails["quantity"] as? Double)! / yield
             let fats = (fatDetails["quantity"] as? Double)! / yield
             
-            self.init(itemName: itemName, itemId: itemId, fats: fats, proteins: proteins, carbs: carbs, foodSource: FoodSource.edamam)
+            self.init(itemName: itemName, itemId: identifier, fats: fats, proteins: proteins, carbs: carbs, foodSource: FoodSource.edamam)
             
             self.imageUrl = image
             

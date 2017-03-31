@@ -21,6 +21,7 @@ class MealHeaderCell: UITableViewCell {
     @IBOutlet weak var fatsAmount: UILabel!
     @IBOutlet weak var favoriteBtn: UIButton!
     
+    @IBOutlet weak var itemImage: UIImageView!
     
     weak var parentVC: MealView2Controller! // BAD CODE
     var delegate: mealHeaderCellDelegate?

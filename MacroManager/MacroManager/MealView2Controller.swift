@@ -17,11 +17,11 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     // uncomment this to recieve item from segue
     var recievedItem: GenericFoodItem?
     var isFavorite: Bool?
+    var uid: String!
+    var ref: FIRDatabaseReference!
 
     //dummy nix item for test
     //var recievedNix = NixItem(itemName: "Hamburger", itemId: "001010", itemDescription: "", fats: 400.0, proteins: 200.0, carbs: 100.0)
-    
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +36,8 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         self.navigationItem.backBarButtonItem?.tintColor = UIColor.white
         self.navigationController?.navigationBar.tintColor = .white
         
-        
+        uid = FIRAuth.auth()?.currentUser?.uid
+        ref = FIRDatabase.database().reference()
         
     }
 
@@ -82,9 +83,10 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         if let nix = recievedItem {
             
             cell.foodNameLabel.text = nix.itemName
-            cell.proteinsAmount.text = "\(nix.proteins) g"
-            cell.carbsAmount.text = "\(nix.carbs) g"
-            cell.fatsAmount.text = "\(nix.fats) g"
+            cell.proteinsAmount.text = "\(Int(nix.proteins)) g"
+            cell.carbsAmount.text = "\(Int(nix.carbs)) g"
+            cell.fatsAmount.text = "\(Int(nix.fats)) g"
+            cell.itemImage.af_setImage(withURL: URL(string: nix.imageUrl)!, placeholderImage: UIImage(named: "placeholder"))
             
         }else {
             print("COULD NOT FETCH NIX ITEM")
@@ -113,16 +115,15 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     func addFavorite(sender: MealHeaderCell)
     {
-        let userId = FIRAuth.auth()?.currentUser?.uid
-        let ref = FIRDatabase.database().reference()
-        
-        let favoriteRef = ref.child("favorites").child(userId!).child((recievedItem?.itemId)!)
-        favoriteRef.setValue(recievedItem?.toAnyObject())
-        
-        currentUser.addMealToFavorite(mealEaten: self.recievedItem!)
-        self.isFavorite = true
-        
-        self.performSegue(withIdentifier: "showAddedAlert", sender: self)
+        print(recievedItem?.itemId)
+        let favoriteRef = ref.child("favorites").child(uid).child(recievedItem!.itemId)
+        favoriteRef.setValue(recievedItem?.toAnyObject()) { (error, ref) in
+            
+            currentUser.addMealToFavorite(mealEaten: self.recievedItem!)
+            self.isFavorite = true
+            self.performSegue(withIdentifier: "showAddedAlert", sender: self)
+            
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
