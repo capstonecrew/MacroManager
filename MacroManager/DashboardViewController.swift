@@ -121,11 +121,11 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             }else if(indexPath.row == 1){
                 let cell = tableView.dequeueReusableCell(withIdentifier: "dailyGoalProgressCell") as! DailyGoalProgressCell
                 cell.proteinLabel.text = "Proteins"
-                cell.proteinRatioLbl.text = "\(currentUser.proteinToday!) / \(currentUser.proteinCount!) g"
+                cell.proteinRatioLbl.text = "\(currentUser.todaysMacroRecord.proteinToday!) / \(currentUser.proteinCount!) g"
                 cell.carbLabel.text = "Carbs"
-                cell.carbsRatioLbl.text = "\(currentUser.carbToday!) / \(currentUser.carbCount!) g"
+                cell.carbsRatioLbl.text = "\(currentUser.todaysMacroRecord.carbToday!) / \(currentUser.carbCount!) g"
                 cell.fatLabel.text = "Fats"
-                cell.fatsRatioLbl.text = "\(currentUser.fatToday!) / \(currentUser.fatCount!) g"
+                cell.fatsRatioLbl.text = "\(currentUser.todaysMacroRecord.fatToday) / \(currentUser.fatCount!) g"
                 cell.delegate = self
                 return cell
             }
@@ -185,7 +185,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodCollectionCell", for: indexPath) as!FoodCollectionCell
         cell.tag = indexPath.row
         cell.foodLbl.text = currentUser.favoriteLog[indexPath.row].itemName
-        cell.foodImageView.af_setImage(withURL: URL(string: currentUser.favoriteLog[indexPath.row].imageUrl!)! , placeholderImage: UIImage(named: "placeholder"), filter: CircleFilter())
+        cell.foodImageView.af_setImage(withURL: URL(string: currentUser.favoriteLog[indexPath.row].imageUrl)! , placeholderImage: UIImage(named: "placeholder"), filter: CircleFilter())
         cell.delegate = self
         
         return cell
@@ -208,7 +208,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         print("animating bar graph")
         let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as! DailyGoalProgressCell
         
-        var progress = Float(currentUser.proteinToday!)/Float(currentUser.proteinCount!)
+        var progress = Float(currentUser.todaysMacroRecord.proteinToday!)/Float(currentUser.proteinCount!)
         if (progress >= 1)
         {
             currentUser.client.updatePoints(d: "goals")
@@ -216,13 +216,13 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         print(progress)
         cell.proteinProgress.setProgress(progress, animated: true)
         
-        progress = Float(currentUser.carbToday!)/Float(currentUser.carbCount!)
+        progress = Float(currentUser.todaysMacroRecord.carbToday)/Float(currentUser.carbCount!)
         cell.carbsProgress.setProgress(progress, animated: true)
         if (progress >= 1)
         {
             currentUser.client.updatePoints(d: "goals")
         }
-        progress = Float(currentUser.fatToday!)/Float(currentUser.fatCount!)
+        progress = Float(currentUser.todaysMacroRecord.fatToday!)/Float(currentUser.fatCount!)
         cell.fatsProgress.setProgress(progress, animated: true)
         if (progress >= 1)
         {
@@ -237,7 +237,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             let selectedIndex: IndexPath = sender as! IndexPath
             if let vc = segue.destination as? UINavigationController{
                 if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
-                    nextView.recievedNix = currentUser.mealLog[selectedIndex.row]
+                    nextView.recievedItem = currentUser.mealLog[selectedIndex.row]
                     nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.mealLog[selectedIndex.row].itemId)
                     print(selectedIndex.row)
                 }
@@ -247,7 +247,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             let selectedIndex: IndexPath = sender as! IndexPath
             if let vc = segue.destination as? UINavigationController{
                 if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
-                    nextView.recievedNix = currentUser.favoriteLog[selectedIndex.row]
+                    nextView.recievedItem = currentUser.favoriteLog[selectedIndex.row]
                     nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.favoriteLog[selectedIndex.row].itemId)
                     print(selectedIndex.row)
                 }

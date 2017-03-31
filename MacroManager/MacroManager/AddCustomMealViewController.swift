@@ -123,11 +123,7 @@ class AddCustomMealViewController: UITableViewController, CustomMealHeaderCellDe
         
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! CustomMealHeaderCell
         
-
-        
-        
- 
-        currentUser.addCustomMeal(itenName: cell.nameTextField.text!, itemDescription: "", fats: Double(cell.fatsTextField.text!), proteins: Double(cell.proteinTextField.text!), carbs: Double(cell.carbsTextField.text!))
+        currentUser.addCustomMeal(itemName: cell.nameTextField.text!, itemDescription: "", fats: Int(cell.fatsTextField.text!), proteins: Int(cell.proteinTextField.text!), carbs: Int(cell.carbsTextField.text!))
         print("added meal")
         print(cell.nameTextField.text! + " name")
         print((cell.proteinTextField.text!) + "protein")

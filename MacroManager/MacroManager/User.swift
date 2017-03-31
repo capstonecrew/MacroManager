@@ -33,7 +33,7 @@ class User: NSObject {
     var customMealList = [GenericFoodItem]() // custom meals
     var client:AchievementSystem = AchievementSystem()
     
-    var todaysMacroRecord: MacroRecord
+    var todaysMacroRecord: MacroRecord!
     
     override init() {
         super.init()
@@ -50,7 +50,7 @@ class User: NSObject {
         proteinCount = 211
         carbCount = 316
         fatCount = 78
-        
+        todaysMacroRecord = MacroRecord(proteinGoal: 10, carbGoal: 10, fatGoal: 10)
         print("dummy info used")
         
     }
@@ -72,7 +72,7 @@ class User: NSObject {
         
     }
     
-    init(snap: FIRDataSnapshot, todayRec: MacroRecord) {
+    init(snap: FIRDataSnapshot) {
         super.init()
         
         let value = snap.value as? NSDictionary
@@ -142,10 +142,10 @@ class User: NSObject {
             self.goal = ""
         }
         
-        self.todaysMacroRecord = todayRec
-        
         self.calorieCalc()
         self.macronutrientCalc()
+        
+        self.todaysMacroRecord = MacroRecord(proteinGoal: self.proteinCount, carbGoal: self.carbCount, fatGoal: self.fatCount)
         
         
         print("created user from FIRDatabase")
@@ -245,11 +245,11 @@ class User: NSObject {
     
     // add custom meal
     func addCustomMeal(itemName: String, itemDescription: String?, fats: Int?, proteins: Int?, carbs: Int?) {
-        let customFood: GenericFoodItem! = GenericFoodItem(itemName: itemName, itemId: "custom", fats: fats, proteins: proteins, carbs: carbs, foodSource: FoodSource.custom)
+        let customFood: GenericFoodItem! = GenericFoodItem(itemName: itemName, itemId: "custom", fats: fats!, proteins: proteins!, carbs: carbs!, foodSource: FoodSource.custom)
         customMealList.append(customFood) // add to custom meal log
     }
     
-    func removeMealFromFavorite(mealEaten: NixItem)
+    func removeMealFromFavorite(mealEaten: GenericFoodItem)
     {
         for index in 0...favoriteLog.count{
             if favoriteLog[index].itemId == mealEaten.itemId{

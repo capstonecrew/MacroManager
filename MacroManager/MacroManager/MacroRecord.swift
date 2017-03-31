@@ -57,8 +57,9 @@ class MacroRecord: NSObject {
     }
     
     func addMealToMacroRecord(mealEaten: GenericFoodItem) {
-        self.proteinToday += mealEaten.proteins
-        self.carbToday += mealEaten.carbs
+        self.proteinToday = self.proteinToday + mealEaten.proteins
+        self.carbToday = self.carbToday + mealEaten.carbs
+        self.fatToday = self.fatToday + mealEaten.fats
         
     }
     

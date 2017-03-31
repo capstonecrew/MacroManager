@@ -21,19 +21,19 @@ enum FoodSource {
 }
 
 class GenericFoodItem {
-    var itemName : String
-    var itemId : String
+    var itemName : String!
+    var itemId : String!
     var itemDescription : String = ""
     var fats : Int!
     var proteins : Int!
     var carbs : Int!
     var imageUrl: String = ""
-    var foodSource : FoodSource
+    var foodSource : FoodSource!
     
     //Misc variables
     var miscNutrients : [NutrientDetail] = []
     
-    required init?(itemName: String, itemId: String, fats: Int, proteins: Int, carbs: Int, foodSource : FoodSource) {
+    required init(itemName: String, itemId: String, fats: Int, proteins: Int, carbs: Int, foodSource : FoodSource) {
         self.itemName = itemName
         self.itemId = itemId
         self.fats = fats
@@ -159,7 +159,7 @@ class GenericFoodItem {
                     return nil
             }
             
-            guard let yield = json["numberOfServings"] as? Double
+            guard let yield = json["numberOfServings"] as? Int
                 else {
                     return nil
             }
@@ -170,9 +170,9 @@ class GenericFoodItem {
             }
             
             // Loop through array of nutrition estimates and match on names
-            var fats : Double?
-            var carbs : Double?
-            var proteins : Double?
+            var fats : Int?
+            var carbs : Int?
+            var proteins : Int?
             
             if nutrients.count > 0{
                 
@@ -184,19 +184,19 @@ class GenericFoodItem {
                     
                     // Required data
                     if nutrient["attribute"] as! String == "FAT" {
-                        guard let fatsVar = nutrient["value"] as! Double? else {
+                        guard let fatsVar = nutrient["value"] as! Int? else {
                             return nil
                         }
                         fats = fatsVar/yield
                     }
                     if nutrient["attribute"] as! String == "CHOCDF" {
-                        guard let carbsVar = nutrient["value"] as! Double? else {
+                        guard let carbsVar = nutrient["value"] as! Int? else {
                             return nil
                         }
                         carbs = carbsVar/yield
                     }
                     if nutrient["attribute"] as! String == "PROCNT" {
-                        guard let proteinsVar = nutrient["value"] as! Double? else {
+                        guard let proteinsVar = nutrient["value"] as! Int? else {
                             return nil
                         }
                         proteins = proteinsVar/yield
@@ -246,6 +246,9 @@ class GenericFoodItem {
              if let potassium = fieldsDict["nf_potassium"] as? Double {
              self.miscNutrients.append(NutrientDetail(name: "Potassium", amount: potassium, units: "mg"))
              }*/
+            
+        default:
+            break
         }
     }
     
