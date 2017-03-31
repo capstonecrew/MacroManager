@@ -14,7 +14,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var doneButton: UIBarButtonItem!
     
-    var foodSearchResults:Array<NixItem> = []
+    var foodSearchResults:Array<GenericFoodItem> = []
 
     var recipeSearchResults:Array<RecipeItem> = []
 
@@ -101,17 +101,47 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     func performSearch(searchText: String) {
         foodSearchResults.removeAll()
         foodSearchResults = foodSearchResults + currentUser.customMealList
-        NixApiManager.search(query: searchText, page: 0) { response in
-            for item in response.value! {
-                //Fill table view
+//        NixApiManager.search(query: searchText, page: 0) { response in
+//            for item in response.value! {
+//                //Fill table view
+//                self.foodSearchResults.append(item)
+//                
+//            }
+//            
+//            // Refresh table view after new data
+//            self.tableView.reloadData()
+//        
+//        }
+        
+        let lookupGroup = DispatchGroup()
+        
+        lookupGroup.enter()
+        YummlyApiManager.search(query: searchText, count: 20, completionHandler: { response in
+            
+            for item in response.value!{
                 self.foodSearchResults.append(item)
-                
             }
             
-            // Refresh table view after new data
-            self.tableView.reloadData()
+            lookupGroup.leave()
+            
+        })
         
-        }
+        lookupGroup.enter()
+        EdamamApiManager.search(query: searchText, count: 20, completionHandler: { response in
+            
+            for item in response.value!{
+                self.foodSearchResults.append(item)
+            }
+            
+            lookupGroup.leave()
+            
+        })
+        
+        lookupGroup.notify(queue: .main, execute: {
+            
+            self.tableView.reloadData()
+        })
+
     
     }
     
@@ -136,27 +166,14 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             cell.descriptionLabel.text = "No Description"
         }
         
-        if let fats = item.fats {
-            cell.fatLabel.text = "Fats: \(fats)"
-            fatPercent = (fats / Double(fatGoal)) * 100.0
-            
-        } else {
-            cell.fatLabel.text = "Fats: N/A"
-        }
+        cell.fatLabel.text = "Fats: \(item.fats)"
+        fatPercent = (item.fats / Double(fatGoal)) * 100.0
         
-        if let proteins = item.proteins {
-            cell.proteinLabel.text = "Protein: \(proteins)"
-            proteinPercent = (proteins / Double(proteinGoal)) * 100.0
-        } else {
-            cell.proteinLabel.text = "Protein: N/A"
-        }
+        cell.proteinLabel.text = "Protein: \(item.proteins)"
+        proteinPercent = (item.proteins / Double(proteinGoal)) * 100.0
         
-        if let carbs = item.carbs {
-            cell.carbsLabel.text = "Carbs: \(carbs)"
-            carbPercent = (carbs / Double(carbGoal)) * 100.0
-        } else {
-            cell.carbsLabel.text = "Carbs: N/A"
-        }
+        cell.carbsLabel.text = "Carbs: \(item.carbs)"
+        carbPercent = (item.carbs / Double(carbGoal)) * 100.0
         
         // Quality calculations
         switch(currentUser.goal){
@@ -250,7 +267,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             let selectedIndex: IndexPath = self.tableView.indexPath(for: sender as! UITableViewCell)!
             if let vc = segue.destination as? UINavigationController{
                 if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
-                    nextView.recievedNix = foodSearchResults[selectedIndex.row]
+                    nextView.recievedItem = foodSearchResults[selectedIndex.row]
                     nextView.isFavorite = currentUser.checkFavorite(itemId: foodSearchResults[selectedIndex.row].itemId)
                     print(nextView.isFavorite)
                     print(selectedIndex.row)

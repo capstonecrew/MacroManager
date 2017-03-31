@@ -185,7 +185,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodCollectionCell", for: indexPath) as!FoodCollectionCell
         cell.tag = indexPath.row
         cell.foodLbl.text = currentUser.favoriteLog[indexPath.row].itemName
-        cell.foodImageView.af_setImage(withURL: URL(string: currentUser.favoriteLog[indexPath.row].imageUrl!)! , placeholderImage: UIImage(named: "placeholder"), filter: CircleFilter())
+        cell.foodImageView.af_setImage(withURL: URL(string: currentUser.favoriteLog[indexPath.row].imageUrl)! , placeholderImage: UIImage(named: "placeholder"), filter: CircleFilter())
         cell.delegate = self
         
         return cell
@@ -237,7 +237,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             let selectedIndex: IndexPath = sender as! IndexPath
             if let vc = segue.destination as? UINavigationController{
                 if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
-                    nextView.recievedNix = currentUser.mealLog[selectedIndex.row]
+                    nextView.recievedItem = currentUser.mealLog[selectedIndex.row]
                     nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.mealLog[selectedIndex.row].itemId)
                     print(selectedIndex.row)
                 }
@@ -247,7 +247,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             let selectedIndex: IndexPath = sender as! IndexPath
             if let vc = segue.destination as? UINavigationController{
                 if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
-                    nextView.recievedNix = currentUser.favoriteLog[selectedIndex.row]
+                    nextView.recievedItem = currentUser.favoriteLog[selectedIndex.row]
                     nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.favoriteLog[selectedIndex.row].itemId)
                     print(selectedIndex.row)
                 }

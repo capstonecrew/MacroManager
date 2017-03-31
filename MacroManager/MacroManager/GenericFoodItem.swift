@@ -27,18 +27,26 @@ class GenericFoodItem {
     var proteins : Double
     var carbs : Double
     var imageUrl: String = ""
-    var foodSource : FoodSource
+    var foodSource : FoodSource?
     
     //Misc variables
     var miscNutrients : [NutrientDetail] = []
     
-    required init?(itemName: String, itemId: String, fats: Double, proteins: Double, carbs: Double, foodSource : FoodSource) {
+    required init?(itemName: String, itemId: String, fats: Double, proteins: Double, carbs: Double, foodSource : FoodSource?) {
         self.itemName = itemName
         self.itemId = itemId
         self.fats = fats
         self.proteins = proteins
         self.carbs = carbs
-        self.foodSource = foodSource
+        
+        if let source = foodSource{
+            
+            self.foodSource = source
+            
+        }else{
+            
+            self.foodSource = nil
+        }
     }
     
     convenience init?(json: [String: Any], foodSource : FoodSource) {
