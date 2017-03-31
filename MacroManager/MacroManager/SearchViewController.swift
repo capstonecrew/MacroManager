@@ -119,6 +119,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         YummlyApiManager.search(query: searchText, count: 20, completionHandler: { response in
             
             for item in response.value!{
+                self.calculateQuality(item: item)
                 self.foodSearchResults.append(item)
             }
             
@@ -130,6 +131,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         EdamamApiManager.search(query: searchText, count: 20, completionHandler: { response in
             
             for item in response.value!{
+                self.calculateQuality(item: item)
                 self.foodSearchResults.append(item)
             }
             
@@ -138,11 +140,119 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         })
         
         lookupGroup.notify(queue: .main, execute: {
-            
+            self.foodSearchResults.sort(by: self.sorterForItemsByQuality)
             self.tableView.reloadData()
         })
 
     
+    }
+    
+    func sorterForItemsByQuality(first: GenericFoodItem, second: GenericFoodItem) -> Bool {
+        if first.quality == .good {
+            return true
+        }
+        else if (first.quality == .bad && (second.quality == .okay || second.quality == .good)) {
+            return false
+        }
+        else if (first.quality == .okay && (second.quality == .good)) {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    func calculateQuality(item : GenericFoodItem) {
+        var carbPercent = 0.0
+        var proteinPercent = 0.0
+        var fatPercent = 0.0
+        
+        fatPercent = (item.fats / Double(fatGoal)) * 100.0
+        proteinPercent = (item.proteins / Double(proteinGoal)) * 100.0
+        carbPercent = (item.carbs / Double(carbGoal)) * 100.0
+
+        // Quality calculations
+        switch(currentUser.goal){
+        case "Lose Fat":
+            //Above 30% difference on all macros
+            if ((carbPercent < 70   || carbPercent > 130) &&
+                (fatPercent < 70   || fatPercent > 130) &&
+                (proteinPercent < 70   || proteinPercent > 130)) {
+                item.quality = .bad
+            }
+                //Below 20% difference on at least 2 macros and below 30% on the third
+            else if ((carbPercent >= 70   && carbPercent <= 120) &&
+                (fatPercent >= 80  && fatPercent <= 120) &&
+                (proteinPercent >= 80  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 80  && carbPercent <= 120) &&
+                (fatPercent >= 70  && fatPercent <= 120) &&
+                (proteinPercent >= 80  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 80  && carbPercent <= 120) &&
+                (fatPercent >= 80  && fatPercent <= 120) &&
+                (proteinPercent >= 70  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else {
+                item.quality = .okay
+            }
+        case "Maintain":
+            //Above 30% difference on all macros
+            if ((carbPercent < 8  || carbPercent > 120) &&
+                (fatPercent < 8  || fatPercent > 120) &&
+                (proteinPercent < 8  || proteinPercent > 120)) {
+                item.quality = .bad
+            }
+                //Below 20% difference on at least 2 macros and below 30% on the third
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else {
+                item.quality = .okay
+            }
+        case "Gain Muscle":
+            //Above 30% difference on all macros
+            if ((carbPercent < 8  || carbPercent > 120) &&
+                (fatPercent < 8  || fatPercent > 120) &&
+                (proteinPercent < 8  || proteinPercent > 120)) {
+                item.quality = .bad
+            }
+                //Below 20% difference on at least 2 macros and below 30% on the third
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else {
+                item.quality = .okay
+            }
+        default: break
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -150,9 +260,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-        var carbPercent = 0.0
-        var proteinPercent = 0.0
-        var fatPercent = 0.0
+
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "meal", for: indexPath) as! SearchTableViewCell
         
@@ -167,94 +275,21 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         }
         
         cell.fatLabel.text = "Fats: \(item.fats)"
-        fatPercent = (item.fats / Double(fatGoal)) * 100.0
         
         cell.proteinLabel.text = "Protein: \(item.proteins)"
-        proteinPercent = (item.proteins / Double(proteinGoal)) * 100.0
         
         cell.carbsLabel.text = "Carbs: \(item.carbs)"
-        carbPercent = (item.carbs / Double(carbGoal)) * 100.0
         
-        // Quality calculations
-        switch(currentUser.goal){
-            case "Lose Fat":
-                //Above 30% difference on all macros
-                if ((carbPercent < 8   || carbPercent > 120) &&
-                    (fatPercent < 8   || fatPercent > 120) &&
-                    (proteinPercent < 8   || proteinPercent > 120)) {
-                    cell.setQualityBad()
-                }
-                    //Below 20% difference on at least 2 macros and below 30% on the third
-                else if ((carbPercent >= 8   && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else {
-                    cell.setQualityOkay()
-            }
-            case "Maintain":
-                //Above 30% difference on all macros
-                if ((carbPercent < 8  || carbPercent > 120) &&
-                    (fatPercent < 8  || fatPercent > 120) &&
-                    (proteinPercent < 8  || proteinPercent > 120)) {
-                    cell.setQualityBad()
-                }
-                    //Below 20% difference on at least 2 macros and below 30% on the third
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else {
-                    cell.setQualityOkay()
-            }
-            case "Gain Muscle":
-                //Above 30% difference on all macros
-                if ((carbPercent < 8  || carbPercent > 120) &&
-                    (fatPercent < 8  || fatPercent > 120) &&
-                    (proteinPercent < 8  || proteinPercent > 120)) {
-                    cell.setQualityBad()
-                }
-                    //Below 20% difference on at least 2 macros and below 30% on the third
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else {
-                    cell.setQualityOkay()
-            }
+        switch(item.quality) {
+        case .bad:
+            cell.setQualityBad()
+            
+        case .okay:
+            cell.setQualityOkay()
+            
+        case .good:
+            cell.setQualityGood()
+            
         default: break
         }
         

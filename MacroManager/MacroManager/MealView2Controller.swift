@@ -113,49 +113,16 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     func addFavorite(sender: MealHeaderCell)
     {
-        let url = "https://www.googleapis.com/customsearch/v1?q=\(recievedItem?.itemName)&cx=000748290492374586623%3A00pjyzbfpy4&num=1&searchType=image&key=AIzaSyCvYEp9GQqoX-c99F8w5HvaaiEg_lU6dz4"
+        let userId = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
         
-        
-        let parameters: Parameters = ["key": "AIzaSyCvYEp9GQqoX-c99F8w5HvaaiEg_lU6dz4", "cx": "000748290492374586623%3A00pjyzbfpy4", "q": recievedItem!.itemName]
-        
-        let values = recievedItem!.itemName.components(separatedBy: CharacterSet.whitespaces.union(.punctuationCharacters))
-        print(values)
-        
-        var q = String()
-        
-        if(values.count > 0){
-            
-            q = values[0]
-            
-            if values.count != 1{
-                for i in 1...values.count - 1{
-                    
-                    if(values[i] != ""){
-                        //q = "\(q)+\(value)"
-                        q = q + "+" + values[i]
-                    }
-                }
-            }
-        }
-        
-        
-        let favoriteRef = FIRDatabase.database().reference().child((FIRAuth.auth()?.currentUser?.uid)!).child("favorites").child((recievedItem?.itemId)!)
+        let favoriteRef = ref.child("favorites").child(userId!).child((recievedItem?.itemId)!)
         favoriteRef.setValue(recievedItem?.toAnyObject())
         
-        Alamofire.request("https://www.googleapis.com/customsearch/v1?q=\(q)&cx=000748290492374586623%3A00pjyzbfpy4&num=1&searchType=image&key=AIzaSyCvYEp9GQqoX-c99F8w5HvaaiEg_lU6dz4").responseJSON{ response in
-            
-            print(response.data)
-            let searchResults = JSON(response.result.value!)
-            print(searchResults)
-            
-            let imageUrl = searchResults["items"][0]["link"].string
-            self.recievedItem?.imageUrl = imageUrl!
-            currentUser.addMealToFavorite(mealEaten: self.recievedItem!)
-            self.isFavorite = true
-            
-            self.performSegue(withIdentifier: "showAddedAlert", sender: self)
-            
-        }
+        currentUser.addMealToFavorite(mealEaten: self.recievedItem!)
+        self.isFavorite = true
+        
+        self.performSegue(withIdentifier: "showAddedAlert", sender: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -176,7 +143,10 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         currentUser.removeMealFromFavorite(mealEaten: recievedItem!)
         self.isFavorite = false
         
-        let favoriteRef = FIRDatabase.database().reference().child((FIRAuth.auth()?.currentUser?.uid)!).child("favorites").child((recievedItem?.itemId)!)
+        let userId = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        
+        let favoriteRef = ref.child("favorites").child(userId!).child((recievedItem?.itemId)!)
         favoriteRef.removeValue()
         
         self.performSegue(withIdentifier: "showRemovedAlert", sender: self)
@@ -198,12 +168,23 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     }
     
     func addMealToHistory() {
-       
+
+        let userId = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
         
-        
+        let historyRef = ref.child("history").child(userId!).childByAutoId()
+        historyRef.setValue(recievedItem?.toAnyObject())
+    
+
         currentUser.addMealToLog(mealEaten: (self.recievedItem)!)
         self.dismiss(animated: true, completion: {
             self.tabBarController?.selectedIndex = 0
         })
     }
 }
+
+
+
+
+
+
