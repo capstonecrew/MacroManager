@@ -41,7 +41,7 @@ enum YummlyRouter : URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .getItem(let id):
+        case .getItem(_ ):
             let parameters : Parameters = [
                 "_app_id" : "\(YummlyRouter.appID)",
                 "_app_key" : "\(YummlyRouter.appKey)"

@@ -12,13 +12,9 @@ import Firebase
 
 class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
-    
-    
     // uncomment this to recieve item from segue
     var recievedNix: NixItem?
     var isFavorite: Bool?
-    
-    
     
     //dummy nix item for test
     //var recievedNix = NixItem(itemName: "Hamburger", itemId: "001010", itemDescription: "", fats: 400.0, proteins: 200.0, carbs: 100.0)
