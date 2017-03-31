@@ -23,15 +23,17 @@ class User: NSObject {
     var gender: String!
     var activityLevel: String!
     var calorieCount: Double!
-    var proteinToday: Int!
-    var carbToday: Int!
-    var fatToday: Int!
+    //var proteinToday: Int!
+    //var carbToday: Int!
+    //var fatToday: Int!
     
-    var mealLog = [NixItem]() // meal history
-    var favoriteLog = [NixItem]() // favorite meal list
+    var mealLog = [GenericFoodItem]() // meal history
+    var favoriteLog = [GenericFoodItem]() // favorite meal list
     var favoriteImage = [String]() // favorite meal list
-    var customMealList = [NixItem]() // custom meals
+    var customMealList = [GenericFoodItem]() // custom meals
     var client:AchievementSystem = AchievementSystem()
+    
+    var todaysMacroRecord: MacroRecord
     
     override init() {
         super.init()
@@ -48,9 +50,6 @@ class User: NSObject {
         proteinCount = 211
         carbCount = 316
         fatCount = 78
-        proteinToday = 0
-        carbToday = 0
-        fatToday = 0
         
         print("dummy info used")
         
@@ -65,16 +64,15 @@ class User: NSObject {
         self.weight = weight
         self.activityLevel = activityLevel
         self.goal = goal
-        self.proteinToday = 0
-        self.carbToday = 0
-        self.fatToday = 0
         
         self.calorieCalc()
         self.macronutrientCalc()
         
+        self.todaysMacroRecord = MacroRecord(proteinGoal: proteinCount, carbGoal: carbCount, fatGoal: fatCount)
+        
     }
     
-    init(snap: FIRDataSnapshot) {
+    init(snap: FIRDataSnapshot, todayRec: MacroRecord) {
         super.init()
         
         let value = snap.value as? NSDictionary
@@ -144,35 +142,11 @@ class User: NSObject {
             self.goal = ""
         }
         
-        if let protein = value?["proteinToday"] as? Int{
-            
-            self.proteinToday = protein
-            
-        }else{
-            
-            self.proteinToday = 0
-        }
-        
-        if let fat = value?["fatToday"] as? Int{
-            
-            self.fatToday = fat
-            
-        }else{
-            
-            self.fatToday = 0
-        }
-        
-        if let carb = value?["carbToday"] as? Int{
-            
-            self.carbToday = carb
-            
-        }else{
-            
-            self.carbToday = 0
-        }
+        self.todaysMacroRecord = todayRec
         
         self.calorieCalc()
         self.macronutrientCalc()
+        
         
         print("created user from FIRDatabase")
         
@@ -247,34 +221,7 @@ class User: NSObject {
             
              self.goal = ""
         }
-        
-        if let protein = value["proteinToday"] as? Int{
-            
-            self.proteinToday = protein
-            
-        }else{
-            
-            self.proteinToday = 0
-        }
-        
-        if let fat = value["fatToday"] as? Int{
-            
-            self.fatToday = fat
-            
-        }else{
-            
-            self.fatToday = 0
-        }
-        
-        if let carb = value["carbToday"] as? Int{
-            
-            self.carbToday = carb
-            
-        }else{
-            
-            self.carbToday = 0
-        }
-        
+                
         self.calorieCalc()
         self.macronutrientCalc()
         
@@ -285,11 +232,11 @@ class User: NSObject {
     
     
     func toAnyObject() -> [String: Any] {
-        return ["name": self.name, "age": self.age, "gender": self.gender, "height": self.height, "weight": self.weight, "activityLevel": self.activityLevel, "goal": self.goal, "proteinToday": self.proteinToday, "fatToday": self.fatToday, "carbToday": self.carbToday]
+        return ["name": self.name, "age": self.age, "gender": self.gender, "height": self.height, "weight": self.weight, "activityLevel": self.activityLevel, "goal": self.goal, "proteinToday": self.todaysMacroRecord.proteinToday, "fatToday": self.todaysMacroRecord.fatToday, "carbToday": self.todaysMacroRecord.carbToday]
     }
     
     
-    func addMealToFavorite(mealEaten: NixItem)
+    func addMealToFavorite(mealEaten: GenericFoodItem)
     {
         favoriteLog.append(mealEaten)
         
@@ -297,9 +244,9 @@ class User: NSObject {
     
     
     // add custom meal
-    func addCustomMeal(itenName: String, itemDescription: String?, fats: Double?, proteins: Double?, carbs: Double?) {
-        let custNix: NixItem! = NixItem(itemName: itenName, itemId: "custom", itemDescription: itemDescription, fats: fats, proteins: proteins, carbs: carbs)
-        customMealList.append(custNix) // add to custom meal log
+    func addCustomMeal(itemName: String, itemDescription: String?, fats: Int?, proteins: Int?, carbs: Int?) {
+        let customFood: GenericFoodItem! = GenericFoodItem(itemName: itemName, itemId: "custom", fats: fats, proteins: proteins, carbs: carbs, foodSource: FoodSource.custom)
+        customMealList.append(customFood) // add to custom meal log
     }
     
     func removeMealFromFavorite(mealEaten: NixItem)
@@ -432,28 +379,33 @@ class User: NSObject {
         
     }
     
-    func addMealToLog(mealEaten: NixItem) {
+    func addMealToLog(mealEaten: GenericFoodItem) {
         mealLog.append(mealEaten)
         
-        proteinToday = proteinToday + Int(mealEaten.proteins!)
-        carbToday = carbToday + Int(mealEaten.carbs!)
-        fatToday = fatToday + Int(mealEaten.fats!)
+        todaysMacroRecord.proteinToday = todaysMacroRecord.proteinToday + Int(mealEaten.proteins!)
+        todaysMacroRecord.carbToday = todaysMacroRecord.carbToday + Int(mealEaten.carbs!)
+        todaysMacroRecord.fatToday = todaysMacroRecord.fatToday + Int(mealEaten.fats!)
         
         if let user = FIRAuth.auth()?.currentUser{
             
             let proteinRef = FIRDatabase.database().reference().child("users").child(user.uid).child("proteinToday")
-            proteinRef.setValue(self.proteinToday)
+            proteinRef.setValue(self.todaysMacroRecord.proteinToday)
             
             let carbRef = FIRDatabase.database().reference().child("users").child(user.uid).child("carbToday")
-            carbRef.setValue(self.carbToday)
+            carbRef.setValue(self.todaysMacroRecord.carbToday)
             
             let fatRef = FIRDatabase.database().reference().child("users").child(user.uid).child("fatToday")
-            fatRef.setValue(self.fatToday)
+            fatRef.setValue(self.todaysMacroRecord.fatToday)
         }
         
         UserDefaults.standard.set(self.toAnyObject(), forKey: "currentUser")
         
-        print("prot: \(proteinToday), carb: \(carbToday), fat: \(fatToday)")
+    }
+    
+    
+    func resetDailyGoal() {
+        //add todaysMacroRecord to history and push to fire base
+        self.todaysMacroRecord = MacroRecord(proteinGoal: proteinCount, carbGoal: carbCount, fatGoal: fatCount)
     }
     
 }
