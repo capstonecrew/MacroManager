@@ -12,6 +12,7 @@ import Firebase
 
 class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate, SuggestedFoodsCellDelegate, DailyGoalProgressCellDelegate {
     var historyMealLog = [GenericFoodItem]()
+    var favoritesMealLog = [GenericFoodItem]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -28,7 +29,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     
     override func viewDidAppear(_ animated: Bool) {
         loadData()
-        tableView.reloadData()
+        
         
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SuggestedFoodsCell
         cell.foodsCollectionView.reloadData()
@@ -85,7 +86,21 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
                 let historyItem = GenericFoodItem.init(snap: item as! FIRDataSnapshot)
             self.historyMealLog.append(historyItem)
             }
+           
+        
         }
+        let favoritesRef = ref.child("favorites").child(userID!)
+        favoritesRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            for item in snapshot.children
+            {
+                let favoritesItem = GenericFoodItem.init(snap: item as!  FIRDataSnapshot)
+                self.favoritesMealLog.append(favoritesItem)
+                
+                
+            }
+            
+        }
+        self.tableView.reloadData()
 
     }
     
@@ -135,7 +150,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
                 cell.foodsCollectionView.dataSource = self
                 cell.foodsCollectionView.register(UINib(nibName: "FoodCollectionCell", bundle: nil), forCellWithReuseIdentifier: "foodCollectionCell")
                 
-                if(currentUser.favoriteLog.count != 0){
+                if(favoritesMealLog.count != 0){
                     cell.addFavoriteBtn.isHidden = true
                 }else{
                     cell.addFavoriteBtn.isHidden = false
@@ -212,8 +227,8 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodCollectionCell", for: indexPath) as!FoodCollectionCell
         cell.tag = indexPath.row
-        cell.foodLbl.text = currentUser.favoriteLog[indexPath.row].itemName
-        cell.foodImageView.af_setImage(withURL: URL(string: currentUser.favoriteLog[indexPath.row].imageUrl)! , placeholderImage: UIImage(named: "placeholder"), filter: CircleFilter())
+        cell.foodLbl.text = favoritesMealLog[indexPath.row].itemName
+        cell.foodImageView.af_setImage(withURL: URL(string: favoritesMealLog[indexPath.row].imageUrl)! , placeholderImage: UIImage(named: "placeholder"), filter: CircleFilter())
         cell.delegate = self
         
         return cell
@@ -225,7 +240,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentUser.favoriteLog.count
+        return favoritesMealLog.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -275,8 +290,8 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             let selectedIndex: IndexPath = sender as! IndexPath
             if let vc = segue.destination as? UINavigationController{
                 if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
-                    nextView.recievedItem = currentUser.favoriteLog[selectedIndex.row]
-                    nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.favoriteLog[selectedIndex.row].itemId)
+                    nextView.recievedItem = favoritesMealLog[selectedIndex.row]
+                    nextView.isFavorite = currentUser.checkFavorite(itemId: favoritesMealLog[selectedIndex.row].itemId)
                     print(selectedIndex.row)
                 }
             }
