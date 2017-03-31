@@ -9,17 +9,25 @@
 import Foundation
 class AchievementSystem{
     
+    //last completed achievement
+    var lastCompleted = achievement(n: "name",p: 0,pro: 0, d: "des", r: 0)
+    
     //first call
     var setup: Bool = true
+    
     //users overall score
     var totalPoints = 0
+    
     //current 5 achievement indexes
     var current: [Int] = []
+    
     //current 5 achievement types
     var types: [String] = []
+    
     //all achievements
     var achievements: [achievement] = []
-    //initialize 27 achivement objects
+    
+    //initialize 28 achivement objects
     init(){
         if(setup){
             
@@ -28,18 +36,20 @@ class AchievementSystem{
              weight[]
              eatmeal[X]
              search[X]
-             addMeal[]
+             customMeal[x]
              goals[X]
              addFav[X]
-             eatFav[]
+             eatFav[x]
              udpate[X]
  
  
  
         */
-            var newAchievement = achievement(n: "5lb Weight Goal",p: 0,pro: 1, d: "weight", r: 50)
+            var newAchievement = achievement(n: "5 lb Weight Goal",p: 0,pro: 5, d: "weight", r: 75)
             achievements.append(newAchievement)
-            newAchievement = achievement(n: "8lb Weight Goal",p: 0,pro: 1, d: "weight", r: 100)
+            newAchievement = achievement(n: "3 lb Weight Goal",p: 0,pro: 3, d: "weight", r: 50)
+            achievements.append(newAchievement)
+            newAchievement = achievement(n: "8 lb Weight Goal",p: 0,pro: 8, d: "weight", r: 100)
             achievements.append(newAchievement)
             newAchievement = achievement(n: "Eat 5 Meals",p: 0,pro: 5, d: "eatMeal", r: 10)
             achievements.append(newAchievement)
@@ -133,6 +143,9 @@ class AchievementSystem{
                     achievements[x].points = 0
                     updateTotal(points: achievements[x].reward)
                     
+                    //save last completed achievement
+                    lastCompleted = achievements[x]
+                    
                     //get new feature
                     finishedAchievement(num: x)
                     
@@ -169,6 +182,10 @@ class AchievementSystem{
     //get total
     func getTotal() -> Int{
         return self.totalPoints
+    }
+    
+    func getLastCompleted() -> achievement{
+        return lastCompleted
     }
     
 }

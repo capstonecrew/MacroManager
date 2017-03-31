@@ -89,7 +89,10 @@ class GoalSliderViewController: UIViewController {
                 
                 let userRef = self.dbRef.child("users").child(user.uid)
                 
-                let user = User(name: self.fromName, age: Int(self.fromAge), gender: self.fromGender, height: self.fromHeight, weight: Int(self.fromWeight), activityLevel: self.fromActivity, goal: self.goalSelected)
+                let age = Int(self.fromAge)!
+                let weight = Int(self.fromWeight)!
+                
+                let user = User(name: self.fromName, age: age, gender: self.fromGender, height: self.fromHeight, weight: weight, activityLevel: self.fromActivity, goal: self.goalSelected)
                 userRef.setValue(user.toAnyObject())
                 
                 currentUser = user

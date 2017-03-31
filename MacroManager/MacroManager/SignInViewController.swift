@@ -152,7 +152,6 @@ class SignInViewController: UIViewController, UITextFieldDelegate{
                     userRef.observeSingleEvent(of: .value, with: { (snapshot:FIRDataSnapshot) in
                         
                         print(snapshot)
-                        
                         let user = User.init(snap: snapshot)
                         currentUser = user
                         print(currentUser!.name!)
