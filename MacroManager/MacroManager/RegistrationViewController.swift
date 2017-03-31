@@ -22,10 +22,23 @@ class RegistrationViewController: UIViewController, UITextFieldDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
-        self.navigationController?.navigationBar.tintColor = .white
-        self.navigationController?.navigationBar.isTranslucent = false
+       // self.navigationController?.navigationBar.barTintColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
+        //self.navigationController?.navigationBar.tintColor = .white
+       // self.navigationController?.navigationBar.isTranslucent = false
         
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(blurEffectView, at: 1)
+        
+        
+        self.navigationController!.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController!.navigationBar.shadowImage = UIImage()
+        self.navigationController!.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.tintColor = .white
+
         //Backround color
         self.view.backgroundColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
         
