@@ -28,8 +28,6 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     
     override func viewDidAppear(_ animated: Bool) {
         loadData()
-        tableView.reloadData()
-        
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SuggestedFoodsCell
         cell.foodsCollectionView.reloadData()
         animateBarGraph()
@@ -83,8 +81,10 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             for item in snapshot.children
             {
                 let historyItem = GenericFoodItem.init(snap: item as! FIRDataSnapshot)
-            self.historyMealLog.append(historyItem)
+                self.historyMealLog.append(historyItem)
             }
+            
+            self.tableView.reloadData()
         }
 
     }
