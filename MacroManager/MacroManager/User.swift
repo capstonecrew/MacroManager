@@ -27,10 +27,10 @@ class User: NSObject {
     var carbToday: Int!
     var fatToday: Int!
     
-    var mealLog = [NixItem]() // meal history
-    var favoriteLog = [NixItem]() // favorite meal list
+    var mealLog = [GenericFoodItem]() // meal history
+    var favoriteLog = [GenericFoodItem]() // favorite meal list
     var favoriteImage = [String]() // favorite meal list
-    var customMealList = [NixItem]() // custom meals
+    var customMealList = [GenericFoodItem]() // custom meals
     var client:AchievementSystem = AchievementSystem()
     
     override init() {
@@ -289,7 +289,7 @@ class User: NSObject {
     }
     
     
-    func addMealToFavorite(mealEaten: NixItem)
+    func addMealToFavorite(mealEaten: GenericFoodItem)
     {
         favoriteLog.append(mealEaten)
         
@@ -297,12 +297,13 @@ class User: NSObject {
     
     
     // add custom meal
-    func addCustomMeal(itenName: String, itemDescription: String?, fats: Double?, proteins: Double?, carbs: Double?) {
-        let custNix: NixItem! = NixItem(itemName: itenName, itemId: "custom", itemDescription: itemDescription, fats: fats, proteins: proteins, carbs: carbs)
-        customMealList.append(custNix) // add to custom meal log
+    func addCustomMeal(itemName: String, itemDescription: String?, fats: Double?, proteins: Double?, carbs: Double?) {
+        
+        let customItem: GenericFoodItem! = GenericFoodItem(itemName: itemName, itemId: "custom", fats: fats!, proteins: proteins!, carbs: carbs!, foodSource: nil)
+        customMealList.append(customItem) // add to custom meal log
     }
     
-    func removeMealFromFavorite(mealEaten: NixItem)
+    func removeMealFromFavorite(mealEaten: GenericFoodItem)
     {
         for index in 0...favoriteLog.count{
             if favoriteLog[index].itemId == mealEaten.itemId{
@@ -330,10 +331,6 @@ class User: NSObject {
         return result
     }
     
-    
-    
-    
-
     // sets daily macronutrients (protein, carb, fat)
     
     func macronutrientCalc()
@@ -432,12 +429,12 @@ class User: NSObject {
         
     }
     
-    func addMealToLog(mealEaten: NixItem) {
+    func addMealToLog(mealEaten: GenericFoodItem) {
         mealLog.append(mealEaten)
         
-        proteinToday = proteinToday + Int(mealEaten.proteins!)
-        carbToday = carbToday + Int(mealEaten.carbs!)
-        fatToday = fatToday + Int(mealEaten.fats!)
+        proteinToday = proteinToday + Int(mealEaten.proteins)
+        carbToday = carbToday + Int(mealEaten.carbs)
+        fatToday = fatToday + Int(mealEaten.fats)
         
         if let user = FIRAuth.auth()?.currentUser{
             

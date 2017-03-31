@@ -15,11 +15,9 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     
     // uncomment this to recieve item from segue
-    var recievedNix: NixItem?
+    var recievedItem: GenericFoodItem?
     var isFavorite: Bool?
-    
-    
-    
+
     //dummy nix item for test
     //var recievedNix = NixItem(itemName: "Hamburger", itemId: "001010", itemDescription: "", fats: 400.0, proteins: 200.0, carbs: 100.0)
     
@@ -55,7 +53,7 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        if let nix = recievedNix {
+        if let nix = recievedItem {
             return nix.miscNutrients.count
         }
         else {
@@ -66,7 +64,7 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "mealDetailsCell") as! MealDetailsCell
         
-        if let nix = recievedNix {
+        if let nix = recievedItem {
             cell.mainLbl.text = nix.miscNutrients[indexPath.row].name
             cell.accessoryLbl.text = "\(nix.miscNutrients[indexPath.row].amount)\(nix.miscNutrients[indexPath.row].units)"
         }
@@ -81,35 +79,14 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         cell.parentVC = self; // add reference to this vc in the tableviewcell
     
     
-        if let nix = recievedNix {
+        if let nix = recievedItem {
+            
             cell.foodNameLabel.text = nix.itemName
+            cell.proteinsAmount.text = "\(nix.proteins) g"
+            cell.carbsAmount.text = "\(nix.carbs) g"
+            cell.fatsAmount.text = "\(nix.fats) g"
             
-            if  let prot = nix.proteins {
-                cell.proteinsAmount.text = "\(prot) g"
-            }
-            else {
-                cell.proteinsAmount.text = "N/A"
-                nix.proteins = 0
-            }
-            
-            if let carb = nix.carbs {
-                cell.carbsAmount.text = "\(carb) g"
-            }
-            else {
-                cell.carbsAmount.text = "N/A"
-                nix.carbs = 0
-            }
-            
-            if let fat = nix.fats {
-                cell.fatsAmount.text = "\(fat) g"
-            }
-            else {
-                cell.fatsAmount.text = "N/A"
-                nix.fats = 0
-            }
-        
-        } 
-        else {
+        }else {
             print("COULD NOT FETCH NIX ITEM")
         }
         cell.delegate = self
@@ -136,12 +113,12 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     func addFavorite(sender: MealHeaderCell)
     {
-        let url = "https://www.googleapis.com/customsearch/v1?q=\(recievedNix?.itemName)&cx=000748290492374586623%3A00pjyzbfpy4&num=1&searchType=image&key=AIzaSyCvYEp9GQqoX-c99F8w5HvaaiEg_lU6dz4"
+        let url = "https://www.googleapis.com/customsearch/v1?q=\(recievedItem?.itemName)&cx=000748290492374586623%3A00pjyzbfpy4&num=1&searchType=image&key=AIzaSyCvYEp9GQqoX-c99F8w5HvaaiEg_lU6dz4"
         
         
-        let parameters: Parameters = ["key": "AIzaSyCvYEp9GQqoX-c99F8w5HvaaiEg_lU6dz4", "cx": "000748290492374586623%3A00pjyzbfpy4", "q": recievedNix!.itemName]
+        let parameters: Parameters = ["key": "AIzaSyCvYEp9GQqoX-c99F8w5HvaaiEg_lU6dz4", "cx": "000748290492374586623%3A00pjyzbfpy4", "q": recievedItem!.itemName]
         
-        let values = recievedNix!.itemName.components(separatedBy: CharacterSet.whitespaces.union(.punctuationCharacters))
+        let values = recievedItem!.itemName.components(separatedBy: CharacterSet.whitespaces.union(.punctuationCharacters))
         print(values)
         
         var q = String()
@@ -162,8 +139,8 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         }
         
         
-        let favoriteRef = FIRDatabase.database().reference().child((FIRAuth.auth()?.currentUser?.uid)!).child("favorites").child((recievedNix?.itemId)!)
-        favoriteRef.setValue(recievedNix?.toAnyObject())
+        let favoriteRef = FIRDatabase.database().reference().child((FIRAuth.auth()?.currentUser?.uid)!).child("favorites").child((recievedItem?.itemId)!)
+        favoriteRef.setValue(recievedItem?.toAnyObject())
         
         Alamofire.request("https://www.googleapis.com/customsearch/v1?q=\(q)&cx=000748290492374586623%3A00pjyzbfpy4&num=1&searchType=image&key=AIzaSyCvYEp9GQqoX-c99F8w5HvaaiEg_lU6dz4").responseJSON{ response in
             
@@ -172,8 +149,8 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
             print(searchResults)
             
             let imageUrl = searchResults["items"][0]["link"].string
-            self.recievedNix?.imageUrl = imageUrl!
-            currentUser.addMealToFavorite(mealEaten: self.recievedNix!)
+            self.recievedItem?.imageUrl = imageUrl!
+            currentUser.addMealToFavorite(mealEaten: self.recievedItem!)
             self.isFavorite = true
             
             self.performSegue(withIdentifier: "showAddedAlert", sender: self)
@@ -196,10 +173,10 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     func removeFavorite(sender: MealHeaderCell)
     {
-        currentUser.removeMealFromFavorite(mealEaten: recievedNix!)
+        currentUser.removeMealFromFavorite(mealEaten: recievedItem!)
         self.isFavorite = false
         
-        let favoriteRef = FIRDatabase.database().reference().child((FIRAuth.auth()?.currentUser?.uid)!).child("favorites").child((recievedNix?.itemId)!)
+        let favoriteRef = FIRDatabase.database().reference().child((FIRAuth.auth()?.currentUser?.uid)!).child("favorites").child((recievedItem?.itemId)!)
         favoriteRef.removeValue()
         
         self.performSegue(withIdentifier: "showRemovedAlert", sender: self)
@@ -221,7 +198,7 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     }
     
     func addMealToHistory() {
-        currentUser.addMealToLog(mealEaten: (self.recievedNix)!)
+        currentUser.addMealToLog(mealEaten: (self.recievedItem)!)
         self.dismiss(animated: true, completion: {
             self.tabBarController?.selectedIndex = 0
         })
