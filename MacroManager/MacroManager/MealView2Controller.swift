@@ -106,7 +106,7 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         
-        return 244.0
+        return 196.0
     }
  
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
