@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import Firebase
 
+
 class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     
@@ -115,6 +116,7 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     func addFavorite(sender: MealHeaderCell)
     {
+
         print(recievedItem?.itemId)
         let favoriteRef = ref.child("favorites").child(uid).child(recievedItem!.itemId)
         favoriteRef.setValue(recievedItem?.toAnyObject()) { (error, ref) in
@@ -124,6 +126,27 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
             self.performSegue(withIdentifier: "showAddedAlert", sender: self)
             
         }
+
+       
+       /*
+        let userId = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        
+        let favoriteRef = ref.child("favorites").child(userId!).child((recievedItem?.itemId)!)
+        favoriteRef.setValue(recievedItem?.toAnyObject())
+        
+       // currentUser.addMealToFavorite(mealEaten: self.recievedItem!)
+ */
+       /*
+        let userId = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        
+        let favoriteRef = ref.child("favorites").child(userId!).childByAutoId()
+        favoriteRef.setValue(recievedItem?.toAnyObject())
+        self.isFavorite = true
+        
+        self.performSegue(withIdentifier: "showAddedAlert", sender: self)
+*/
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -141,7 +164,7 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
     
     func removeFavorite(sender: MealHeaderCell)
     {
-        currentUser.removeMealFromFavorite(mealEaten: recievedItem!)
+       // currentUser.removeMealFromFavorite(mealEaten: recievedItem!)
         self.isFavorite = false
         
         let userId = FIRAuth.auth()?.currentUser?.uid
@@ -177,7 +200,7 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         historyRef.setValue(recievedItem?.toAnyObject())
     
 
-        currentUser.addMealToLog(mealEaten: (self.recievedItem)!)
+      //  currentUser.addMealToLog(mealEaten: (self.recievedItem)!)
         self.dismiss(animated: true, completion: {
             self.tabBarController?.selectedIndex = 0
         })
