@@ -100,6 +100,38 @@ class GoalSliderViewController: UIViewController {
                 //user.calorieCalc() // update users daily calories
                 //user.macronutrientCalc() // update users daily macro count
                 
+                
+                /*
+ 
+ 
+                
+ HEY AARON AND MARK
+                 this is where I put the achievements into the DB when the user is created.
+ 
+ 
+                 */
+                
+                  var i = 0
+                let ref = FIRDatabase.database().reference()
+                let uid = FIRAuth.auth()?.currentUser?.uid
+                
+           
+                for a in currentUser.client.achievements
+                {
+                    var currentachievementsRef = ref.child("achievements").child(uid!).child("achievementList").child(String(i))
+                    currentachievementsRef.setValue(a.toAnyObject())
+                    i = i+1
+                }
+                i = 0
+                for a in currentUser.client.current
+                {
+                    var currentachievementsRef = ref.child("achievements").child(uid!).child("currentList").child(String(i))
+                    currentachievementsRef.setValue(a as? NSInteger)
+                    i = i+1
+                    
+                }
+                
+                
                 self.loadingWheel.stopAnimating()
                 self.signUpButton.setTitle("Welcome \(currentUser.name)!", for: .normal)
                 self.performSegue(withIdentifier: "toDashboard", sender: self)

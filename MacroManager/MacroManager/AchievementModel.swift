@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 class AchievementSystem{
     
     //last completed achievement
@@ -127,7 +128,7 @@ class AchievementSystem{
     func newAchievement(name: String) -> achievement{
         var randomInt = current[0]
         while(current.contains(randomInt) || types.contains(achievements[randomInt].des)){
-            randomInt = Int(arc4random_uniform(27))
+            randomInt = Int(arc4random_uniform(28))
         }
         return achievements[randomInt]
     }
@@ -205,7 +206,32 @@ class achievement {
         des = d
         reward = r
     }
-    
+    init(snap: FIRDataSnapshot)
+    {
+       
+       
+        let value = snap.value as? NSDictionary
+        if let n = value!["name"] as? String{
+            self.name = n
+            
+        }
+       if let i = value!["points"] as? Int
+       {
+        self.points = i
+        }
+        if let p = value!["progress"] as? Int
+        {
+            self.progress = p
+        }
+        if let description = value!["des"] as? String
+        {
+            self.des = description
+        }
+        if let r = value!["reward"] as? Int
+        {
+            self.reward = r
+        }
+    }
     internal func getName() -> String{
         return name
     }
@@ -223,6 +249,9 @@ class achievement {
     }
     internal func getReward() -> Int{
         return reward
+    }
+    func toAnyObject() -> [String: Any]{
+        return ["name" : self.name, "points" : self.points, "progress":self.progress, "description": self.des, "reward": self.reward]
     }
     
 }

@@ -13,6 +13,7 @@ import Firebase
 class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate, SuggestedFoodsCellDelegate, DailyGoalProgressCellDelegate {
     var historyMealLog = [GenericFoodItem]()
     var favoritesMealLog = [GenericFoodItem]()
+    var achievementLog = [achievement]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -74,6 +75,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     
     func loadData()
     {
+        
         historyMealLog = [GenericFoodItem]()
         let userID = FIRAuth.auth()?.currentUser?.uid
         let ref = FIRDatabase.database().reference()

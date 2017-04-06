@@ -7,11 +7,12 @@
 //
 
 import UIKit
-
+import Firebase
 class AcheivementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     var achievements: [achievement] = []
+    var currentAchievements : [Int] = []
     /*
      @IBOutlet weak var totalLbl: UILabel!
      @IBOutlet weak var progress1: UIProgressView!
@@ -39,6 +40,51 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        /*
+        historyMealLog = [GenericFoodItem]()
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        let historyRef = ref.child("history").child(userID!)
+
+         
+         
+         
+         lookupGroup.enter()
+         
+         historyRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+         
+         for item in snapshot.children{
+         let historyItem = GenericFoodItem.init(snap: item as! FIRDataSnapshot)
+         self.historyMealLog.append(historyItem)
+         }
+         
+         lookupGroup.leave()
+         }
+        */
+        
+        var achievementLog = [achievement]()
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        let currentRef = ref.child("achievements").child(userID!).child("currentList")
+        let achievementListRef = ref.child("achievements").child(userID!).child("achievementList")
+        let lookupGroup = DispatchGroup()
+       /*
+ 
+ HEY AARON AND MARK
+         this is where I stopped. We were going to try to pull the # of achievements from 'current', and put them in achievements[] for the tableview row size, then compare those #s to the actual achievements using their # as the index. 
+         
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ */
+        
+    
+        
         achievements.append(currentUser.client.getAchievement(num: 0))
         achievements.append(currentUser.client.getAchievement(num: 1))
         achievements.append(currentUser.client.getAchievement(num: 2))
