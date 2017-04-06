@@ -32,8 +32,9 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationController?.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.white]
         self.navigationItem.title = "Achievements"
 
-        
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+        navigationController?.navigationBar.isTranslucent = false
+
         self.tableView.register(UINib(nibName: "AchievementProgressCell", bundle: nil), forCellReuseIdentifier: "achievementProgressCell")
         self.tableView.register(UINib(nibName: "AcheivementHeaderCell", bundle: nil), forCellReuseIdentifier: "acheivementHeaderCell")
         self.tableView.register(UINib(nibName: "HeaderCell", bundle: nil), forCellReuseIdentifier: "headerCell")
@@ -74,22 +75,26 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
  HEY AARON AND MARK
          this is where I stopped. We were going to try to pull the # of achievements from 'current', and put them in achievements[] for the tableview row size, then compare those #s to the actual achievements using their # as the index. 
          
- 
- 
- 
- 
- 
- 
- 
  */
         
-    
+        currentUser.client.getAchievementList(completion: {(results) in
+            
+            for result in results{
+                
+                print(result.getName())
+            }
+            
+            self.achievements = results
+            print(self.achievements.count)
+            self.tableView.reloadData()
         
-        achievements.append(currentUser.client.getAchievement(num: 0))
-        achievements.append(currentUser.client.getAchievement(num: 1))
-        achievements.append(currentUser.client.getAchievement(num: 2))
-        achievements.append(currentUser.client.getAchievement(num: 3))
-        achievements.append(currentUser.client.getAchievement(num: 4))
+        })
+        
+//        achievements.append(currentUser.client.getAchievement(num: 0))
+//        achievements.append(currentUser.client.getAchievement(num: 1))
+//        achievements.append(currentUser.client.getAchievement(num: 2))
+//        achievements.append(currentUser.client.getAchievement(num: 3))
+//        achievements.append(currentUser.client.getAchievement(num: 4))
         /*
          self.totalLbl.text = String(client.getTotal())
          
@@ -113,15 +118,24 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        var temp: [achievement] = []
-        achievements = temp
-        achievements.append(currentUser.client.getAchievement(num: 0))
-        achievements.append(currentUser.client.getAchievement(num: 1))
-        achievements.append(currentUser.client.getAchievement(num: 2))
-        achievements.append(currentUser.client.getAchievement(num: 3))
-        achievements.append(currentUser.client.getAchievement(num: 4))
-        tableView.reloadData()
+        
+//        var temp: [achievement] = []
+//        achievements = temp
+//        achievements.append(currentUser.client.getAchievement(num: 0))
+//        achievements.append(currentUser.client.getAchievement(num: 1))
+//        achievements.append(currentUser.client.getAchievement(num: 2))
+//        achievements.append(currentUser.client.getAchievement(num: 3))
+//        achievements.append(currentUser.client.getAchievement(num: 4))
+        
+        currentUser.client.getAchievementList{(result) in
+            
+            self.achievements = result
+            self.tableView.reloadData()
+        }
+//        tableView.reloadData()
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

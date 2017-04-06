@@ -27,6 +27,7 @@ class AchievementSystem{
     
     //all achievements
     var achievements: [achievement] = []
+    var currentAchievements: [achievement] = []
     
     //initialize 28 achivement objects
     init(){
@@ -187,6 +188,50 @@ class AchievementSystem{
     
     func getLastCompleted() -> achievement{
         return lastCompleted
+    }
+    
+    func getAchievementList(completion: @escaping ([achievement])->()){
+        
+        var values = [Int]()
+        var array = [achievement]()
+        
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        let allRef = FIRDatabase.database().reference().child("achievements").child(uid!).child("achievementList")
+        let currentRef = FIRDatabase.database().reference().child("achievements").child(uid!).child("currentList")
+        
+        print(allRef)
+        print(currentRef)
+        
+        currentRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            
+            for a in snapshot.children{
+                
+                let v = a as! FIRDataSnapshot
+                values.append(v.value as! Int)
+                
+            }
+            
+            values.sort()
+            
+            allRef.observeSingleEvent(of: .value, with: { (snapshot: FIRDataSnapshot) in
+                
+                for a in snapshot.children{
+                    
+                    let snap = a as! FIRDataSnapshot
+                    let key = snap.key
+                    let index = Int(key)
+                    
+                    if values.contains(index!){
+                        
+                        let v = achievement(snap: snap)
+                        array.append(v)
+                        
+                    }
+                }
+                
+                completion(array)
+            })
+        }
     }
     
 }

@@ -29,7 +29,9 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     var newActivityString = ""
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+        navigationController?.navigationBar.isTranslucent = false
+
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         self.navigationItem.title = "Profile"
         

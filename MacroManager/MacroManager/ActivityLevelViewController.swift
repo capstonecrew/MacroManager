@@ -38,8 +38,8 @@ class ActivityLevelViewController: UIViewController {
         super.viewDidLoad()
         
         //Backround color
-        self.view.backgroundColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
-        
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+        navigationController?.navigationBar.isTranslucent = false
        
         littletonone.backgroundColor = .white
         littletonone.layer.cornerRadius = 20
