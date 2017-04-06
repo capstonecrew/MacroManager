@@ -36,7 +36,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         doneButton.isEnabled = false
         searchBar.delegate = self
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+
         self.navigationItem.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         
@@ -44,23 +46,23 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
         }
         
-        EdamamApiManager.search(query: "mac and cheese", count: 30) { response in
-            for item in response.value! {
-                
-                print(item.itemName)
-                //self.recipeSearchResults.append(item)
-                
-            }
-        }
-        
-        YummlyApiManager.search(query: "mac and cheese", count: 10, completionHandler: { response in
-            
-            for item in response.value! {
-                print(item.itemName)
-                
-            }
-            
-        })
+//        EdamamApiManager.search(query: "mac and cheese", count: 30) { response in
+//            for item in response.value! {
+//                
+//                print(item.itemName)
+//                //self.recipeSearchResults.append(item)
+//                
+//            }
+//        }
+//        
+//        YummlyApiManager.search(query: "mac and cheese", count: 10, completionHandler: { response in
+//            
+//            for item in response.value! {
+//                print(item.itemName)
+//                
+//            }
+//            
+//        })
         
         //tableView.estimatedRowHeight = 110.0
         //tableView.rowHeight = UITableViewAutomaticDimension

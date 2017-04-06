@@ -34,8 +34,8 @@ class MealHeaderCell: UITableViewCell {
 
         self.itemImage.layer.cornerRadius = self.itemImage.bounds.width/2
         self.itemImage.clipsToBounds = true
-        imgView.isHidden = true
-        self.foodNameLabel.textColor = UIColor.black
+//        imgView.isHidden = true
+//        self.foodNameLabel.textColor = UIColor.black
         
 //        let blurEffect = UIBlurEffect(style: .regular)
 //        let blurEffectView = UIVisualEffectView(effect: blurEffect)
