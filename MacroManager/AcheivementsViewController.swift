@@ -70,12 +70,6 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         let currentRef = ref.child("achievements").child(userID!).child("currentList")
         let achievementListRef = ref.child("achievements").child(userID!).child("achievementList")
         let lookupGroup = DispatchGroup()
-       /*
- 
- HEY AARON AND MARK
-         this is where I stopped. We were going to try to pull the # of achievements from 'current', and put them in achievements[] for the tableview row size, then compare those #s to the actual achievements using their # as the index. 
-         
- */
         
         currentUser.client.getAchievementList(completion: {(results) in
             
@@ -90,42 +84,10 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         
         })
         
-//        achievements.append(currentUser.client.getAchievement(num: 0))
-//        achievements.append(currentUser.client.getAchievement(num: 1))
-//        achievements.append(currentUser.client.getAchievement(num: 2))
-//        achievements.append(currentUser.client.getAchievement(num: 3))
-//        achievements.append(currentUser.client.getAchievement(num: 4))
-        /*
-         self.totalLbl.text = String(client.getTotal())
-         
-         var a =
-         var b = client.getAchievement(num: 1)
-         var c = client.getAchievement(num: 2)
-         
-         self.progress1.setProgress(Float(a.getPoints()), animated: true)
-         self.progress2.setProgress(Float(b.getPoints()), animated: true)
-         self.progress3.setProgress(Float(c.getPoints()), animated: true)
-         
-         self.progressReward1.text = String(a.getReward())
-         self.progressReward2.text = String(b.getReward())
-         self.progressReward3.text = String(c.getReward())
-         
-         self.progressLbl1.text = a.getName()
-         self.progressLbl2.text = b.getName()
-         self.progressLbl3.text = c.getName()
-         */
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
-//        var temp: [achievement] = []
-//        achievements = temp
-//        achievements.append(currentUser.client.getAchievement(num: 0))
-//        achievements.append(currentUser.client.getAchievement(num: 1))
-//        achievements.append(currentUser.client.getAchievement(num: 2))
-//        achievements.append(currentUser.client.getAchievement(num: 3))
-//        achievements.append(currentUser.client.getAchievement(num: 4))
         
         currentUser.client.getAchievementList{(result) in
             
@@ -195,7 +157,13 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         
         if(indexPath.section == 0){
             let cell = tableView.dequeueReusableCell(withIdentifier: "acheivementHeaderCell") as! AcheivementHeaderCell
-            cell.totalPointsLbl.text = "\(currentUser.client.getTotal())"
+            //cell.totalPointsLbl.text = "\(currentUser.client.getTotal())"
+            let totalPoints = currentUser.client.getTotal(completion: {(result) in
+                print("result")
+                print(result)
+                cell.totalPointsLbl.text = String(result)
+            })
+                
             actualCell = cell
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "achievementProgressCell") as! AchievementProgressCell
