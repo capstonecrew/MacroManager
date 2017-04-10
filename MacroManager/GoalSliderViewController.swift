@@ -101,15 +101,6 @@ class GoalSliderViewController: UIViewController {
                 //user.macronutrientCalc() // update users daily macro count
                 
                 
-                /*
- 
- 
-                
- HEY AARON AND MARK
-                 this is where I put the achievements into the DB when the user is created.
- 
- 
-                 */
                 
                   var i = 0
                 let ref = FIRDatabase.database().reference()
@@ -118,19 +109,27 @@ class GoalSliderViewController: UIViewController {
            
                 for a in currentUser.client.achievements
                 {
-                    var currentachievementsRef = ref.child("achievements").child(uid!).child("achievementList").child(String(i))
+                    let currentachievementsRef = ref.child("achievements").child(uid!).child("achievementList").child(String(i))
                     currentachievementsRef.setValue(a.toAnyObject())
                     i = i+1
                 }
                 i = 0
                 for a in currentUser.client.current
                 {
-                    var currentachievementsRef = ref.child("achievements").child(uid!).child("currentList").child(String(i))
-                    currentachievementsRef.setValue(a as? NSInteger)
+                    let currentachievementsRef = ref.child("achievements").child(uid!).child("currentList").child(String(i))
+                    currentachievementsRef.setValue(a)
                     i = i+1
                     
                 }
-                
+                //Add totalScore and weightChange to firebase
+                let scoreRef = ref.child("achievements").child(uid!).child("totalScore")
+                scoreRef.setValue(0)
+                let weightRef = ref.child("achievements").child(uid!).child("weightChange")
+                weightRef.setValue(0)
+                //Add previous completed Achievement
+                let lastRef = ref.child("achievements").child(uid!).child("lastCompleted")
+                //get default achievement
+                lastRef.setValue(currentUser.client.getLastCompleted().toAnyObject())
                 
                 self.loadingWheel.stopAnimating()
                 self.signUpButton.setTitle("Welcome \(currentUser.name)!", for: .normal)

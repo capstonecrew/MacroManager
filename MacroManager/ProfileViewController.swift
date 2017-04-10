@@ -117,6 +117,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     }
     
     @IBAction func editPush(_ sender: Any) {
+        
+        let oldWeight = currentUser.weight
+        var newWeight:Int
+        
         if(!editable)
         {
             editButton.setTitle("Save", for: .normal)
@@ -127,10 +131,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             activityPicker.isUserInteractionEnabled = true
             
             editable = true
-            currentUser.client.updatePoints(d: "update")
+            
         }
         else{
-            
+           
             editButton.setTitle("Edit", for: .normal)
             userNameField.isUserInteractionEnabled = false
             userBirthField.isUserInteractionEnabled = false
@@ -146,14 +150,15 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             separateAge = newAgeString!.components(separatedBy: " ")
             newAge = separateAge[0]
             currentUser.weight = Int(newAge)
+            newWeight = Int(newAge)!
             
             currentUser.name = userNameField.text
             currentUser.goal = newGoalString
             currentUser.activityLevel = newActivityString
-           
             
+            currentUser.client.updatePoints(d: "update")
             
-            
+            currentUser.client.updateWeightGoal(oldW: oldWeight!, newW: newWeight)
         }
     }
     

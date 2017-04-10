@@ -33,9 +33,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //        do  {
 //            try FIRAuth.auth()?.signOut()
-//            
+//
 //        } catch {
-//            
+//
 //        }
 
         if let user = FIRAuth.auth()?.currentUser{
