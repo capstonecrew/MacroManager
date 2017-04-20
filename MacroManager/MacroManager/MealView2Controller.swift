@@ -199,9 +199,10 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         
         let historyRef = ref.child("history").child(userId!).childByAutoId()
         historyRef.setValue(recievedItem?.toAnyObject())
+        
     
 
-      //  currentUser.addMealToLog(mealEaten: (self.recievedItem)!)
+        currentUser.addMealToLog(mealEaten: (self.recievedItem)!)
         self.dismiss(animated: true, completion: {
             self.tabBarController?.selectedIndex = 0
         })
