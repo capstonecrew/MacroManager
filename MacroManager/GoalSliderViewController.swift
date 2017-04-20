@@ -129,7 +129,7 @@ class GoalSliderViewController: UIViewController {
                 //Add previous completed Achievement
                 let lastRef = ref.child("achievements").child(uid!).child("lastCompleted")
                 //get default achievement
-                lastRef.setValue(currentUser.client.getLastCompleted().toAnyObject())
+                lastRef.setValue(currentUser.client.lastCompleted.toAnyObject())
                 
                 self.loadingWheel.stopAnimating()
                 self.signUpButton.setTitle("Welcome \(currentUser.name)!", for: .normal)

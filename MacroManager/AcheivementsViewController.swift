@@ -13,6 +13,9 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
     @IBOutlet weak var tableView: UITableView!
     var achievements: [achievement] = []
     var currentAchievements : [Int] = []
+    var hasRewardHistory = false
+    var lastAchievementReward: Int!
+    var lastAchievementName: String!
     /*
      @IBOutlet weak var totalLbl: UILabel!
      @IBOutlet weak var progress1: UIProgressView!
@@ -38,9 +41,11 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         self.tableView.register(UINib(nibName: "AchievementProgressCell", bundle: nil), forCellReuseIdentifier: "achievementProgressCell")
         self.tableView.register(UINib(nibName: "AcheivementHeaderCell", bundle: nil), forCellReuseIdentifier: "acheivementHeaderCell")
         self.tableView.register(UINib(nibName: "HeaderCell", bundle: nil), forCellReuseIdentifier: "headerCell")
+        self.tableView.register(UINib(nibName: "LastAchievementCell", bundle: nil), forCellReuseIdentifier: "lastAchievementCell")
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.separatorStyle = .singleLine
         
         /*
         historyMealLog = [GenericFoodItem]()
@@ -48,9 +53,6 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         let ref = FIRDatabase.database().reference()
         let historyRef = ref.child("history").child(userID!)
 
-         
-         
-         
          lookupGroup.enter()
          
          historyRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
@@ -79,12 +81,20 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
             }
             
             self.achievements = results
-            print(self.achievements.count)
-            self.tableView.reloadData()
-        
+            
+            currentUser.client.getLastCompleted(completion: {(name, reward) in
+                
+                if reward != 0{
+                    
+                    self.hasRewardHistory = true
+                    self.lastAchievementReward = reward
+                    self.lastAchievementName = name
+                }
+                
+                self.tableView.reloadData()
+                
+            })
         })
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,7 +102,19 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         currentUser.client.getAchievementList{(result) in
             
             self.achievements = result
-            self.tableView.reloadData()
+            currentUser.client.getLastCompleted(completion: {(name, reward) in
+                
+                if reward != 0{
+                    
+                    self.hasRewardHistory = true
+                    self.lastAchievementReward = reward
+                    self.lastAchievementName = name
+                }
+
+                self.tableView.reloadData()
+                
+            })
+            
         }
 //        tableView.reloadData()
     }
@@ -113,7 +135,12 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         var numRows: Int = 0
         
         if(section == 0){
-           numRows = 1
+           
+            if hasRewardHistory{
+                numRows = 2
+            }else{
+                numRows = 1
+            }
         }else{
             numRows = achievements.count
         }
@@ -156,15 +183,30 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         var actualCell = UITableViewCell()
         
         if(indexPath.section == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "acheivementHeaderCell") as! AcheivementHeaderCell
-            //cell.totalPointsLbl.text = "\(currentUser.client.getTotal())"
-            let totalPoints = currentUser.client.getTotal(completion: {(result) in
-                print("result")
-                print(result)
-                cell.totalPointsLbl.text = String(result)
-            })
+            
+            if indexPath.row == 0{
                 
-            actualCell = cell
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "acheivementHeaderCell") as! AcheivementHeaderCell
+                //cell.totalPointsLbl.text = "\(currentUser.client.getTotal())"
+                let totalPoints = currentUser.client.getTotal(completion: {(result) in
+                    print("result")
+                    print(result)
+                    cell.totalPointsLbl.text = String(result)
+                })
+                
+                actualCell = cell
+                
+            }else{
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "lastAchievementCell") as! LastAchievementCell
+                cell.nameLbl.text = self.lastAchievementName
+                cell.rewardLbl.text = "\(String(describing: self.lastAchievementReward!)) pts"
+                
+                actualCell = cell
+            }
+            
+            
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "achievementProgressCell") as! AchievementProgressCell
             cell.titleLbl.text = achievements[indexPath.row].getName()
@@ -187,7 +229,13 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         
         switch indexPath.section {
         case 0:
-            height = 97.0
+            
+            if indexPath.row == 0{
+                height = 97.0
+            }else{
+                height = 70.0
+            }
+            
         case 1:
             height = 76.0
         default:
