@@ -31,6 +31,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var proteinToday = 0;
     var carbToday = 0;
 
+    var percentFilter = 1.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,6 +94,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         fatGoal = (fatGoalTotal - fatToday) / numMealsLeft
         proteinGoal = (proteinGoalTotal - proteinToday) / numMealsLeft
         carbGoal = (carbGoalTotal - carbToday) / numMealsLeft
+        
+        //Populate with best recommendations
+        performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
     }
     
     @IBAction func doneSearching(_ sender: Any) {
@@ -146,8 +150,32 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             self.foodSearchResults.sort(by: self.sorterForItemsByQuality)
             self.tableView.reloadData()
         })
-
+    }
     
+    func performBestMealLookup(clearCurrentResults : Bool, percent: Double ) {
+        if (clearCurrentResults){
+            self.foodSearchResults.removeAll()
+        }
+        
+        YummlyApiManager.percentSearch(query: "", count: 20, percent: Double(percent), carbCount: Double(carbGoal), proteinCount: Double(proteinGoal), fatCount: Double(fatGoal), completionHandler: { response in
+            
+            for item in response.value!{
+                self.calculateQuality(item: item)
+                self.foodSearchResults.append(item)
+            }
+            
+            self.minimumResultsCheck()
+            
+        })
+        
+        self.tableView.reloadData()
+    }
+    
+    func minimumResultsCheck () -> Void {
+        if (self.foodSearchResults.count < 20) {
+            self.percentFilter += 1
+            performBestMealLookup(clearCurrentResults: false, percent: self.percentFilter)
+        }
     }
     
     func sorterForItemsByQuality(first: GenericFoodItem, second: GenericFoodItem) -> Bool {
