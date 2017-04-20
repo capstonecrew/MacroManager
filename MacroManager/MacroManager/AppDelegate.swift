@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //
 //        } catch {
 //
-//        }
+//       }
 
         if let user = FIRAuth.auth()?.currentUser{
             let userRef = FIRDatabase.database().reference().child("users").child(user.uid)
