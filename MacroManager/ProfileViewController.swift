@@ -19,9 +19,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     @IBOutlet weak var userWeightField: UITextField!
     
     var editable = false
-    let options : [String] = ["Little to None", "Light", "Moderate", "Heavy", "Very Heavy"]
+    let activityLevels : [String] = ["Little to None", "Light", "Moderate", "Heavy", "Very Heavy"]
     let goalOptions : [String] = ["Lose Fat", "Maintain", "Gain Muscle"]
-    
+    var uid: String!
+    var ref: FIRDatabaseReference!
     @IBOutlet weak var goalPicker: UIPickerView!
     
     @IBOutlet weak var activityPicker: UIPickerView!
@@ -34,7 +35,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
 
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         self.navigationItem.title = "Profile"
-        
+        print(currentUser.goal)
+        print(currentUser.activityLevel)
         userNameField.delegate = self
         userNameField.text = currentUser.name!
         userBirthField.delegate = self
@@ -43,8 +45,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         userWeightField.text = "\(currentUser.weight!) pounds"
         goalPicker.delegate = self
         activityPicker.delegate = self
-        goalPicker.selectedRow(inComponent: getRow(string: currentUser.goal))
-        activityPicker.selectedRow(inComponent: getRow(string: currentUser.activityLevel))
+        goalPicker.selectRow(getRow(string: currentUser.goal), inComponent: 0, animated: true)
+        activityPicker.selectRow(getRow(string: currentUser.activityLevel), inComponent: 0, animated: true)
         
         // hide keyboard upon tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.hideKeyboard))
@@ -69,22 +71,21 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         
     }
     func getRow(string:String)->Int{
-      var row = 0
         
-        for index in 0...2{
-            if (currentUser.activityLevel == goalOptions[index])
-            {
+        var row = 0
+        
+        for index in 0...activityLevels.count-1{
+            if currentUser.activityLevel == activityLevels[index]{
                 return index
             }
-            
         }
-        for otherIndex in 0...4{
-            if(currentUser.goal == options[otherIndex])
-            {
-                return otherIndex
+        
+        for index in 0...goalOptions.count-1{
+            if currentUser.goal == goalOptions[index]{
+                return index
             }
         }
-      
+       
         return row
     }
     
@@ -134,7 +135,11 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             
         }
         else{
-           
+            uid = FIRAuth.auth()?.currentUser?.uid
+            ref = FIRDatabase.database().reference()
+            let userRef = ref.child("users").child(uid!)
+            
+            
             editButton.setTitle("Edit", for: .normal)
             userNameField.isUserInteractionEnabled = false
             userBirthField.isUserInteractionEnabled = false
@@ -142,15 +147,19 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             goalPicker.isUserInteractionEnabled = false
             activityPicker.isUserInteractionEnabled = false
             editable = false
-            var newAgeString = userBirthField.text
+            let newAgeString = userBirthField.text
             var separateAge: [String] = newAgeString!.components(separatedBy: " ")
-            var newAge = separateAge[0]
+            let newAge = separateAge[0]
+            let newWeightString = userWeightField.text
+            var separateWeight: [String] = newWeightString!.components(separatedBy: " ")
+            let newWeight = separateWeight[0]
             currentUser.age = Int(newAge)
-            newAgeString = userWeightField.text
-            separateAge = newAgeString!.components(separatedBy: " ")
-            newAge = separateAge[0]
-            currentUser.weight = Int(newAge)
-            newWeight = Int(newAge)!
+            
+        
+         
+            currentUser.weight = Int(newWeight)
+            let updates = ["age": Int(newAge), "weight": Int(newWeight), "name": userNameField.text, "goal":newGoalString, "activityLevel":newActivityString] as [String : Any]
+            userRef.updateChildValues(updates)
             
             currentUser.name = userNameField.text
             currentUser.goal = newGoalString
@@ -158,7 +167,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             
             currentUser.client.updatePoints(d: "update")
             
-            currentUser.client.updateWeightGoal(oldW: oldWeight!, newW: newWeight)
+            currentUser.client.updateWeightGoal(oldW: oldWeight!, newW: Int(newWeight)!)
         }
     }
     
@@ -206,7 +215,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         }
         else{
             
-            return options.count
+            return activityLevels.count
         }
     }
     
@@ -218,7 +227,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         }
         else{
             
-            return options[row]
+            return activityLevels[row]
         }
     }
   
@@ -229,7 +238,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             
         }
         else{
-           newActivityString = options[row]
+           newActivityString = activityLevels[row]
     }
     }
     
