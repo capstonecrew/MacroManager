@@ -45,8 +45,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         userWeightField.text = "\(currentUser.weight!) pounds"
         goalPicker.delegate = self
         activityPicker.delegate = self
-        goalPicker.selectRow(getRow(string: currentUser.goal), inComponent: 0, animated: true)
-        activityPicker.selectRow(getRow(string: currentUser.activityLevel), inComponent: 0, animated: true)
+        goalPicker.selectRow(getGoalRow(currentUser.goal), inComponent: 0, animated: true)
+        activityPicker.selectRow(getActivityRow(currentUser.activityLevel), inComponent: 0, animated: true)
         
         // hide keyboard upon tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.hideKeyboard))
@@ -70,25 +70,38 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     @IBAction func changeGoalButton(_ sender: Any) {
         
     }
-    func getRow(string:String)->Int{
+    
+    func getGoalRow(_ goal: String) -> Int{
         
         var row = 0
         
-        for index in 0...activityLevels.count-1{
-            if currentUser.activityLevel == activityLevels[index]{
-                return index
+        for i in 0...goalOptions.count - 1{
+            
+            if goalOptions[i] == goal{
+                
+                row = i
             }
         }
         
-        for index in 0...goalOptions.count-1{
-            if currentUser.goal == goalOptions[index]{
-                return index
-            }
-        }
-       
         return row
+        
     }
     
+    func getActivityRow(_ activityLevel: String) -> Int{
+        
+        var row = 0
+        
+        for i in 0...activityLevels.count - 1{
+            
+            if activityLevels[i] == activityLevel{
+                
+                row = i
+            }
+        }
+        
+        return row
+        
+    }
     
     @IBAction func doneEditingName(_ sender: Any) {
         guard let x = userNameField.text, x != ""  else {
