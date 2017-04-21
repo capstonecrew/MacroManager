@@ -69,7 +69,10 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         
         if let nix = recievedItem {
             cell.mainLbl.text = nix.miscNutrients[indexPath.row].name
-            cell.accessoryLbl.text = "\(nix.miscNutrients[indexPath.row].amount)\(nix.miscNutrients[indexPath.row].units)"
+            let formatter = NumberFormatter()
+            formatter.maximumFractionDigits = 2
+            let amount = nix.miscNutrients[indexPath.row].amount as NSNumber
+            cell.accessoryLbl.text = "\(formatter.string(from: amount)!) \(nix.miscNutrients[indexPath.row].units)"
         }
         
         return cell
