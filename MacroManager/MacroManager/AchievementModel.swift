@@ -389,12 +389,25 @@ class AchievementSystem{
     }
     
     
-    func getLastCompleted() -> achievement{
+    func getLastCompleted(completion: @escaping (String, Int)->()){
         
         //TODO
-        //get last completed from Firebase
+        let uid = FIRAuth.auth()?.currentUser?.uid
+        let currentRef = FIRDatabase.database().reference().child("achievements").child(uid!).child("lastCompleted")
+        currentRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
         
-        return lastCompleted
+            if snapshot.exists(){
+                
+                let value = snapshot.value as? NSDictionary
+                let name = value?["name"] as? String
+                let reward = value?["reward"] as? Int
+                
+                print(value?["name"] as? String)
+                print(value?["reward"] as? Int)
+                
+                completion(name!, reward!)
+            }
+        }
     }
     
     func getAchievementList(completion: @escaping ([achievement])->()){

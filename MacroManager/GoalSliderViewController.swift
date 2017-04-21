@@ -46,6 +46,17 @@ class GoalSliderViewController: UIViewController {
         //Backround color
         self.view.backgroundColor = UIColor(red: 0.29, green: 0.55, blue: 0.9, alpha: 1.0)
         
+        let blurEffect = UIBlurEffect(style: .regular)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = view.bounds
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.insertSubview(blurEffectView, at: 1)
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
+        
         signUpButton.backgroundColor = UIColor.white
         signUpButton.layer.cornerRadius = 20
         
@@ -89,6 +100,15 @@ class GoalSliderViewController: UIViewController {
                 
                 let userRef = self.dbRef.child("users").child(user.uid)
                 
+                
+                
+                if let finalUserGoal = self.goalSelected{
+                    self.goalSelected = finalUserGoal
+                }
+                else{
+                    self.goalSelected = "Lose Fat"
+                }
+                
                 let user = User(name: self.fromName, age: Int(self.fromAge), gender: self.fromGender, height: self.fromHeight, weight: Int(self.fromWeight), activityLevel: self.fromActivity, goal: self.goalSelected)
                 userRef.setValue(user.toAnyObject())
                 
@@ -129,7 +149,7 @@ class GoalSliderViewController: UIViewController {
                 //Add previous completed Achievement
                 let lastRef = ref.child("achievements").child(uid!).child("lastCompleted")
                 //get default achievement
-                lastRef.setValue(currentUser.client.getLastCompleted().toAnyObject())
+                lastRef.setValue(currentUser.client.lastCompleted.toAnyObject())
                 
                 self.loadingWheel.stopAnimating()
                 self.signUpButton.setTitle("Welcome \(currentUser.name)!", for: .normal)
