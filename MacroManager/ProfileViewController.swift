@@ -188,7 +188,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     
     @IBAction func logoutMenuBtnPressed(_ sender: Any) {
     
-        let myActionSheet = UIAlertController(title: "", message: "What to do?", preferredStyle: .actionSheet)
+        let myActionSheet = UIAlertController(title: "", message: "What would you like to do?", preferredStyle: .actionSheet)
        
         let logoutAction = UIAlertAction(title: "Logout", style: .destructive){ (ACTION) in
             do{
