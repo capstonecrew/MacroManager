@@ -305,6 +305,37 @@ class GenericFoodItem {
             self.imageUrl = image
             
             //Misc data
+            
+            for i in 0...nutrients.count - 1 {
+                guard let nutrient = nutrients[i] as? [String: Any]
+                    else {
+                        continue
+                }
+                
+                if nutrient["attribute"] as! String == "FAT" {
+                    continue
+                }
+                if nutrient["attribute"] as! String == "CHOCDF" {
+                    continue
+                }
+                if nutrient["attribute"] as! String == "PROCNT" {
+                    continue
+                }
+                
+                guard let name = nutrient["description"] as? String else {
+                    continue
+                }
+                guard let amount = nutrient["value"] as? Double else {
+                    continue
+                }
+                guard let unit = (nutrient["unit"] as! [String: Any])["abbreviation"] as? String else {
+                    continue
+                }
+                self.miscNutrients.append(NutrientDetail(name: name, amount: amount, units: unit))
+            }
+            
+            
+            
             /*if let calories = fieldsDict["nf_calories"] as? Double {
              self.miscNutrients.append(NutrientDetail(name: "Calories", amount: calories, units: "kcal"))
              }
