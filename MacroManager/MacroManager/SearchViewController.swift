@@ -13,7 +13,6 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     var foodSearchResults:Array<GenericFoodItem> = []
 
@@ -32,10 +31,10 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var carbToday = 0;
 
     var percentFilter = 1.0
+    var tap: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doneButton.isEnabled = false
         searchBar.delegate = self
         
         navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
@@ -43,9 +42,9 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         self.navigationItem.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         
-        if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
-            doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
-        }
+//        if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
+//            doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
+//        }
         
 //        EdamamApiManager.search(query: "mac and cheese", count: 30) { response in
 //            for item in response.value! {
@@ -67,6 +66,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         
         //tableView.estimatedRowHeight = 110.0
         //tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    //HIDE KEYBOARD WHEN TOUCHING ANYWHERE ON SCREEN - AJE
+    func hideKeyboard(){
+        
+        view.endEditing(true)
+        self.view.removeGestureRecognizer(tap)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -96,13 +102,13 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         carbGoal = (carbGoalTotal - carbToday) / numMealsLeft
         
         //Populate with best recommendations
-        performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
+        //performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
     }
     
-    @IBAction func doneSearching(_ sender: Any) {
-        self.view.endEditing(true)
-        doneButton.isEnabled = false
-    }
+//    @IBAction func doneSearching(_ sender: Any) {
+//        self.view.endEditing(true)
+//        doneButton.isEnabled = false
+//    }
     
     
     func performSearch(searchText: String) {
@@ -345,6 +351,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+    
     /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let text = searchBar.text {
             doneButton.isEnabled = true
@@ -355,7 +366,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text {
             self.view.endEditing(true)
-            doneButton.isEnabled = false
+            //doneButton.isEnabled = false
             performSearch(searchText: text)
             currentUser.client.updatePoints(d: "search")
         }

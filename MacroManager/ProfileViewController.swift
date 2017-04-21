@@ -23,9 +23,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     let goalOptions : [String] = ["Lose Fat", "Maintain", "Gain Muscle"]
     var uid: String!
     var ref: FIRDatabaseReference!
-    @IBOutlet weak var goalPicker: UIPickerView!
     
+    @IBOutlet weak var goalPicker: UIPickerView!
     @IBOutlet weak var activityPicker: UIPickerView!
+    
     var newGoalString = ""
     var newActivityString = ""
     override func viewDidLoad() {
