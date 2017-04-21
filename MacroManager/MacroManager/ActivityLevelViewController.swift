@@ -112,7 +112,13 @@ class ActivityLevelViewController: UIViewController {
                 nextView.fromWeight = self.fromWeight
                 nextView.fromGender = self.fromGender
                 nextView.fromAge = self.fromAge
-                nextView.fromActivity = options[self.selectedOption]
+                if let userSelf = self.selectedOption{
+                    nextView.fromActivity = options[userSelf]
+                }
+                else {
+                    nextView.fromActivity = options[2]
+                }
+                
             }
         }
     }

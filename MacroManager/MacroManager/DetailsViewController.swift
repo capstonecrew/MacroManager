@@ -258,10 +258,35 @@ class DetailsViewController: UIViewController, UITextFieldDelegate, UIPickerView
                 nextView.fromName = self.fromName
                 nextView.fromEmail = self.fromEmail
                 nextView.fromPassword = self.fromPassword
+                if(self.heightField.text!.isEmpty)
+                {
+                    nextView.fromHeight = "5' 6\""
+                }
+                else {
                 nextView.fromHeight = self.heightField.text!
-                nextView.fromWeight = self.weightField.text!
-                nextView.fromGender = self.genderField.text!
+                }
+                if(self.weightField.text!.isEmpty)
+                {
+                    nextView.fromWeight = "150"
+                }
+                else{
+                    nextView.fromWeight = self.weightField.text!
+                }
+                if(self.genderField.text!.isEmpty)
+                {
+                    nextView.fromGender = "Male"
+                }
+                else{
+                   nextView.fromGender = self.genderField.text!
+                }
+                if(self.ageField.text!.isEmpty)
+                {
+                    nextView.fromAge = "25"
+                    
+                }
+                else{
                 nextView.fromAge = self.ageField.text!
+                }
                 
             }
         }

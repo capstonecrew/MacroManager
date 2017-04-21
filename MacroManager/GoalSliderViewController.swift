@@ -89,6 +89,15 @@ class GoalSliderViewController: UIViewController {
                 
                 let userRef = self.dbRef.child("users").child(user.uid)
                 
+                
+                
+                if let finalUserGoal = self.goalSelected{
+                    self.goalSelected = finalUserGoal
+                }
+                else{
+                    self.goalSelected = "Lose Fat"
+                }
+                
                 let user = User(name: self.fromName, age: Int(self.fromAge), gender: self.fromGender, height: self.fromHeight, weight: Int(self.fromWeight), activityLevel: self.fromActivity, goal: self.goalSelected)
                 userRef.setValue(user.toAnyObject())
                 
