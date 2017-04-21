@@ -178,6 +178,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             currentUser.name = userNameField.text
             currentUser.goal = newGoalString
             currentUser.activityLevel = newActivityString
+            currentUser.calorieCalc()
             currentUser.macronutrientCalc()
             
             currentUser.client.updatePoints(d: "update")
