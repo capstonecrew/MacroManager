@@ -27,8 +27,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     @IBOutlet weak var goalPicker: UIPickerView!
     @IBOutlet weak var activityPicker: UIPickerView!
     
-    var newGoalString = ""
-    var newActivityString = ""
+    var newGoalString = currentUser.goal
+    var newActivityString = currentUser.activityLevel
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
@@ -36,8 +36,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
 
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         self.navigationItem.title = "Profile"
-        print(currentUser.goal)
-        print(currentUser.activityLevel)
+        
         userNameField.delegate = self
         userNameField.text = currentUser.name!
         userBirthField.delegate = self
@@ -250,6 +249,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView.tag == 0)
         {
+            
             newGoalString = goalOptions[row]
             
         }
