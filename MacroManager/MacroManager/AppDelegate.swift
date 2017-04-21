@@ -29,9 +29,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 
-//        // FORCE SIGN OUT OPTION
+        // FORCE SIGN OUT OPTION
 
-//
+
 //        do  {
 //            try FIRAuth.auth()?.signOut()
 //
