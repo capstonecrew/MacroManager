@@ -31,12 +31,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 //        // FORCE SIGN OUT OPTION
 
-        do  {
-            try FIRAuth.auth()?.signOut()
-
-        } catch {
-
-       }
+//
+//        do  {
+//            try FIRAuth.auth()?.signOut()
+//
+//        } catch {
+//
+//       }
 
         if let user = FIRAuth.auth()?.currentUser{
             let userRef = FIRDatabase.database().reference().child("users").child(user.uid)
