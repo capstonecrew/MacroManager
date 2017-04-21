@@ -431,6 +431,21 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkx-so-oHp">
+                                <rect key="frame" x="246" y="84" width="98" height="54"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="98" id="IPp-OD-Obh"/>
+                                    <constraint firstAttribute="height" constant="54" id="Jht-wT-1VI"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="secretButton1:" destination="3bp-le-dTt" eventType="touchUpInside" id="h5T-w6-hx5"/>
+                                </connections>
+                            </button>
+                            <button hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iAW-Ej-yrT">
+                                <rect key="frame" x="142" y="523" width="90" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="attackHelicopter-2.png"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -452,6 +467,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="7VB-QC-HMr" secondAttribute="trailing" constant="15" id="fLf-U1-2kX"/>
                             <constraint firstItem="LYl-7V-VFd" firstAttribute="leading" secondItem="J0B-Fj-Z33" secondAttribute="leadingMargin" constant="15" id="fxq-Wu-ZQ4"/>
                             <constraint firstItem="8Pe-8z-6gd" firstAttribute="top" secondItem="7VB-QC-HMr" secondAttribute="bottom" constant="20" id="gMm-UW-0SV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mkx-so-oHp" secondAttribute="trailing" constant="15" id="hns-CW-i1P"/>
                             <constraint firstItem="7VB-QC-HMr" firstAttribute="leading" secondItem="J0B-Fj-Z33" secondAttribute="leadingMargin" constant="15" id="jN9-LP-gEv"/>
                             <constraint firstAttribute="trailingMargin" secondItem="HiZ-JU-wx7" secondAttribute="trailing" constant="15" id="l0z-OF-8Mp"/>
                             <constraint firstItem="kxi-rr-EDY" firstAttribute="top" secondItem="Rqp-4W-x2u" secondAttribute="bottom" constant="50" id="nmW-dx-4nM"/>
@@ -461,10 +477,12 @@
                             <constraint firstAttribute="trailingMargin" secondItem="wXL-wY-yS3" secondAttribute="trailing" constant="15" id="u4j-qo-mRW"/>
                             <constraint firstItem="wpd-oA-xzK" firstAttribute="leading" secondItem="J0B-Fj-Z33" secondAttribute="leadingMargin" constant="15" id="ua4-rj-CpT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wpd-oA-xzK" secondAttribute="trailing" constant="15" id="w1h-vi-i92"/>
+                            <constraint firstItem="mkx-so-oHp" firstAttribute="top" secondItem="Rqp-4W-x2u" secondAttribute="bottom" constant="20" id="wXS-hV-yeV"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="ageField" destination="wXL-wY-yS3" id="Grz-Vj-oq6"/>
+                        <outlet property="apacheButton" destination="iAW-Ej-yrT" id="vBv-Mf-r47"/>
                         <outlet property="genderField" destination="gKb-5a-RTW" id="7lu-9V-mK2"/>
                         <outlet property="heightField" destination="317-dS-mZG" id="pgV-S6-E2m"/>
                         <outlet property="nextButton" destination="7VB-QC-HMr" id="lED-ff-nIa"/>
@@ -1516,6 +1534,7 @@
     </scenes>
     <resources>
         <image name="MacroManager.png" width="226" height="226"/>
+        <image name="attackHelicopter-2.png" width="120" height="48"/>
         <image name="checkmark.png" width="22" height="26"/>
         <image name="dashboard_icon.png" width="32" height="32"/>
         <image name="good_Icon.png" width="23" height="23"/>

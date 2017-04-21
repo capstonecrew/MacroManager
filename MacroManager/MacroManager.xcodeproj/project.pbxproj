@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091763361EA8744900A5EA0D /* attackHelicopter-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 091763351EA8744900A5EA0D /* attackHelicopter-2.png */; };
 		092D64A91DCAB1B2009457FC /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D64A81DCAB1B2009457FC /* DetailsViewController.swift */; };
 		092D64AB1DCAC3B8009457FC /* GoalSliderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092D64AA1DCAC3B8009457FC /* GoalSliderViewController.swift */; };
 		095AC4481E272933004A4A2C /* wikiViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 095AC4471E272933004A4A2C /* wikiViewController.swift */; };
@@ -223,6 +224,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		091763351EA8744900A5EA0D /* attackHelicopter-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attackHelicopter-2.png"; sourceTree = "<group>"; };
 		092D64A81DCAB1B2009457FC /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 		092D64AA1DCAC3B8009457FC /* GoalSliderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GoalSliderViewController.swift; path = ../GoalSliderViewController.swift; sourceTree = "<group>"; };
 		095AC4471E272933004A4A2C /* wikiViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = wikiViewController.swift; sourceTree = "<group>"; };
@@ -526,6 +528,7 @@
 		6AC12E101DC800C2007C2D45 /* ImageAssets */ = {
 			isa = PBXGroup;
 			children = (
+				091763351EA8744900A5EA0D /* attackHelicopter-2.png */,
 				6AF704751E96D316008CA5BB /* 6be1847b56e3832a614699142d1e09d8.jpg */,
 				6AF7046C1E96D18B008CA5BB /* 473.jpg */,
 				6A0CBAEF1E8EC807009893A4 /* good_Icon@3x.png */,
@@ -798,6 +801,7 @@
 				6A3D05781DDEBED7008CDDF7 /* WelcomeUserCell.xib in Resources */,
 				1985FD061E2736FC009A59D5 /* under_construction_gif.gif in Resources */,
 				6AAE42371E60826400CFB586 /* blueAcheivement_Lrg@2x.png in Resources */,
+				091763361EA8744900A5EA0D /* attackHelicopter-2.png in Resources */,
 				6A4608C41DDD7903003D77B5 /* dashboard_icon@3x.png in Resources */,
 				6A3943E41E285C8B00E13F2B /* taco_Icon@3x.png in Resources */,
 				6AA73A051E3BC38D00FF831D /* MealDetailsCell.xib in Resources */,
