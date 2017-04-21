@@ -1166,10 +1166,10 @@
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Xwh-AZ-1GP">
                                 <rect key="frame" x="177" y="615" width="20" height="20"/>
                             </activityIndicatorView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sK6-wZ-Imt">
-                                <rect key="frame" x="16" y="334" width="343" height="45"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sK6-wZ-Imt">
+                                <rect key="frame" x="17" y="342" width="342" height="45"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="37" id="Qnm-8J-RMo"/>
+                                    <constraint firstAttribute="height" constant="45" id="2uW-jm-Stg"/>
                                 </constraints>
                                 <state key="normal" title="Gain Weight">
                                     <color key="titleColor" red="0.60570549240000005" green="0.60570549240000005" blue="0.60570549240000005" alpha="1" colorSpace="calibratedRGB"/>
@@ -1180,17 +1180,17 @@
                         <constraints>
                             <constraint firstItem="Xwh-AZ-1GP" firstAttribute="centerY" secondItem="rXs-ge-UPn" secondAttribute="centerY" id="0Kc-j4-1X3"/>
                             <constraint firstItem="MDh-2N-8WH" firstAttribute="top" secondItem="QGt-Kx-Udh" secondAttribute="bottom" constant="62" id="0rx-1p-HIp"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="sK6-wZ-Imt" secondAttribute="trailing" id="1JI-df-vWY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rXs-ge-UPn" secondAttribute="trailing" id="4Wa-R0-RMG"/>
                             <constraint firstItem="Xwh-AZ-1GP" firstAttribute="centerX" secondItem="rXs-ge-UPn" secondAttribute="centerX" id="7kr-Cs-2Mm"/>
-                            <constraint firstItem="sK6-wZ-Imt" firstAttribute="top" secondItem="m6N-AZ-hka" secondAttribute="bottom" constant="16" id="GW5-6l-Kkg"/>
                             <constraint firstItem="QGt-Kx-Udh" firstAttribute="top" secondItem="BzO-Xg-Jxo" secondAttribute="bottom" constant="74" id="PW3-Yn-yAg"/>
                             <constraint firstAttribute="trailingMargin" secondItem="m6N-AZ-hka" secondAttribute="trailing" id="Pq0-Xp-RAT"/>
                             <constraint firstAttribute="leadingMargin" secondItem="m6N-AZ-hka" secondAttribute="leading" id="TP3-pk-KdM"/>
+                            <constraint firstItem="sK6-wZ-Imt" firstAttribute="top" secondItem="m6N-AZ-hka" secondAttribute="bottom" constant="16" id="aGw-1c-nfs"/>
                             <constraint firstItem="m6N-AZ-hka" firstAttribute="top" secondItem="MDh-2N-8WH" secondAttribute="bottom" constant="16" id="dFE-Nu-f8e"/>
                             <constraint firstItem="QGt-Kx-Udh" firstAttribute="centerX" secondItem="Bor-6R-bTg" secondAttribute="centerX" id="ezh-VB-XCa"/>
-                            <constraint firstAttribute="leadingMargin" secondItem="sK6-wZ-Imt" secondAttribute="leading" id="fjE-eI-s9A"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="sK6-wZ-Imt" secondAttribute="trailing" id="gb8-d6-aHK"/>
                             <constraint firstAttribute="leadingMargin" secondItem="rXs-ge-UPn" secondAttribute="leading" id="gkg-jc-GkX"/>
+                            <constraint firstItem="sK6-wZ-Imt" firstAttribute="leading" secondItem="Bor-6R-bTg" secondAttribute="leadingMargin" constant="1" id="i69-2b-ddt"/>
                             <constraint firstItem="pH4-dN-OB0" firstAttribute="top" secondItem="rXs-ge-UPn" secondAttribute="bottom" constant="20" id="reN-qg-RZb"/>
                             <constraint firstAttribute="leadingMargin" secondItem="MDh-2N-8WH" secondAttribute="leading" id="sVs-sr-pna"/>
                             <constraint firstAttribute="trailingMargin" secondItem="MDh-2N-8WH" secondAttribute="trailing" id="yeu-Lh-Q6M"/>
@@ -1207,7 +1207,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BkJ-kM-fcN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2970" y="-120"/>
+            <point key="canvasLocation" x="2968.8000000000002" y="-120.08995502248877"/>
         </scene>
         <!--Data Test View Controller-->
         <scene sceneID="7YY-u7-JDK">
