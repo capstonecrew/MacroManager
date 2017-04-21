@@ -172,8 +172,6 @@ class GenericFoodItem {
                     return nil
             }
             
-            //Optionals
-            
             let proteins = (proteinDetails["quantity"] as? Double)!/yield
             let carbs = (carbDetails["quantity"] as? Double)! / yield
             let fats = (fatDetails["quantity"] as? Double)! / yield
@@ -183,37 +181,47 @@ class GenericFoodItem {
             self.imageUrl = image
             
             //Misc data
-            if let calories = fieldsDict["nf_calories"] as? Double {
-                self.miscNutrients.append(NutrientDetail(name: "Calories", amount: calories, units: "kcal"))
+            for item in nutrients{
+                if (item.key == "FAT" || item.key == "CHOCDF" || item.key == "PROCNT"){
+                    continue
+                }
+                
+                if let itemDetails = item.value as? [String: Any] {
+                    self.miscNutrients.append(NutrientDetail(name: (itemDetails["label"] as? String)!, amount: (itemDetails["quantity"] as? Double)!/yield, units: (itemDetails["unit"] as? String)!))
+                }
             }
-            if let cholesterol = fieldsDict["nf_cholesterol"] as? Double {
-                self.miscNutrients.append(NutrientDetail(name: "Cholesterol", amount: cholesterol, units: "mg"))
+            /*
+            if let calories = nutrients["ENERC_KCAL"] as? [String: Any] {
+                self.miscNutrients.append(NutrientDetail(name: "Calories", amount: (calories["quantity"] as? Double)!/yield, units: "kcal"))
             }
-            if let sodium = fieldsDict["nf_sodium"] as? Double {
-                self.miscNutrients.append(NutrientDetail(name: "Sodium", amount: sodium, units: "mg"))
+            if let cholesterol = nutrients["CHOLE"] as? [String: Any] {
+                self.miscNutrients.append(NutrientDetail(name: "Cholesterol", amount: (cholesterol["quantity"] as? Double)!/yield, units: "mg"))
             }
-            if let fiber = fieldsDict["nf_dietary"] as? Double {
-                self.miscNutrients.append(NutrientDetail(name: "Fiber", amount: fiber, units: "g"))
+            if let sodium = nutrients["NA"] as? [String: Any] {
+                self.miscNutrients.append(NutrientDetail(name: "Sodium", amount: (sodium["quantity"] as? Double)!/yield, units: "mg"))
             }
-            if let sugars = fieldsDict["nf_sugars"] as? Double {
-                self.miscNutrients.append(NutrientDetail(name: "Sugars", amount: sugars, units: "g"))
+            if let fiber = nutrients["FIBTG"] as? [String: Any] {
+                self.miscNutrients.append(NutrientDetail(name: "Fiber", amount: (fiber["quantity"] as? Double)!/yield, units: "g"))
             }
-            if let vitaminA = fieldsDict["nf_vitamin_a_dv"] as? Double {
-                self.miscNutrients.append(NutrientDetail(name: "Vitamin A", amount: vitaminA, units: "%"))
+            if let sugars = nutrients["SUGAR"] as? [String: Any] {
+                self.miscNutrients.append(NutrientDetail(name: "Sugars", amount: (sugars["quantity"] as? Double)!/yield, units: "g"))
             }
-            if let vitaminC = fieldsDict["nf_vitamin_c_dv"] as? Double {
-                self.miscNutrients.append(NutrientDetail(name: "Vitamin C", amount: vitaminC, units: "%"))
+            if let vitaminA = nutrients["VITA_RAE"] as? [String: Any] {
+                self.miscNutrients.append(NutrientDetail(name: "Vitamin A", amount: (vitaminA["quantity"] as? Double)!/yield, units: "ug"))
             }
-            if let calcium = fieldsDict["nf_calcium_dv"] as? Double {
+            if let vitaminC = nutrients["VITC"] as? [String: Any] {
+                self.miscNutrients.append(NutrientDetail(name: "Vitamin C", amount: (vitaminC["quantity"] as? Double)!/yield, units: "mg"))
+            }
+            if let calcium = nutrients["nf_calcium_dv"] as? [String: Any] {
                 self.miscNutrients.append(NutrientDetail(name: "Calcium", amount: calcium, units: "%"))
             }
-            if let iron = fieldsDict["nf_iron_dv"] as? Double {
+            if let iron = nutrients["nf_iron_dv"] as? [String: Any] {
                 self.miscNutrients.append(NutrientDetail(name: "Iron", amount: iron, units: "%"))
                 
             }
-            if let potassium = fieldsDict["nf_potassium"] as? Double {
+            if let potassium = nutrients["nf_potassium"] as? [String: Any] {
                 self.miscNutrients.append(NutrientDetail(name: "Potassium", amount: potassium, units: "mg"))
-            }
+            }*/
             
         case FoodSource.yummly:
             guard let itemName = json["name"] as? String
