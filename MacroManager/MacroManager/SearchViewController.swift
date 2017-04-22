@@ -7,12 +7,12 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class SearchViewController: UIViewController, UISearchBarDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var doneButton: UIBarButtonItem!
     
     var foodSearchResults:Array<GenericFoodItem> = []
 
@@ -30,39 +30,49 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     var proteinToday = 0;
     var carbToday = 0;
 
+    var percentFilter = 1.0
+    var tap: UITapGestureRecognizer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        doneButton.isEnabled = false
         searchBar.delegate = self
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+
         self.navigationItem.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         
-        if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
-            doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
-        }
+//        if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
+//            doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
+//        }
         
-        EdamamApiManager.search(query: "mac and cheese", count: 30) { response in
-            for item in response.value! {
-                
-                print(item.itemName)
-                //self.recipeSearchResults.append(item)
-                
-            }
-        }
-        
-        YummlyApiManager.search(query: "mac and cheese", count: 10, completionHandler: { response in
-            
-            for item in response.value! {
-                print(item.itemName)
-                
-            }
-            
-        })
+//        EdamamApiManager.search(query: "mac and cheese", count: 30) { response in
+//            for item in response.value! {
+//                
+//                print(item.itemName)
+//                //self.recipeSearchResults.append(item)
+//                
+//            }
+//        }
+//        
+//        YummlyApiManager.search(query: "mac and cheese", count: 10, completionHandler: { response in
+//            
+//            for item in response.value! {
+//                print(item.itemName)
+//                
+//            }
+//            
+//        })
         
         //tableView.estimatedRowHeight = 110.0
         //tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
+    //HIDE KEYBOARD WHEN TOUCHING ANYWHERE ON SCREEN - AJE
+    func hideKeyboard(){
+        
+        view.endEditing(true)
+        self.view.removeGestureRecognizer(tap)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -90,12 +100,15 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         fatGoal = (fatGoalTotal - fatToday) / numMealsLeft
         proteinGoal = (proteinGoalTotal - proteinToday) / numMealsLeft
         carbGoal = (carbGoalTotal - carbToday) / numMealsLeft
+        
+        //Populate with best recommendations
+        //performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
     }
     
-    @IBAction func doneSearching(_ sender: Any) {
-        self.view.endEditing(true)
-        doneButton.isEnabled = false
-    }
+//    @IBAction func doneSearching(_ sender: Any) {
+//        self.view.endEditing(true)
+//        doneButton.isEnabled = false
+//    }
     
     
     func performSearch(searchText: String) {
@@ -119,6 +132,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         YummlyApiManager.search(query: searchText, count: 20, completionHandler: { response in
             
             for item in response.value!{
+                self.calculateQuality(item: item)
                 self.foodSearchResults.append(item)
             }
             
@@ -130,6 +144,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         EdamamApiManager.search(query: searchText, count: 20, completionHandler: { response in
             
             for item in response.value!{
+                self.calculateQuality(item: item)
                 self.foodSearchResults.append(item)
             }
             
@@ -138,11 +153,143 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         })
         
         lookupGroup.notify(queue: .main, execute: {
-            
+            self.foodSearchResults.sort(by: self.sorterForItemsByQuality)
             self.tableView.reloadData()
         })
-
+    }
     
+    func performBestMealLookup(clearCurrentResults : Bool, percent: Double ) {
+        if (clearCurrentResults){
+            self.foodSearchResults.removeAll()
+        }
+        
+        YummlyApiManager.percentSearch(query: "", count: 20, percent: Double(percent), carbCount: Double(carbGoal), proteinCount: Double(proteinGoal), fatCount: Double(fatGoal), completionHandler: { response in
+            
+            for item in response.value!{
+                self.calculateQuality(item: item)
+                self.foodSearchResults.append(item)
+            }
+            
+            self.minimumResultsCheck()
+            
+        })
+        
+        self.tableView.reloadData()
+    }
+    
+    func minimumResultsCheck () -> Void {
+        if (self.foodSearchResults.count < 20) {
+            self.percentFilter += 1
+            performBestMealLookup(clearCurrentResults: false, percent: self.percentFilter)
+        }
+    }
+    
+    func sorterForItemsByQuality(first: GenericFoodItem, second: GenericFoodItem) -> Bool {
+        if first.quality == .good {
+            return true
+        }
+        else if (first.quality == .bad && (second.quality == .okay || second.quality == .good)) {
+            return false
+        }
+        else if (first.quality == .okay && (second.quality == .good)) {
+            return false
+        }
+        else {
+            return true
+        }
+    }
+    
+    func calculateQuality(item : GenericFoodItem) {
+        var carbPercent = 0.0
+        var proteinPercent = 0.0
+        var fatPercent = 0.0
+        
+        fatPercent = (item.fats / Double(fatGoal)) * 100.0
+        proteinPercent = (item.proteins / Double(proteinGoal)) * 100.0
+        carbPercent = (item.carbs / Double(carbGoal)) * 100.0
+
+        // Quality calculations
+        switch(currentUser.goal){
+        case "Lose Fat":
+            //Above 30% difference on all macros
+            if ((carbPercent < 70   || carbPercent > 130) &&
+                (fatPercent < 70   || fatPercent > 130) &&
+                (proteinPercent < 70   || proteinPercent > 130)) {
+                item.quality = .bad
+            }
+                //Below 20% difference on at least 2 macros and below 30% on the third
+            else if ((carbPercent >= 70   && carbPercent <= 120) &&
+                (fatPercent >= 80  && fatPercent <= 120) &&
+                (proteinPercent >= 80  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 80  && carbPercent <= 120) &&
+                (fatPercent >= 70  && fatPercent <= 120) &&
+                (proteinPercent >= 80  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 80  && carbPercent <= 120) &&
+                (fatPercent >= 80  && fatPercent <= 120) &&
+                (proteinPercent >= 70  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else {
+                item.quality = .okay
+            }
+        case "Maintain":
+            //Above 30% difference on all macros
+            if ((carbPercent < 8  || carbPercent > 120) &&
+                (fatPercent < 8  || fatPercent > 120) &&
+                (proteinPercent < 8  || proteinPercent > 120)) {
+                item.quality = .bad
+            }
+                //Below 20% difference on at least 2 macros and below 30% on the third
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else {
+                item.quality = .okay
+            }
+        case "Gain Muscle":
+            //Above 30% difference on all macros
+            if ((carbPercent < 8  || carbPercent > 120) &&
+                (fatPercent < 8  || fatPercent > 120) &&
+                (proteinPercent < 8  || proteinPercent > 120)) {
+                item.quality = .bad
+            }
+                //Below 20% difference on at least 2 macros and below 30% on the third
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else if ((carbPercent >= 8  && carbPercent <= 120) &&
+                (fatPercent >= 8  && fatPercent <= 120) &&
+                (proteinPercent >= 8  && proteinPercent <= 120)){
+                item.quality = .good
+            }
+            else {
+                item.quality = .okay
+            }
+        default: break
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -150,13 +297,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-        var carbPercent = 0.0
-        var proteinPercent = 0.0
-        var fatPercent = 0.0
+
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "meal", for: indexPath) as! SearchTableViewCell
-        
         let item = self.foodSearchResults[indexPath.row]
+        let circleFilter = CircleFilter()
+        cell.itemImage.af_setImage(withURL: URL(string: item.imageUrl)!, placeholderImage: UIImage(named: "placeholder"), filter: circleFilter)
         
         cell.mealNameLabel.text = item.itemName
         
@@ -166,95 +312,24 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             cell.descriptionLabel.text = "No Description"
         }
         
+        cell.descriptionLabel.isHidden = true
+        
         cell.fatLabel.text = "Fats: \(item.fats)"
-        fatPercent = (item.fats / Double(fatGoal)) * 100.0
         
         cell.proteinLabel.text = "Protein: \(item.proteins)"
-        proteinPercent = (item.proteins / Double(proteinGoal)) * 100.0
         
         cell.carbsLabel.text = "Carbs: \(item.carbs)"
-        carbPercent = (item.carbs / Double(carbGoal)) * 100.0
         
-        // Quality calculations
-        switch(currentUser.goal){
-            case "Lose Fat":
-                //Above 30% difference on all macros
-                if ((carbPercent < 8   || carbPercent > 120) &&
-                    (fatPercent < 8   || fatPercent > 120) &&
-                    (proteinPercent < 8   || proteinPercent > 120)) {
-                    cell.setQualityBad()
-                }
-                    //Below 20% difference on at least 2 macros and below 30% on the third
-                else if ((carbPercent >= 8   && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else {
-                    cell.setQualityOkay()
-            }
-            case "Maintain":
-                //Above 30% difference on all macros
-                if ((carbPercent < 8  || carbPercent > 120) &&
-                    (fatPercent < 8  || fatPercent > 120) &&
-                    (proteinPercent < 8  || proteinPercent > 120)) {
-                    cell.setQualityBad()
-                }
-                    //Below 20% difference on at least 2 macros and below 30% on the third
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else {
-                    cell.setQualityOkay()
-            }
-            case "Gain Muscle":
-                //Above 30% difference on all macros
-                if ((carbPercent < 8  || carbPercent > 120) &&
-                    (fatPercent < 8  || fatPercent > 120) &&
-                    (proteinPercent < 8  || proteinPercent > 120)) {
-                    cell.setQualityBad()
-                }
-                    //Below 20% difference on at least 2 macros and below 30% on the third
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else if ((carbPercent >= 8  && carbPercent <= 120) &&
-                    (fatPercent >= 8  && fatPercent <= 120) &&
-                    (proteinPercent >= 8  && proteinPercent <= 120)){
-                    cell.setQualityGood()
-                }
-                else {
-                    cell.setQualityOkay()
-            }
+        switch(item.quality) {
+        case .bad:
+            cell.setQualityBad()
+            
+        case .okay:
+            cell.setQualityOkay()
+            
+        case .good:
+            cell.setQualityGood()
+            
         default: break
         }
         
@@ -276,6 +351,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         }
     }
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.tap = UITapGestureRecognizer(target: self, action: #selector(self.hideKeyboard))
+        self.view.addGestureRecognizer(tap)
+    }
+    
     /*func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if let text = searchBar.text {
             doneButton.isEnabled = true
@@ -286,7 +366,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if let text = searchBar.text {
             self.view.endEditing(true)
-            doneButton.isEnabled = false
+            //doneButton.isEnabled = false
             performSearch(searchText: text)
             currentUser.client.updatePoints(d: "search")
         }

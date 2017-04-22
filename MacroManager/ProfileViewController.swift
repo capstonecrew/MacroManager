@@ -19,17 +19,21 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     @IBOutlet weak var userWeightField: UITextField!
     
     var editable = false
-    let options : [String] = ["Little to None", "Light", "Moderate", "Heavy", "Very Heavy"]
+    let activityLevels : [String] = ["Little to None", "Light", "Moderate", "Heavy", "Very Heavy"]
     let goalOptions : [String] = ["Lose Fat", "Maintain", "Gain Muscle"]
+    var uid: String!
+    var ref: FIRDatabaseReference!
     
     @IBOutlet weak var goalPicker: UIPickerView!
-    
     @IBOutlet weak var activityPicker: UIPickerView!
-    var newGoalString = ""
-    var newActivityString = ""
+    
+    var newGoalString = currentUser.goal
+    var newActivityString = currentUser.activityLevel
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+        navigationController?.navigationBar.isTranslucent = false
+
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         self.navigationItem.title = "Profile"
         
@@ -41,8 +45,8 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         userWeightField.text = "\(currentUser.weight!) pounds"
         goalPicker.delegate = self
         activityPicker.delegate = self
-        goalPicker.selectedRow(inComponent: getRow(string: currentUser.goal))
-        activityPicker.selectedRow(inComponent: getRow(string: currentUser.activityLevel))
+        goalPicker.selectRow(getGoalRow(currentUser.goal), inComponent: 0, animated: true)
+        activityPicker.selectRow(getActivityRow(currentUser.activityLevel), inComponent: 0, animated: true)
         
         // hide keyboard upon tap
         let tap = UITapGestureRecognizer(target: self, action: #selector(ProfileViewController.hideKeyboard))
@@ -66,26 +70,38 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     @IBAction func changeGoalButton(_ sender: Any) {
         
     }
-    func getRow(string:String)->Int{
-      var row = 0
+    
+    func getGoalRow(_ goal: String) -> Int{
         
-        for index in 0...2{
-            if (currentUser.activityLevel == goalOptions[index])
-            {
-                return index
-            }
+        var row = 0
+        
+        for i in 0...goalOptions.count - 1{
             
-        }
-        for otherIndex in 0...4{
-            if(currentUser.goal == options[otherIndex])
-            {
-                return otherIndex
+            if goalOptions[i] == goal{
+                
+                row = i
             }
         }
-      
+        
         return row
+        
     }
     
+    func getActivityRow(_ activityLevel: String) -> Int{
+        
+        var row = 0
+        
+        for i in 0...activityLevels.count - 1{
+            
+            if activityLevels[i] == activityLevel{
+                
+                row = i
+            }
+        }
+        
+        return row
+        
+    }
     
     @IBAction func doneEditingName(_ sender: Any) {
         guard let x = userNameField.text, x != ""  else {
@@ -115,6 +131,10 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
     }
     
     @IBAction func editPush(_ sender: Any) {
+        
+        let oldWeight = currentUser.weight
+        var newWeight:Int
+        
         if(!editable)
         {
             editButton.setTitle("Save", for: .normal)
@@ -125,9 +145,13 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             activityPicker.isUserInteractionEnabled = true
             
             editable = true
-            currentUser.client.updatePoints(d: "update")
+            
         }
         else{
+            uid = FIRAuth.auth()?.currentUser?.uid
+            ref = FIRDatabase.database().reference()
+            let userRef = ref.child("users").child(uid!)
+            
             
             editButton.setTitle("Edit", for: .normal)
             userNameField.isUserInteractionEnabled = false
@@ -136,28 +160,35 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
             goalPicker.isUserInteractionEnabled = false
             activityPicker.isUserInteractionEnabled = false
             editable = false
-            var newAgeString = userBirthField.text
+            let newAgeString = userBirthField.text
             var separateAge: [String] = newAgeString!.components(separatedBy: " ")
-            var newAge = separateAge[0]
+            let newAge = separateAge[0]
+            let newWeightString = userWeightField.text
+            var separateWeight: [String] = newWeightString!.components(separatedBy: " ")
+            let newWeight = separateWeight[0]
             currentUser.age = Int(newAge)
-            newAgeString = userWeightField.text
-            separateAge = newAgeString!.components(separatedBy: " ")
-            newAge = separateAge[0]
-            currentUser.weight = Int(newAge)
+            
+        
+         
+            currentUser.weight = Int(newWeight)
+            let updates = ["age": Int(newAge), "weight": Int(newWeight), "name": userNameField.text, "goal":newGoalString, "activityLevel":newActivityString] as [String : Any]
+            userRef.updateChildValues(updates)
             
             currentUser.name = userNameField.text
             currentUser.goal = newGoalString
             currentUser.activityLevel = newActivityString
-           
+            currentUser.calorieCalc()
+            currentUser.macronutrientCalc()
             
+            currentUser.client.updatePoints(d: "update")
             
-            
+            currentUser.client.updateWeightGoal(oldW: oldWeight!, newW: Int(newWeight)!)
         }
     }
     
     @IBAction func logoutMenuBtnPressed(_ sender: Any) {
     
-        let myActionSheet = UIAlertController(title: "", message: "What to do?", preferredStyle: .actionSheet)
+        let myActionSheet = UIAlertController(title: "", message: "What would you like to do?", preferredStyle: .actionSheet)
        
         let logoutAction = UIAlertAction(title: "Logout", style: .destructive){ (ACTION) in
             do{
@@ -199,7 +230,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         }
         else{
             
-            return options.count
+            return activityLevels.count
         }
     }
     
@@ -211,18 +242,19 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         }
         else{
             
-            return options[row]
+            return activityLevels[row]
         }
     }
   
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if (pickerView.tag == 0)
         {
+            
             newGoalString = goalOptions[row]
             
         }
         else{
-           newActivityString = options[row]
+           newActivityString = activityLevels[row]
     }
     }
     

@@ -7,11 +7,15 @@
 //
 
 import UIKit
-
+import Firebase
 class AcheivementsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     var achievements: [achievement] = []
+    var currentAchievements : [Int] = []
+    var hasRewardHistory = false
+    var lastAchievementReward: Int!
+    var lastAchievementName: String!
     /*
      @IBOutlet weak var totalLbl: UILabel!
      @IBOutlet weak var progress1: UIProgressView!
@@ -31,51 +35,91 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         self.navigationController?.navigationBar.titleTextAttributes = [ NSForegroundColorAttributeName: UIColor.white]
         self.navigationItem.title = "Achievements"
 
-        
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+        navigationController?.navigationBar.isTranslucent = false
+
         self.tableView.register(UINib(nibName: "AchievementProgressCell", bundle: nil), forCellReuseIdentifier: "achievementProgressCell")
         self.tableView.register(UINib(nibName: "AcheivementHeaderCell", bundle: nil), forCellReuseIdentifier: "acheivementHeaderCell")
         self.tableView.register(UINib(nibName: "HeaderCell", bundle: nil), forCellReuseIdentifier: "headerCell")
+        self.tableView.register(UINib(nibName: "LastAchievementCell", bundle: nil), forCellReuseIdentifier: "lastAchievementCell")
 
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        achievements.append(currentUser.client.getAchievement(num: 0))
-        achievements.append(currentUser.client.getAchievement(num: 1))
-        achievements.append(currentUser.client.getAchievement(num: 2))
-        achievements.append(currentUser.client.getAchievement(num: 3))
-        achievements.append(currentUser.client.getAchievement(num: 4))
-        /*
-         self.totalLbl.text = String(client.getTotal())
-         
-         var a =
-         var b = client.getAchievement(num: 1)
-         var c = client.getAchievement(num: 2)
-         
-         self.progress1.setProgress(Float(a.getPoints()), animated: true)
-         self.progress2.setProgress(Float(b.getPoints()), animated: true)
-         self.progress3.setProgress(Float(c.getPoints()), animated: true)
-         
-         self.progressReward1.text = String(a.getReward())
-         self.progressReward2.text = String(b.getReward())
-         self.progressReward3.text = String(c.getReward())
-         
-         self.progressLbl1.text = a.getName()
-         self.progressLbl2.text = b.getName()
-         self.progressLbl3.text = c.getName()
-         */
+        self.tableView.separatorStyle = .singleLine
         
+        /*
+        historyMealLog = [GenericFoodItem]()
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        let historyRef = ref.child("history").child(userID!)
+
+         lookupGroup.enter()
+         
+         historyRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+         
+         for item in snapshot.children{
+         let historyItem = GenericFoodItem.init(snap: item as! FIRDataSnapshot)
+         self.historyMealLog.append(historyItem)
+         }
+         
+         lookupGroup.leave()
+         }
+        */
+        
+        var achievementLog = [achievement]()
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        let currentRef = ref.child("achievements").child(userID!).child("currentList")
+        let achievementListRef = ref.child("achievements").child(userID!).child("achievementList")
+        let lookupGroup = DispatchGroup()
+        
+        currentUser.client.getAchievementList(completion: {(results) in
+            
+            for result in results{
+                
+                print(result.getName())
+            }
+            
+            self.achievements = results
+            
+            currentUser.client.getLastCompleted(completion: {(name, reward) in
+                
+                if reward != 0{
+                    
+                    self.hasRewardHistory = true
+                    self.lastAchievementReward = reward
+                    self.lastAchievementName = name
+                }
+                
+                self.tableView.reloadData()
+                
+            })
+        })
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        var temp: [achievement] = []
-        achievements = temp
-        achievements.append(currentUser.client.getAchievement(num: 0))
-        achievements.append(currentUser.client.getAchievement(num: 1))
-        achievements.append(currentUser.client.getAchievement(num: 2))
-        achievements.append(currentUser.client.getAchievement(num: 3))
-        achievements.append(currentUser.client.getAchievement(num: 4))
-        tableView.reloadData()
+        
+        currentUser.client.getAchievementList{(result) in
+            
+            self.achievements = result
+            currentUser.client.getLastCompleted(completion: {(name, reward) in
+                
+                if reward != 0{
+                    
+                    self.hasRewardHistory = true
+                    self.lastAchievementReward = reward
+                    self.lastAchievementName = name
+                }
+
+                self.tableView.reloadData()
+                
+            })
+            
+        }
+//        tableView.reloadData()
     }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -91,7 +135,12 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         var numRows: Int = 0
         
         if(section == 0){
-           numRows = 1
+           
+            if hasRewardHistory{
+                numRows = 2
+            }else{
+                numRows = 1
+            }
         }else{
             numRows = achievements.count
         }
@@ -134,9 +183,30 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         var actualCell = UITableViewCell()
         
         if(indexPath.section == 0){
-            let cell = tableView.dequeueReusableCell(withIdentifier: "acheivementHeaderCell") as! AcheivementHeaderCell
-            cell.totalPointsLbl.text = "\(currentUser.client.getTotal())"
-            actualCell = cell
+            
+            if indexPath.row == 0{
+                
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "acheivementHeaderCell") as! AcheivementHeaderCell
+                //cell.totalPointsLbl.text = "\(currentUser.client.getTotal())"
+                let totalPoints = currentUser.client.getTotal(completion: {(result) in
+                    print("result")
+                    print(result)
+                    cell.totalPointsLbl.text = String(result)
+                })
+                
+                actualCell = cell
+                
+            }else{
+                
+                let cell = tableView.dequeueReusableCell(withIdentifier: "lastAchievementCell") as! LastAchievementCell
+                cell.nameLbl.text = self.lastAchievementName
+                cell.rewardLbl.text = "\(String(describing: self.lastAchievementReward!)) pts"
+                
+                actualCell = cell
+            }
+            
+            
         }else{
             let cell = tableView.dequeueReusableCell(withIdentifier: "achievementProgressCell") as! AchievementProgressCell
             cell.titleLbl.text = achievements[indexPath.row].getName()
@@ -159,7 +229,13 @@ class AcheivementsViewController: UIViewController, UITableViewDelegate, UITable
         
         switch indexPath.section {
         case 0:
-            height = 97.0
+            
+            if indexPath.row == 0{
+                height = 97.0
+            }else{
+                height = 70.0
+            }
+            
         case 1:
             height = 76.0
         default:

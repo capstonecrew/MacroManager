@@ -28,47 +28,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow.init(frame: UIScreen.main.bounds)
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        
+
 //        // FORCE SIGN OUT OPTION
+//
+//
 //        do  {
 //            try FIRAuth.auth()?.signOut()
-//            
+//
 //        } catch {
-//            
-//        }
-        
+//
+//       }
+
         if let user = FIRAuth.auth()?.currentUser{
+            let userRef = FIRDatabase.database().reference().child("users").child(user.uid)
             
-            print("logged in")
-            
-            if let userObj = UserDefaults.standard.object(forKey: "currentUser") as? [String: Any]{
+            userRef.observeSingleEvent(of: .value, with: { (snapshot:FIRDataSnapshot) in
                 
-                currentUser = User(dict: userObj)
+                let user = User(snap: snapshot)
+                currentUser = user
+                print(currentUser)
+                
+                // go directly to dashboard
                 let viewController = storyboard.instantiateViewController(withIdentifier: "Dashboard")
                 self.window?.rootViewController = viewController
                 self.window?.makeKeyAndVisible()
-
                 
-            }else{
-                
-                let userRef = FIRDatabase.database().reference().child("users").child(user.uid)
-                
-                userRef.observeSingleEvent(of: .value, with: { (snapshot:FIRDataSnapshot) in
-                    
-                    let user = User(snap: snapshot)
-                    currentUser = UserDefaults.standard.object(forKey: "currentUser") as! User
-                    print(currentUser)
-                    
-                    // go directly to dashboard
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "Dashboard")
-                    self.window?.rootViewController = viewController
-                    self.window?.makeKeyAndVisible()
-                    
-                })
-            }
-            
+            })
             
         } else {
+            
             print("NOT LOGGED IN")
             // bring to initial screen
             let viewController = storyboard.instantiateViewController(withIdentifier: "Login")

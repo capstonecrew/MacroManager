@@ -8,13 +8,17 @@
 
 import UIKit
 import AlamofireImage
+import Firebase
 
 class DashboardViewController: UITableViewController, UICollectionViewDelegate, UICollectionViewDataSource, FoodCollectionCellDelegate, SuggestedFoodsCellDelegate, DailyGoalProgressCellDelegate {
-    
+    var historyMealLog = [GenericFoodItem]()
+    var favoritesMealLog = [GenericFoodItem]()
+    var achievementLog = [achievement]()
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.40, green:0.40, blue:0.40, alpha:1.0)
+        navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+        navigationController?.navigationBar.isTranslucent = false
         tableView.register(UINib(nibName: "WelcomeUserCell", bundle: nil), forCellReuseIdentifier: "welcomeUserCell")
         tableView.register(UINib(nibName: "DailyGoalProgressCell", bundle: nil), forCellReuseIdentifier: "dailyGoalProgressCell")
         tableView.register(UINib(nibName: "SuggestedFoodsCell", bundle: nil), forCellReuseIdentifier: "suggestedFoodsCell")
@@ -26,8 +30,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        tableView.reloadData()
-        
+        loadData()
         let cell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as! SuggestedFoodsCell
         cell.foodsCollectionView.reloadData()
         animateBarGraph()
@@ -53,12 +56,70 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         case 0:
             numRows = 2
         case 1:
-            numRows = currentUser.mealLog.count
+            numRows = historyMealLog.count
         default:
             break
         }
         
         return numRows
+    }
+    
+    /*
+     get user ID
+     let userID = FIRAuth.auth()?.currentUser?.uid
+     reference to the DB
+     let ref = FIRDatabase.database().reference()
+     ref to child node of history if one exists, making an auto ID for the child, in which you can set my the .setValue method
+     let historyRef = ref.child("history").child(userID!).childByAutoId()
+     historyRef.setValue(recievedItem?.toAnyObject())
+     */
+    
+    func loadData()
+    {
+        
+        historyMealLog = [GenericFoodItem]()
+        let userID = FIRAuth.auth()?.currentUser?.uid
+        let ref = FIRDatabase.database().reference()
+        let historyRef = ref.child("history").child(userID!)
+        
+        let lookupGroup = DispatchGroup()
+        
+        lookupGroup.enter()
+        
+        historyRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            
+            for item in snapshot.children{
+                let historyItem = GenericFoodItem.init(snap: item as! FIRDataSnapshot)
+                self.historyMealLog.append(historyItem)
+            }
+            
+            lookupGroup.leave()
+        }
+        
+        
+        lookupGroup.enter()
+        favoritesMealLog = [GenericFoodItem]()
+        currentUser.favoriteLog = [GenericFoodItem]()
+        let favoritesRef = ref.child("favorites").child(userID!)
+        favoritesRef.observeSingleEvent(of: .value) { (snapshot: FIRDataSnapshot) in
+            for item in snapshot.children{
+                let favoritesItem = GenericFoodItem.init(snap: item as!  FIRDataSnapshot)
+                self.favoritesMealLog.append(favoritesItem)
+                currentUser.favoriteLog.append(favoritesItem)
+                
+            }
+            
+            lookupGroup.leave()
+        }
+        
+        lookupGroup.notify(queue: .main, execute: {
+            
+            print(self.favoritesMealLog.count)
+            self.tableView.reloadData()
+        })
+        
+       
+
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -107,13 +168,14 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
                 cell.foodsCollectionView.dataSource = self
                 cell.foodsCollectionView.register(UINib(nibName: "FoodCollectionCell", bundle: nil), forCellWithReuseIdentifier: "foodCollectionCell")
                 
-                if(currentUser.favoriteLog.count != 0){
+                if(favoritesMealLog.count != 0){
                     cell.addFavoriteBtn.isHidden = true
                 }else{
                     cell.addFavoriteBtn.isHidden = false
                 }
                 
                 cell.foodsCollectionView.collectionViewLayout.accessibilityScroll(.right)
+                cell.foodsCollectionView.reloadData()
                 cell.delegate = self
                 
                 return cell
@@ -134,7 +196,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             
             let cell = tableView.dequeueReusableCell(withIdentifier: "mealDetailsCell") as! MealDetailsCell
             cell.accessoryLbl.isHidden = true
-            cell.mainLbl.text = currentUser.mealLog[indexPath.row].itemName
+            cell.mainLbl.text = historyMealLog[indexPath.row].itemName
             return cell
             
         default:
@@ -184,8 +246,8 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodCollectionCell", for: indexPath) as!FoodCollectionCell
         cell.tag = indexPath.row
-        cell.foodLbl.text = currentUser.favoriteLog[indexPath.row].itemName
-        cell.foodImageView.af_setImage(withURL: URL(string: currentUser.favoriteLog[indexPath.row].imageUrl)! , placeholderImage: UIImage(named: "placeholder"), filter: CircleFilter())
+        cell.foodLbl.text = favoritesMealLog[indexPath.row].itemName
+        cell.foodImageView.af_setImage(withURL: URL(string: favoritesMealLog[indexPath.row].imageUrl)! , placeholderImage: UIImage(named: "placeholder"), filter: CircleFilter())
         cell.delegate = self
         
         return cell
@@ -197,7 +259,7 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return currentUser.favoriteLog.count
+        return favoritesMealLog.count
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -237,8 +299,8 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             let selectedIndex: IndexPath = sender as! IndexPath
             if let vc = segue.destination as? UINavigationController{
                 if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
-                    nextView.recievedItem = currentUser.mealLog[selectedIndex.row]
-                    nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.mealLog[selectedIndex.row].itemId)
+                    nextView.recievedItem = historyMealLog[selectedIndex.row]
+                    nextView.isFavorite = currentUser.checkFavorite(itemId: historyMealLog[selectedIndex.row].itemId)
                     print(selectedIndex.row)
                 }
             }
@@ -247,8 +309,8 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
             let selectedIndex: IndexPath = sender as! IndexPath
             if let vc = segue.destination as? UINavigationController{
                 if let nextView: MealView2Controller = vc.childViewControllers[0] as? MealView2Controller {
-                    nextView.recievedItem = currentUser.favoriteLog[selectedIndex.row]
-                    nextView.isFavorite = currentUser.checkFavorite(itemId: currentUser.favoriteLog[selectedIndex.row].itemId)
+                    nextView.recievedItem = favoritesMealLog[selectedIndex.row]
+                    nextView.isFavorite = currentUser.checkFavorite(itemId: favoritesMealLog[selectedIndex.row].itemId)
                     print(selectedIndex.row)
                 }
             }

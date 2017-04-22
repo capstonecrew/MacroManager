@@ -10,7 +10,7 @@ import Alamofire
 
 enum YummlyRouter : URLRequestConvertible {
     case getItem(id: String)
-    case search(query: String, count: Int)
+    case search(query: String, count: Int, miscParams: [String: Any]? )
     
     static let baseURL = "http://api.yummly.com/v1/api"
     static let appID = "751cde49"
@@ -29,7 +29,7 @@ enum YummlyRouter : URLRequestConvertible {
         switch self {
         case .getItem(let id):
             return "/recipe/\(id)"
-        case .search(_, _):
+        case .search(_, _, _):
             return "/recipes"
         }
     }
@@ -41,21 +41,27 @@ enum YummlyRouter : URLRequestConvertible {
         urlRequest.httpMethod = method.rawValue
         
         switch self {
-        case .getItem(let id):
+        case .getItem(_):
             let parameters : Parameters = [
                 "_app_id" : "\(YummlyRouter.appID)",
                 "_app_key" : "\(YummlyRouter.appKey)"
             ]
             
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
-        case .search(let query, let count):
-            let parameters : Parameters = [
+        case .search(let query, let count, let miscParams):
+            var parameters : Parameters = [
                 "q" : "\(query)",
                 "_app_id" : "\(YummlyRouter.appID)",
                 "_app_key" : "\(YummlyRouter.appKey)",
                 "maxResult" : "\(count)"
             ]
             
+            //Append custom parameters
+            if (miscParams != nil) {
+                for key in (miscParams?.keys)!{
+                    parameters[key] = miscParams?[key]
+                }
+            }
             urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
         }
         
