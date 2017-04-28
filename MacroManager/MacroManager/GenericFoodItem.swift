@@ -109,12 +109,35 @@ class GenericFoodItem {
             
         }
         else{
+            
             self.itemName = ""
+        }
+        
+        
+        if let nutrients = value!["nutrients"] as? [String: Any]{
+            
+            self.miscNutrients = [NutrientDetail]()
+            
+            for n in nutrients{
+                                
+                if let detail = n.value as? [String: Any]{
+                    
+                    var newNutrient = NutrientDetail()
+                    newNutrient.name = detail["name"] as! String
+                    newNutrient.amount = detail["amount"] as! Double
+                    newNutrient.units = detail["units"] as! String
+                    
+                    self.miscNutrients.append(newNutrient)
+                }
+               
+            }
+            
+        }else{
+            
+            self.miscNutrients = [NutrientDetail]()
         }
     }
     
-    
-
     convenience init?(json: [String: Any], foodSource : FoodSource) {
         switch foodSource {
         case FoodSource.edamam:
@@ -372,7 +395,20 @@ class GenericFoodItem {
     
     func toAnyObject() -> [String: Any]{
         
-        return ["itemName": self.itemName, "itemId": self.itemId, "itemDescription": self.itemDescription ?? "", "fats": self.fats ?? 0.0, "carbs": self.carbs ?? 0.0, "proteins": self.proteins ?? 0.0, "image": imageUrl]
+        return ["itemName": self.itemName, "itemId": self.itemId, "itemDescription": self.itemDescription ?? "", "fats": self.fats ?? 0.0, "carbs": self.carbs ?? 0.0, "proteins": self.proteins ?? 0.0, "image": imageUrl, "nutrients": self.nutrientsToAny()]
+    }
+    
+    
+    func nutrientsToAny() -> [String: Any]{
+        
+        var nutrients = [String: Any]()
+        
+        for nutrient in self.miscNutrients{
+            
+            nutrients[nutrient.name] = ["name": nutrient.name, "amount": nutrient.amount, "units": nutrient.units]
+        }
+        
+        return nutrients
     }
     
     func toString() -> String {

@@ -300,10 +300,21 @@ class User: NSObject {
     func addCustomMeal(itemName: String, itemDescription: String?, fats: Double?, proteins: Double?, carbs: Double?) {
         
         let customItem: GenericFoodItem! = GenericFoodItem(itemName: itemName, itemId: "custom", fats: fats!, proteins: proteins!, carbs: carbs!, foodSource: nil)
+        customItem.imageUrl = ""
         customMealList.append(customItem) // add to custom meal log
     }
     
     func removeMealFromFavorite(mealEaten: GenericFoodItem)
+    {
+        for index in 0...favoriteLog.count{
+            if favoriteLog[index].itemId == mealEaten.itemId{
+                favoriteLog.remove(at: index)
+                break
+            }
+        }
+    }
+    
+    func removeMealFromLog(mealEaten: GenericFoodItem)
     {
         for index in 0...favoriteLog.count{
             if favoriteLog[index].itemId == mealEaten.itemId{

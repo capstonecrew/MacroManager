@@ -34,7 +34,7 @@ class ProfileViewController: UIViewController, UITextFieldDelegate, UIPickerView
         navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
         navigationController?.navigationBar.isTranslucent = false
 
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         self.navigationItem.title = "Profile"
         
         userNameField.delegate = self
