@@ -104,7 +104,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         carbGoal = (carbGoalTotal - carbToday) / numMealsLeft
         
         //Populate with best recommendations
-        performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
+        //performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
     }
     
 //    @IBAction func doneSearching(_ sender: Any) {
