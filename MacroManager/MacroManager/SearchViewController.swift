@@ -42,6 +42,8 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         self.navigationItem.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
         
+       // performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
+        
 //        if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
 //            doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
 //        }
@@ -102,7 +104,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         carbGoal = (carbGoalTotal - carbToday) / numMealsLeft
         
         //Populate with best recommendations
-        //performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
+        performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
     }
     
 //    @IBAction func doneSearching(_ sender: Any) {
