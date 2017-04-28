@@ -243,6 +243,27 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         return 39.0
     }
 
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        
+//        var result = false
+//        
+//        if indexPath.section == 2{
+//            
+//            result = true
+//        }
+//        
+//        return result
+//    }
+//    
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete{
+//            
+//            historyMealLog.remove(at: indexPath.row)
+//            currentUser.removeMealFromLog()
+//            self.tableView.deleteRows(at: [indexPath], with: .left)
+//        }
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "foodCollectionCell", for: indexPath) as!FoodCollectionCell
         cell.tag = indexPath.row
@@ -273,8 +294,33 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         var progress = Float(currentUser.proteinToday!)/Float(currentUser.proteinCount!)
         if (progress >= 1)
         {
+            if progress >= 1.10 && progress <= 1.25{
+                
+                cell.proteinProgress.tintColor = UIColor.yellow
+                
+            }else if progress >= 1.25{
+                
+                cell.proteinProgress.tintColor = UIColor.red
+                
+            }else{
+                
+                cell.proteinProgress.tintColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0)
+            }
+
+            
             currentUser.client.updatePoints(d: "goals")
+            
+        
+        }else if progress >= 0.5 && progress < 1{
+    
+            cell.proteinProgress.tintColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0)
+    
+        }else{
+            
+            cell.proteinProgress.tintColor = UIColor.yellow
         }
+    
+    
         print(progress)
         cell.proteinProgress.setProgress(progress, animated: true)
         
@@ -283,12 +329,55 @@ class DashboardViewController: UITableViewController, UICollectionViewDelegate, 
         if (progress >= 1)
         {
             currentUser.client.updatePoints(d: "goals")
+            
+            if progress >= 1.10 && progress <= 1.25{
+                
+                cell.carbsProgress.tintColor = UIColor.yellow
+                
+            }else if progress >= 1.25{
+                
+                cell.carbsProgress.tintColor = UIColor.red
+                
+            }else{
+                
+                 cell.carbsProgress.tintColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0)
+            }
+            
+        }else if progress >= 0.5 && progress < 1{
+            
+            cell.carbsProgress.tintColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0)
+            
+        }else{
+            
+            cell.carbsProgress.tintColor = UIColor.yellow
         }
+        
         progress = Float(currentUser.fatToday!)/Float(currentUser.fatCount!)
         cell.fatsProgress.setProgress(progress, animated: true)
         if (progress >= 1)
         {
             currentUser.client.updatePoints(d: "goals")
+            
+            if progress >= 1.10 && progress <= 1.25{
+                
+                cell.fatsProgress.tintColor = UIColor.yellow
+                
+            }else if progress >= 1.25{
+                
+                cell.fatsProgress.tintColor = UIColor.red
+                
+            }else{
+                
+                cell.fatsProgress.tintColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0)
+            }
+            
+        }else if progress >= 0.5 && progress < 1{
+            
+            cell.fatsProgress.tintColor = UIColor(red:0.24, green:0.88, blue:0.58, alpha:1.0)
+            
+        }else{
+            
+            cell.fatsProgress.tintColor = UIColor.yellow
         }
     
     }

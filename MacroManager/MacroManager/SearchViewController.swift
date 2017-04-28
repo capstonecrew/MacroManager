@@ -37,10 +37,11 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         super.viewDidLoad()
         searchBar.delegate = self
         
-        navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+        self.navigationController?.navigationBar.barTintColor = UIColor(red:0.29, green:0.55, blue:0.90, alpha:1.0)
+        //self.navigationController?.navigationBar.isTranslucent = false
 
         self.navigationItem.title = "Search"
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Coolvetica", size: 23)!, NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
        // performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
         
@@ -78,6 +79,12 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
+        if self.tap != nil{
+            
+            self.view.removeGestureRecognizer(tap)
+        }
+        
         // User data math for deciding recommended meals
         fatGoalTotal = currentUser.fatCount
         proteinGoalTotal = currentUser.proteinCount
@@ -304,7 +311,17 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "meal", for: indexPath) as! SearchTableViewCell
         let item = self.foodSearchResults[indexPath.row]
         let circleFilter = CircleFilter()
-        cell.itemImage.af_setImage(withURL: URL(string: item.imageUrl)!, placeholderImage: UIImage(named: "placeholder"), filter: circleFilter)
+        
+        if item.imageUrl != ""{
+            
+             cell.itemImage.af_setImage(withURL: URL(string: item.imageUrl)!, placeholderImage: UIImage(named: "placeholder"), filter: circleFilter)
+            
+        }else{
+            
+            cell.itemImage.image = UIImage(named: "placeholder")
+        }
+        
+       
         
         cell.mealNameLabel.text = item.itemName
         
@@ -371,6 +388,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             //doneButton.isEnabled = false
             performSearch(searchText: text)
             currentUser.client.updatePoints(d: "search")
+            self.hideKeyboard()
         }
     }
 

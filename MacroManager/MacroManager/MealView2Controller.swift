@@ -31,7 +31,7 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
         tableView.register(UINib(nibName: "MealHeaderCell", bundle: nil), forCellReuseIdentifier: "mealHeaderCell")
         tableView.register(UINib(nibName: "MealDetailsCell", bundle: nil), forCellReuseIdentifier: "mealDetailsCell")
         self.navigationItem.title = "Food Detail"
-        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Helvetica Neue", size: 20)!, NSForegroundColorAttributeName: UIColor.white]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
             self.navigationItem.backBarButtonItem?.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
         }
@@ -91,7 +91,16 @@ class MealView2Controller: UITableViewController, mealHeaderCellDelegate {
             cell.proteinsAmount.text = "\(Int(nix.proteins)) g"
             cell.carbsAmount.text = "\(Int(nix.carbs)) g"
             cell.fatsAmount.text = "\(Int(nix.fats)) g"
-            cell.itemImage.af_setImage(withURL: URL(string: nix.imageUrl)!, placeholderImage: UIImage(named: "placeholder"))
+            
+            if nix.imageUrl != ""{
+                
+                cell.itemImage.af_setImage(withURL: URL(string: nix.imageUrl)!, placeholderImage: UIImage(named: "placeholder"))
+
+            }else{
+                
+                cell.itemImage.image = UIImage(named: "placeholder")
+            }
+            
             
         }else {
             print("COULD NOT FETCH NIX ITEM")
