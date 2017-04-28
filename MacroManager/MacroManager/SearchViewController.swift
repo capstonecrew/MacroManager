@@ -43,7 +43,7 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
         self.navigationItem.title = "Search"
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.white]
         
-       // performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
+        performBestMealLookup(clearCurrentResults: true, percent: self.percentFilter)
         
 //        if let font = UIFont(name: "Helvetica Neue Bold", size: 24) {
 //            doneButton.setTitleTextAttributes([NSFontAttributeName: font], for: UIControlState.normal)
@@ -176,7 +176,23 @@ class SearchViewController: UIViewController, UISearchBarDelegate {
             
             for item in response.value!{
                 self.calculateQuality(item: item)
-                self.foodSearchResults.append(item)
+                
+                var exists = false
+                
+                for food in self.foodSearchResults{
+                    
+                    if food.itemId == item.itemId{
+                        
+                        exists = true
+                    }
+                }
+                
+                if !exists && item.carbs != 0 && item.fats != 0 && item.proteins != 0{
+                    
+                    self.foodSearchResults.append(item)
+                }
+                
+                
             }
             
             self.minimumResultsCheck()
